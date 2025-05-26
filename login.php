@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (isset($_SESSION['usuario_id'])) {
+    header("Location: index.php");
+    exit();
+}
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -9,10 +16,10 @@
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	
-	<link rel="stylesheet" href="css/css/style.css">
+	<link rel="stylesheet" href="assets/css/css/style.css">
 
 	</head>
-	<body class="img js-fullheight" style="background-image: url(images/bg.jpg);">
+	<body class="img js-fullheight" style="background-image: url(assets/img/bg.jpg);">
 	<section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center">
@@ -24,12 +31,19 @@
 				<div class="col-md-6 col-lg-4">
 					<div class="login-wrap p-0">
 		      	<h3 class="mb-4 text-center">¿Tienes una cuenta?</h3>
-		      	<form action="#" class="signin-form">
+				  <?php
+					if (isset($_SESSION['error_login'])) {
+    					echo "<div class='alert alert-danger'>" . $_SESSION['error_login'] . "</div>";
+    					unset($_SESSION['error_login']);
+					}
+					?>
+
+		      	<form action="controladores/auntenticacion.php" method="POST" class="signin-form">
 		      		<div class="form-group">
-		      			<input type="text" class="form-control" placeholder="Usuario" required>
+					  <input type="email" name="email" class="form-control" placeholder="Correo electrónico" required>
 		      		</div>
 	            <div class="form-group">
-	              <input id="password-field" type="password" class="form-control" placeholder="Contraseña" required>
+	              <input id="password-field" name="password" type="password" class="form-control" placeholder="Contraseña" required>
 	              <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
 	            </div>
 	            <div class="form-group">
@@ -50,9 +64,9 @@
 	          <p class="w-100 text-center">&mdash; Iniciar Sesión con &mdash;</p>
 	          <div class="social d-flex text-center">
 	          	<a href="#" class="btn btn-light d-flex align-items-center justify-content-center mr-2">
-					<img src="images/google-icon-logo-symbol-free-png.png" alt="Google" style="height: 20px; margin-right: 8px;">Google</a>
+					<img src="assets/img/google-icon-logo-symbol-free-png.png" alt="Google" style="height: 20px; margin-right: 8px;">Google</a>
 	          	<a href="#" class="btn btn-light d-flex align-items-center justify-content-center ml-2">
-					<img src="images/Facebook_Logo_(2019).png" alt="Facebook" style="height: 20px; margin-right: 8px;">Facebook</a>
+					<img src="assets/img/Facebook_Logo_(2019).png" alt="Facebook" style="height: 20px; margin-right: 8px;">Facebook</a>
 	          </div>
 		      </div>
 			  <p class="w-100 text-center">&mdash; ¿No tienes una cuenta? &mdash;</p>
@@ -64,10 +78,10 @@
 		</div>
 	</section>
 
-	<script src="js/jquery.min.js"></script>
-  <script src="js/popper.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/login/main.js"></script>
+	<script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/popper.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
+  <script src="assets/js/login/main.js"></script>
 
 	</body>
 </html>

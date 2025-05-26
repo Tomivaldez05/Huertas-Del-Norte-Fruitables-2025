@@ -148,4 +148,14 @@
     });
 
 })(jQuery);
+const currentPage = window.location.pathname.split("/").pop();
+
+document.querySelectorAll(".navbar-nav .nav-link").forEach(link => {
+    const href = link.getAttribute("href").split("/").pop();
+    if (href === currentPage) {
+        link.classList.add("active");
+    } else {
+        link.classList.remove("active");
+    }
+});
 

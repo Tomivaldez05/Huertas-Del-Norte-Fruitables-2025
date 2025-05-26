@@ -9,9 +9,9 @@
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	
-	<link rel="stylesheet" href="css/css/style.css">
+	<link rel="stylesheet" href="assets/css/css/style.css">
 </head>
-<body class="img js-fullheight" style="background-image: url(images/bg.jpg);">
+<body class="img js-fullheight" style="background-image: url(assets/img/bg.jpg);">
 <body>
   <section class="ftco-section">
     <div class="container">
@@ -42,16 +42,16 @@
             </form>
             <p class="w-100 text-center">&mdash; ¿Ya tienes una cuenta? &mdash;</p>
             <div class="form-group">
-              <a href="index.html" class="form-control btn btn-secondary submit px-3">Iniciar sesión</a>
+              <a href="index.php" class="form-control btn btn-secondary submit px-3">Iniciar sesión</a>
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-  <script src="js/jquery.min.js"></script>
-  <script src="js/popper.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/main.js"></script>
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/popper.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
+  <script src="assets/js/main.js"></script>
 </body>
 </html>
