@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <title>Registro</title>
+  <title>Registro | Huertas del Norte</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -11,7 +11,7 @@
 	
 	<link rel="stylesheet" href="assets/css/css/style.css">
 </head>
-<body class="img js-fullheight" style="background-image: url(assets/img/bg.jpg);">
+<body class="img js-fullheight" style="background-image: url(assets/img/fondo-login.png);">
 <body>
   <section class="ftco-section">
     <div class="container">
