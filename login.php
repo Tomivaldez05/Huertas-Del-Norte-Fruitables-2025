@@ -8,7 +8,7 @@ if (isset($_SESSION['usuario_id'])) {
 <!doctype html>
 <html lang="en">
   <head>
-  	<title>Inicio de sesion</title>
+  	<title>Inicio de sesión | Huertas del Norte</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -19,7 +19,7 @@ if (isset($_SESSION['usuario_id'])) {
 	<link rel="stylesheet" href="assets/css/css/style.css">
 
 	</head>
-	<body class="img js-fullheight" style="background-image: url(assets/img/bg.jpg);">
+	<body class="img js-fullheight" style="background-image: url(assets/img/fondo-login.png);">
 	<section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center">
@@ -71,7 +71,7 @@ if (isset($_SESSION['usuario_id'])) {
 		      </div>
 			  <p class="w-100 text-center">&mdash; ¿No tienes una cuenta? &mdash;</p>
 				<div class="form-group">
-  				<a href="registro.html" class="form-control btn btn-secondary submit px-3">Regístrate aquí</a>
+  				<a href="registro.php" class="form-control btn btn-secondary submit px-3">Regístrate aquí</a>
 			</div>
 				</div>
 			</div>
