@@ -49,9 +49,9 @@
                         <div class="d-flex flex-column text-start footer-item">
                             <h4 class="text-light mb-3">Cuenta</h4>
                             <a class="btn-link" href="">Mi Cuenta</a>
-                            <a class="btn-link" href="">Shop details</a>
+                            <a class="btn-link" href="">Detalles Tienda</a>
                             <a class="btn-link" href="">Shopping Cart</a>
-                            <a class="btn-link" href="">Wishlist</a>
+                            <a class="btn-link" href="">Lista de deseos</a>
                             <a class="btn-link" href="">Order History</a>
                             <a class="btn-link" href="">International Orders</a>
                         </div>
@@ -59,10 +59,10 @@
                     <div class="col-lg-3 col-md-6">
                         <div class="footer-item">
                             <h4 class="text-light mb-3">Contacto</h4>
-                            <p>Address: 1429 Netus Rd, NY 48247</p>
+                            <p>Argentina</p>
                             <p>Email: Example@gmail.com</p>
                             <p>Teléfono: +54 3704 010101</p>
-                            <p>Payment Accepted</p>
+                            <p>Métodos de pago</p>
                             <img src="assets/img/payment.png" class="img-fluid" alt="">
                         </div>
                     </div>
