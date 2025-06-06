@@ -29,7 +29,8 @@ if (isset($_SESSION['usuario_id'])) {
 			</div>
 			<div class="row justify-content-center">
 				<div class="col-md-6 col-lg-4">
-					<div class="login-wrap p-0">
+					<div class="login-background">
+						<div class="login-wrap p-0">
 		      	<h3 class="mb-4 text-center">¿Tienes una cuenta?</h3>
 				  <?php
 					if (isset($_SESSION['error_login'])) {
