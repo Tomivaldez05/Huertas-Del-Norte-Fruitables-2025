@@ -1,8 +1,7 @@
 <?php
 // Habilitar reporte de errores para debugging
+ini_set('display_errors', 1); // No mostrar errores en pantalla
 error_reporting(E_ALL);
-ini_set('display_errors', 0); // No mostrar errores en pantalla
-ini_set('log_errors', 1); // Guardar errores en log
 
 // Establecer header JSON desde el inicio
 header('Content-Type: application/json; charset=utf-8');
@@ -61,9 +60,21 @@ switch ($accion) {
                 $parametros[':precioMax'] = $precioMax;
             }
 
-            $sql = "SELECT p.*, c.nombre_categoria
-                    FROM productos p
-                    JOIN categorias c ON p.id_categoria = c.id_categoria";
+            $sql = "
+                SELECT 
+                    p.id_producto,
+                    p.nombre_producto,
+                    p.precio_minorista,
+                    p.imagen,
+                    p.descripcion,
+                    p.unidad_medida,
+                    p.fecha_creacion,
+                    c.nombre_categoria,
+                    s.cantidad_disponible AS stock
+                FROM productos p
+                JOIN categorias c ON p.id_categoria = c.id_categoria
+                JOIN stock s ON p.id_producto = s.id_producto
+            ";
 
             if (!empty($condiciones)) {
                 $sql .= " WHERE " . implode(" AND ", $condiciones);
@@ -75,6 +86,7 @@ switch ($accion) {
             foreach ($parametros as $clave => $valor) {
                 $stmt->bindValue($clave, $valor);
             }
+
             $stmt->execute();
             $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -86,21 +98,40 @@ switch ($accion) {
         }
         break;
 
+
     // Cargar productos paginados por offset
     case 'cargar':
         try {
+            ini_set('display_errors', 1);
+            error_reporting(E_ALL);
+
+            require_once '../includes/db.php'; // asegurate de incluir tu conexión
+
             $offset = isset($_GET['offset']) ? intval($_GET['offset']) : 0;
             $limite = 6;
 
-            $stmt = $conn->prepare("SELECT p.*, c.nombre_categoria
-                                    FROM productos p
-                                    JOIN categorias c ON p.id_categoria = c.id_categoria
-                                    WHERE p.activo = 1
-                                    ORDER BY p.fecha_creacion DESC
-                                    LIMIT :limite OFFSET :offset");
+            $stmt = $conn->prepare("
+                SELECT 
+                    p.id_producto,
+                    p.nombre_producto,
+                    p.precio_minorista,
+                    p.imagen,
+                    p.descripcion,
+                    p.unidad_medida,
+                    p.fecha_creacion,
+                    c.nombre_categoria,
+                    s.cantidad_disponible AS stock
+                FROM productos p
+                JOIN categorias c ON p.id_categoria = c.id_categoria
+                JOIN stock s ON p.id_producto = s.id_producto
+                WHERE p.activo = 1
+                ORDER BY p.fecha_creacion DESC
+                LIMIT ? OFFSET ?
+            ");
 
-            $stmt->bindValue(':limite', $limite, PDO::PARAM_INT);
-            $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+            $stmt->bindValue(1, $limite, PDO::PARAM_INT);
+            $stmt->bindValue(2, $offset, PDO::PARAM_INT);
+
             $stmt->execute();
 
             $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);

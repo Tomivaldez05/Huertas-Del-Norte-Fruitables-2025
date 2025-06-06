@@ -68,20 +68,28 @@
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                                 <div class="dropdown-menu m-0 bg-secondary rounded-0">
-                                    <a href="cart.html" class="dropdown-item">Carrito</a>
-                                    <a href="chackout.html" class="dropdown-item">Chackout</a>
-                                    <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                                    <a href="404.html" class="dropdown-item">Error 404</a>
+                                    <a href="carrito.php" class="dropdown-item">Carrito</a>
+                                    <a href="chackout.php" class="dropdown-item">Chackout</a>
+                                    <a href="testimonial.php" class="dropdown-item">Testimonial</a>
                                 </div>
                             </div>
-                            <a href="contact.html" class="nav-item nav-link">Contacto</a>
+                            <a href="contact.php" class="nav-item nav-link">Contacto</a>
                         </div>
                         <div class="d-flex m-3 me-0">
                             <button class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fas fa-search text-primary"></i></button>
-                            <a href="#" class="position-relative me-4 my-auto">
-                                <i class="fa fa-shopping-bag fa-2x"></i>
-                                <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;">3</span>
-                            </a>
+                            <div class="position-relative me-4 my-auto" id="carritoContainer">
+                                <a href="carrito.php" class="position-relative" id="carritoDropdown">
+                                    <i class="fa fa-shopping-cart fa-2x"></i>
+                                    <span id="contador-carrito" class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1"
+                                        style="top: -5px; left: 15px; height: 20px; min-width: 20px;">0</span>
+                                </a>
+                                <!-- Resumen flotante -->
+                                <div id="resumen-carrito"
+                                    class="bg-white border rounded p-3 shadow position-absolute"
+                                    style="top: 40px; right: 0; min-width: 250px; z-index: 999; display: none;">
+                                    <p class="mb-0">Cargando...</p>
+                                </div>
+                            </div>
                             <a href="#" class="my-auto">
                                 <i class="fas fa-user fa-2x"></i>
                             </a>

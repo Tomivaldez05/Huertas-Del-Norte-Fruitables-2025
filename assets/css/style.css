@@ -569,5 +569,21 @@
 .footer .footer-item p.mb-4 {
     line-height: 35px;
 }
+.product-img img {
+    transition: transform 0.3s ease-in-out;
+}
+
+.product-item:hover .product-img img {
+    transform: scale(1.1);
+}
+
+.product-item {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.product-item:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
 /*** Footer End ***/
 

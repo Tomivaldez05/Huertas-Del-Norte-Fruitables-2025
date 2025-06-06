@@ -982,6 +982,6 @@ include_once 'includes/header.php';
         <!-- Tastimonial End -->
 
 
-        <?php
-include_once 'includes/footer.php';
+<?php
+    include_once 'includes/footer.php';
 ?>

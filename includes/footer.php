@@ -106,6 +106,8 @@
     <!-- Template Javascript -->
     <script src="assets/js/main.js"></script>
     <script src="assets/js/shop.js"></script>
+    <script src="assets/js/carrito.js"></script>
+
     </body>
 
 </html>

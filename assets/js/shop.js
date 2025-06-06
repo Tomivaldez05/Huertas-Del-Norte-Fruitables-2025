@@ -15,38 +15,59 @@ const limite = 6;
 
 // 🧱 Función reutilizable para mostrar productos
 function renderizarProductos(productos) {
-    contenedor.innerHTML = "";
+    const contenedor = document.getElementById("contenedor-productos");
+
+    if (!Array.isArray(productos)) {
+        console.error("❌ La respuesta no es un array:", productos);
+        return;
+    }
+
+    if (!contenedor) {
+        console.warn("⚠️ contenedor-productos no encontrado en el DOM.");
+        return;
+    }
 
     if (productos.length === 0) {
         contenedor.innerHTML = "<p class='text-center'>No se encontraron productos.</p>";
         return;
     }
 
+    contenedor.innerHTML = "";
+
     productos.forEach(p => {
         const card = `
-            <div class="col-md-6 col-lg-6 col-xl-4 mb-4">
-                <div class="rounded position-relative fruite-item">
-                    <div class="fruite-img">
-                        <img src="assets/img/${p.imagen}" class="img-fluid w-100 rounded-top" alt="${p.nombre_producto}">
+            <div class="col-md-4 mb-4">
+                <div class="product-item border border-secondary rounded position-relative overflow-hidden bg-light">
+                    <div class="product-img position-relative overflow-hidden">
+                        <img class="img-fluid w-100" src="assets/img/${p.imagen}" alt="${p.nombre_producto}">
                     </div>
-                    <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">
-                        ${p.nombre_categoria}
-                    </div>
-                    <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                        <h4>${p.nombre_producto}</h4>
-                        <p class="small">${p.descripcion}</p>
-                        <div class="d-flex justify-content-between flex-lg-wrap">
-                            <p class="text-dark fs-5 fw-bold mb-0">$${parseFloat(p.precio_minorista).toFixed(2)} / ${p.unidad_medida}</p>
-                            <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary">
-                                <i class="fa fa-shopping-bag me-2 text-primary"></i> Añadir al carrito
-                            </a>
+                    <div class="text-center p-4">
+                        <h6 class="fw-bold">${p.nombre_producto}</h6>
+                        <div class="d-flex justify-content-center mb-2">
+                            <h5 class="text-primary">$${p.precio_minorista}</h5>
                         </div>
+                        <p class="small ${p.stock <= 3 ? 'text-danger fw-bold' : 'text-muted'} mb-1">
+                            Stock: ${p.stock}
+                        </p>
+                        ${p.stock > 0
+                            ? `<a href="#" class="btn border border-secondary rounded-pill px-3 text-primary btn-agregar-carrito"
+                                   data-id="${p.id_producto}" 
+                                   data-nombre="${p.nombre_producto}" 
+                                   data-precio="${p.precio_minorista}" 
+                                   data-imagen="assets/img/${p.imagen}" 
+                                   data-stock="${p.stock}">
+                                   <i class="fa fa-shopping-cart me-2 text-primary"></i> Añadir al carrito
+                               </a>`
+                            : `<span class="badge bg-danger rounded-pill px-3 py-2">Sin stock</span>`}
                     </div>
                 </div>
-            </div>`;
-        contenedor.insertAdjacentHTML("beforeend", card);
+            </div>
+        `;
+
+        contenedor.innerHTML += card;
     });
 }
+
 
 // 🔁 Obtener precio máximo para el slider
 function obtenerPrecioMaximo() {
@@ -163,3 +184,32 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 });
+document.addEventListener("click", function (e) {
+    if (e.target.closest(".btn-agregar-carrito")) {
+        e.preventDefault();
+        const btn = e.target.closest(".btn-agregar-carrito");
+        const id = btn.dataset.id;
+        const nombre = btn.dataset.nombre;
+        const precio = parseFloat(btn.dataset.precio);
+        const imagen = btn.dataset.imagen;
+
+
+        let carrito = JSON.parse(localStorage.getItem("carrito")) || {};
+
+        if (carrito[id]) {
+            carrito[id].cantidad += 1;
+        } else {
+            carrito[id] = {
+                nombre,
+                precio,
+                cantidad: 1,
+                imagen
+            };
+        }
+
+        localStorage.setItem("carrito", JSON.stringify(carrito));
+        actualizarContador();
+        alert(`✅ ${nombre} añadido al carrito`);
+    }
+});
+
