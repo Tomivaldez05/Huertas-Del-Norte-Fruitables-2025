@@ -73,8 +73,7 @@ include_once 'includes/header.php';
                                 <i class="fas fa-car-side fa-3x text-white"></i>
                             </div>
                             <div class="featurs-content text-center">
-                                <h5>Free Shipping</h5>
-                                <p class="mb-0">Free on order over $300</p>
+                                <h5>Envíos a Domicilio</h5>
                             </div>
                         </div>
                     </div>
@@ -84,8 +83,8 @@ include_once 'includes/header.php';
                                 <i class="fas fa-user-shield fa-3x text-white"></i>
                             </div>
                             <div class="featurs-content text-center">
-                                <h5>Security Payment</h5>
-                                <p class="mb-0">100% security payment</p>
+                                <h5>Pago con seguridad</h5>
+                                <p class="mb-0">Pago con 100% de seguridad</p>
                             </div>
                         </div>
                     </div>
@@ -106,8 +105,8 @@ include_once 'includes/header.php';
                                 <i class="fa fa-phone-alt fa-3x text-white"></i>
                             </div>
                             <div class="featurs-content text-center">
-                                <h5>24/7 Support</h5>
-                                <p class="mb-0">Support every time fast</p>
+                                <h5>Soporte 24/7</h5>
+                                <p class="mb-0">Soporte rápido en todo momento</p>
                             </div>
                         </div>
                     </div>
@@ -123,7 +122,7 @@ include_once 'includes/header.php';
                 <div class="tab-class text-center">
                     <div class="row g-4">
                         <div class="col-lg-4 text-start">
-                            <h1>Our Organic Products</h1>
+                            <h1>Nuestros productos orgánicos</h1>
                         </div>
                         <div class="col-lg-8 text-end">
                             <ul class="nav nav-pills d-inline-flex text-center mb-5">
@@ -490,13 +489,13 @@ include_once 'includes/header.php';
         <!-- Vesitable Shop Start-->
         <div class="container-fluid vesitable py-5">
             <div class="container py-5">
-                <h1 class="mb-0">Fresh Organic Vegetables</h1>
+                <h1 class="mb-0">Verduras orgánicas frescas</h1>
                 <div class="owl-carousel vegetable-carousel justify-content-center">
                     <div class="border border-primary rounded position-relative vesitable-item">
                         <div class="vesitable-img">
                             <img src="assets/img/vegetable-item-6.jpg" class="img-fluid w-100 rounded-top" alt="">
                         </div>
-                        <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
+                        <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Verduras</div>
                         <div class="p-4 rounded-bottom">
                             <h4>Parsely</h4>
                             <p>(Descripción)</p>
@@ -644,8 +643,7 @@ include_once 'includes/header.php';
         <div class="container-fluid py-5">
             <div class="container py-5">
                 <div class="text-center mx-auto mb-5" style="max-width: 700px;">
-                    <h1 class="display-4">Bestseller Products</h1>
-                    <p>Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable.</p>
+                    <h1 class="display-4">Productos más vendidos</h1>
                 </div>
                 <div class="row g-4">
                     <div class="col-lg-6 col-xl-4">
@@ -856,28 +854,28 @@ include_once 'includes/header.php';
                         <div class="col-md-6 col-lg-6 col-xl-3">
                             <div class="counter bg-white rounded p-5">
                                 <i class="fa fa-users text-secondary"></i>
-                                <h4>satisfied customers</h4>
+                                <h4>Clientes satisfechos</h4>
                                 <h1>1963</h1>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-6 col-xl-3">
                             <div class="counter bg-white rounded p-5">
                                 <i class="fa fa-users text-secondary"></i>
-                                <h4>quality of service</h4>
+                                <h4>Calidad del servicio</h4>
                                 <h1>99%</h1>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-6 col-xl-3">
                             <div class="counter bg-white rounded p-5">
                                 <i class="fa fa-users text-secondary"></i>
-                                <h4>quality certificates</h4>
+                                <h4>Certificados de calidad</h4>
                                 <h1>33</h1>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-6 col-xl-3">
                             <div class="counter bg-white rounded p-5">
                                 <i class="fa fa-users text-secondary"></i>
-                                <h4>Available Products</h4>
+                                <h4>Productos disponibles</h4>
                                 <h1>789</h1>
                             </div>
                         </div>
