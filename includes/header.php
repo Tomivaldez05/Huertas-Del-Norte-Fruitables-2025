@@ -90,7 +90,7 @@
                                     <p class="mb-0">Cargando...</p>
                                 </div>
                             </div>
-                            <a href="#" class="my-auto">
+                            <a href="login.php" class="my-auto">
                                 <i class="fas fa-user fa-2x"></i>
                             </a>
                         </div>
