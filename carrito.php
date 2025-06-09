@@ -7,7 +7,7 @@ require_once 'includes/db.php';
             <div class="modal-dialog modal-fullscreen">
                 <div class="modal-content rounded-0">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Search by keyword</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Buscar por palabras claves</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body d-flex align-items-center">
@@ -24,10 +24,10 @@ require_once 'includes/db.php';
 
         <!-- Single Page Header start -->
         <div class="container-fluid page-header py-5">
-            <h1 class="text-center text-white display-6">Cart</h1>
+            <h1 class="text-center text-white display-6">Carrito</h1>
             <ol class="breadcrumb justify-content-center mb-0">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                <li class="breadcrumb-item"><a href="#">Páginas</a></li>
                 <li class="breadcrumb-item active text-white">Cart</li>
             </ol>
         </div>
@@ -46,7 +46,7 @@ require_once 'includes/db.php';
                     <!-- Resumen -->
                     <div class="col-md-4">
                         <div class="border rounded p-3">
-                            <h4>Resumen</h4>
+                            <h4>Resumen de Compra</h4>
                             <p id="total-carrito">Total: $0.00</p>
                             <a href="checkout.php" class="btn btn-success w-100 mt-2">Ir a Checkout</a>
                         </div>

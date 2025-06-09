@@ -44,7 +44,7 @@ include_once 'includes/header.php';
                                 </div>
                                 <div class="carousel-item rounded">
                                     <img src="assets/img/hero-img-2.jpg" class="img-fluid w-100 h-100 rounded" alt="Second slide">
-                                    <a href="#" class="btn px-4 py-2 text-white rounded">Vesitables</a>
+                                    <a href="#" class="btn px-4 py-2 text-white rounded">Verduras</a>
                                 </div>
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselId" data-bs-slide="prev">
@@ -144,12 +144,7 @@ include_once 'includes/header.php';
                                 </li>
                                 <li class="nav-item">
                                     <a class="d-flex m-2 py-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4">
-                                        <span class="text-dark" style="width: 110px;">Bread</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="d-flex m-2 py-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-5">
-                                        <span class="text-dark" style="width: 110px;">Meat</span>
+                                        <span class="text-dark" style="width: 110px;">Panadería</span>
                                     </a>
                                 </li>
                             </ul>
