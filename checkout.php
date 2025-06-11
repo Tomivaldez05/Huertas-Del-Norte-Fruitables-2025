@@ -1,4 +1,12 @@
 <?php
+session_start();
+if (!isset($_SESSION['usuario_id'])) {
+    // Guarda la página actual para volver luego
+    $_SESSION['redirigir_a'] = $_SERVER['REQUEST_URI'];
+    header("Location: login.php");
+    exit();
+}
+
 include_once 'includes/header.php';
 ?>
 
@@ -7,7 +15,7 @@ include_once 'includes/header.php';
             <div class="modal-dialog modal-fullscreen">
                 <div class="modal-content rounded-0">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Search by keyword</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Buscar por palabra clave</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body d-flex align-items-center">
@@ -27,7 +35,7 @@ include_once 'includes/header.php';
             <h1 class="text-center text-white display-6">Checkout</h1>
             <ol class="breadcrumb justify-content-center mb-0">
                 <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                <li class="breadcrumb-item"><a href="#">PáginasS</a></li>
+                <li class="breadcrumb-item"><a href="#">Páginas</a></li>
                 <li class="breadcrumb-item active text-white">Checkout</li>
             </ol>
         </div>
@@ -86,7 +94,7 @@ include_once 'includes/header.php';
                             <hr>
                             <div class="form-check my-3">
                                 <input class="form-check-input" type="checkbox" id="Address-1" name="Address" value="Address">
-                                <label class="form-check-label" for="Address-1">Enviar a una dirección diferente??</label>
+                                <label class="form-check-label" for="Address-1">Enviar a una dirección diferente</label>
                             </div>
                             <div class="form-item">
                                 <textarea name="text" class="form-control" spellcheck="false" cols="30" rows="11" placeholder="Informacion adicional sobre el pedido (Opcional)"></textarea>

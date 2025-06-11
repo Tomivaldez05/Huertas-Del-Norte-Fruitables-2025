@@ -6,7 +6,7 @@ include_once 'includes/header.php';
             <div class="modal-dialog modal-fullscreen">
                 <div class="modal-content rounded-0">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Search by keyword</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Buscar por palabra clave</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body d-flex align-items-center">
@@ -26,7 +26,7 @@ include_once 'includes/header.php';
             <h1 class="text-center text-white display-6">Detalle Tienda</h1>
             <ol class="breadcrumb justify-content-center mb-0">
                 <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                <li class="breadcrumb-item"><a href="#">Paginas</a></li>
                 <li class="breadcrumb-item active text-white">Detalle Tienda</li>
             </ol>
         </div>
@@ -264,13 +264,13 @@ include_once 'includes/header.php';
                                 </div>
                             </div>
                             <div class="col-lg-12">
-                                <h4 class="mb-4">Featured products</h4>
+                                <h4 class="mb-4">Productos destacados</h4>
                                 <div class="d-flex align-items-center justify-content-start">
                                     <div class="rounded" style="width: 100px; height: 100px;">
                                         <img src="assets/img/featur-1.jpg" class="img-fluid rounded" alt="Image">
                                     </div>
                                     <div>
-                                        <h6 class="mb-2">Big Banana</h6>
+                                        <h6 class="mb-2">Platano grande</h6>
                                         <div class="d-flex mb-2">
                                             <i class="fa fa-star text-secondary"></i>
                                             <i class="fa fa-star text-secondary"></i>
@@ -289,7 +289,7 @@ include_once 'includes/header.php';
                                         <img src="assets/img/featur-2.jpg" class="img-fluid rounded" alt="">
                                     </div>
                                     <div>
-                                        <h6 class="mb-2">Big Banana</h6>
+                                        <h6 class="mb-2">Platano grande</h6>
                                         <div class="d-flex mb-2">
                                             <i class="fa fa-star text-secondary"></i>
                                             <i class="fa fa-star text-secondary"></i>
@@ -308,7 +308,7 @@ include_once 'includes/header.php';
                                         <img src="assets/img/featur-3.jpg" class="img-fluid rounded" alt="">
                                     </div>
                                     <div>
-                                        <h6 class="mb-2">Big Banana</h6>
+                                        <h6 class="mb-2">Platano grande</h6>
                                         <div class="d-flex mb-2">
                                             <i class="fa fa-star text-secondary"></i>
                                             <i class="fa fa-star text-secondary"></i>
@@ -327,7 +327,7 @@ include_once 'includes/header.php';
                                         <img src="assets/img/vegetable-item-4.jpg" class="img-fluid rounded" alt="">
                                     </div>
                                     <div>
-                                        <h6 class="mb-2">Big Banana</h6>
+                                        <h6 class="mb-2">Platano grande</h6>
                                         <div class="d-flex mb-2">
                                             <i class="fa fa-star text-secondary"></i>
                                             <i class="fa fa-star text-secondary"></i>
@@ -346,7 +346,7 @@ include_once 'includes/header.php';
                                         <img src="assets/img/vegetable-item-5.jpg" class="img-fluid rounded" alt="">
                                     </div>
                                     <div>
-                                        <h6 class="mb-2">Big Banana</h6>
+                                        <h6 class="mb-2">Platano grande</h6>
                                         <div class="d-flex mb-2">
                                             <i class="fa fa-star text-secondary"></i>
                                             <i class="fa fa-star text-secondary"></i>
@@ -365,7 +365,7 @@ include_once 'includes/header.php';
                                         <img src="assets/img/vegetable-item-6.jpg" class="img-fluid rounded" alt="">
                                     </div>
                                     <div>
-                                        <h6 class="mb-2">Big Banana</h6>
+                                        <h6 class="mb-2">Platano grande</h6>
                                         <div class="d-flex mb-2">
                                             <i class="fa fa-star text-secondary"></i>
                                             <i class="fa fa-star text-secondary"></i>
@@ -387,7 +387,7 @@ include_once 'includes/header.php';
                                 <div class="position-relative">
                                     <img src="assets/img/banner-fruits.jpg" class="img-fluid w-100 rounded" alt="">
                                     <div class="position-absolute" style="top: 50%; right: 10px; transform: translateY(-50%);">
-                                        <h3 class="text-secondary fw-bold">Fresh <br> Fruits <br> Banner</h3>
+                                        <h3 class="text-secondary fw-bold">Banner <br> de Frutas <br> Frescas</h3>
                                     </div>
                                 </div>
                             </div>
@@ -445,7 +445,7 @@ include_once 'includes/header.php';
                             </div>
                             <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetales</div>
                             <div class="p-4 pb-0 rounded-bottom">
-                                <h4>Bell Papper</h4>
+                                <h4>Pimiento Morrón</h4>
                                 <p></p>
                                 <div class="d-flex justify-content-between flex-lg-wrap">
                                     <p class="text-dark fs-5 fw-bold">$7.99 / kg</p>
@@ -459,7 +459,7 @@ include_once 'includes/header.php';
                             </div>
                             <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetales</div>
                             <div class="p-4 pb-0 rounded-bottom">
-                                <h4>Potatoes</h4>
+                                <h4>Papas</h4>
                                 <p></p>
                                 <div class="d-flex justify-content-between flex-lg-wrap">
                                     <p class="text-dark fs-5 fw-bold">$7.99 / kg</p>
@@ -487,7 +487,7 @@ include_once 'includes/header.php';
                             </div>
                             <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetales</div>
                             <div class="p-4 pb-0 rounded-bottom">
-                                <h4>Potatoes</h4>
+                                <h4>Papas</h4>
                                 <p></p>
                                 <div class="d-flex justify-content-between flex-lg-wrap">
                                     <p class="text-dark fs-5 fw-bold">$7.99 / kg</p>

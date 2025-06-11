@@ -69,7 +69,7 @@
                                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                                 <div class="dropdown-menu m-0 bg-secondary rounded-0">
                                     <a href="carrito.php" class="dropdown-item">Carrito</a>
-                                    <a href="chackout.php" class="dropdown-item">Chackout</a>
+                                    <a href="chackout.php" class="dropdown-item">Verificar</a>
                                     <a href="testimonial.php" class="dropdown-item">Testimonial</a>
                                 </div>
                             </div>
@@ -106,7 +106,7 @@
             <div class="modal-dialog modal-fullscreen">
                 <div class="modal-content rounded-0">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Search by keyword</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Buscar por palabra clave</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body d-flex align-items-center">
