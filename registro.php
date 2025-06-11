@@ -42,7 +42,7 @@
             </form>
             <p class="w-100 text-center">&mdash; ¿Ya tienes una cuenta? &mdash;</p>
             <div class="form-group">
-              <a href="index.php" class="form-control btn btn-secondary submit px-3">Iniciar sesión</a>
+              <a href="login.php" class="form-control btn btn-secondary submit px-3">Iniciar sesión</a>
             </div>
           </div>
         </div>
