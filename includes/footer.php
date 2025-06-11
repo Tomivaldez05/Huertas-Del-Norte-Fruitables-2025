@@ -5,8 +5,8 @@
                     <div class="row g-4">
                         <div class="col-lg-3">
                             <a href="#">
-                                <h1 class="text-primary mb-0">Fruitables</h1>
-                                <p class="text-secondary mb-0">Fresh products</p>
+                                <h1 class="text-primary mb-0">Frutables</h1>
+                                <p class="text-secondary mb-0">Productos frescos</p>
                             </a>
                         </div>
                         <div class="col-lg-6">
@@ -28,21 +28,21 @@
                 <div class="row g-5">
                     <div class="col-lg-3 col-md-6">
                         <div class="footer-item">
-                            <h4 class="text-light mb-3">Why People Like us!</h4>
+                            <h4 class="text-light mb-3">¡Porque a la gente le gusta esto!</h4>
                             <p class="mb-4">typesetting, remaining essentially unchanged. It was 
                                 popularised in the 1960s with the like Aldus PageMaker including of Lorem Ipsum.</p>
-                            <a href="" class="btn border-secondary py-2 px-4 rounded-pill text-primary">Read More</a>
+                            <a href="" class="btn border-secondary py-2 px-4 rounded-pill text-primary">Leer mas</a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <div class="d-flex flex-column text-start footer-item">
-                            <h4 class="text-light mb-3">Shop Info</h4>
-                            <a class="btn-link" href="">About Us</a>
-                            <a class="btn-link" href="">Contact Us</a>
-                            <a class="btn-link" href="">Privacy Policy</a>
-                            <a class="btn-link" href="">Terms & Condition</a>
-                            <a class="btn-link" href="">Return Policy</a>
-                            <a class="btn-link" href="">FAQs & Help</a>
+                            <h4 class="text-light mb-3">Informacion de la tienda</h4>
+                            <a class="btn-link" href="">Acerca de nosotros</a>
+                            <a class="btn-link" href="">Contacta con nosotros</a>
+                            <a class="btn-link" href="">Politica de privacidad</a>
+                            <a class="btn-link" href="">Terminos y condiciones</a>
+                            <a class="btn-link" href="">Politica de devoluciones</a>
+                            <a class="btn-link" href="">Preguntas frecuentes y ayuda</a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">
@@ -50,10 +50,10 @@
                             <h4 class="text-light mb-3">Cuenta</h4>
                             <a class="btn-link" href="">Mi Cuenta</a>
                             <a class="btn-link" href="">Detalles Tienda</a>
-                            <a class="btn-link" href="">Shopping Cart</a>
+                            <a class="btn-link" href="">Carrito de compra</a>
                             <a class="btn-link" href="">Lista de deseos</a>
-                            <a class="btn-link" href="">Order History</a>
-                            <a class="btn-link" href="">International Orders</a>
+                            <a class="btn-link" href="">Historial de pedidos</a>
+                            <a class="btn-link" href="">Pedidos internacionales (International Orders)</a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">
@@ -76,7 +76,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        <span class="text-light"><a href="#"><i class="fas fa-copyright text-light me-2"></i>Your Site Name</a>, All right reserved.</span>
+                        <span class="text-light"><a href="#"><i class="fas fa-copyright text-light me-2"></i>El nombre de su sitio</a>, Todos los derechos reservados.</span>
                     </div>
                     <div class="col-md-6 my-auto text-center text-md-end text-white">
                         <!--/*** This template is free as long as you keep the below author’s credit link/attribution link/backlink. ***/-->

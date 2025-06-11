@@ -3,7 +3,7 @@
 
     <head>
         <meta charset="utf-8">
-        <title>Fruitables - Vegetable Website Template</title>
+        <title>Fruitables - Plantilla para sitio web de verduras</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="" name="palabras clave">
         <meta content="" name="descripcion">
@@ -243,16 +243,16 @@
                 <div class="row g-5">
                     <div class="col-lg-3 col-md-6">
                         <div class="footer-item">
-                            <h4 class="text-light mb-3">Why People Like us!</h4>
+                            <h4 class="text-light mb-3">¡Por qué la gente nos prefiere!</h4>
                             <p class="mb-4">typesetting, remaining essentially unchanged. It was 
                                 popularised in the 1960s with the like Aldus PageMaker including of Lorem Ipsum.</p>
-                            <a href="" class="btn border-secondary py-2 px-4 rounded-pill text-primary">Read More</a>
+                            <a href="" class="btn border-secondary py-2 px-4 rounded-pill text-primary">Leer más</a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <div class="d-flex flex-column text-start footer-item">
                             <h4 class="text-light mb-3">Informacion de la tienda</h4>
-                            <a class="btn-link" href="">Acerca de nosotros</a>
+                            <a class="btn-link" href="">Sobre nosotros</a>
                             <a class="btn-link" href="">Contacta con nosotros</a>
                             <a class="btn-link" href="">Politica de privacidad</a>
                             <a class="btn-link" href="">Terminos y Condiciones</a>
@@ -266,7 +266,7 @@
                             <a class="btn-link" href="">Cuenta</a>
                             <a class="btn-link" href="">Detalles de la tienda</a>
                             <a class="btn-link" href="">Carrito de compra</a>
-                            <a class="btn-link" href="">Wishlist</a>
+                            <a class="btn-link" href="">Lista de deseos</a>
                             <a class="btn-link" href="">Historial de pedidos</a>
                             <a class="btn-link" href="">Pedidos internacionales (International Orders)</a>
                         </div>

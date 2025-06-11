@@ -28,7 +28,7 @@ require_once 'includes/db.php';
             <ol class="breadcrumb justify-content-center mb-0">
                 <li class="breadcrumb-item"><a href="#">Inicio</a></li>
                 <li class="breadcrumb-item"><a href="#">Páginas</a></li>
-                <li class="breadcrumb-item active text-white">Cart</li>
+                <li class="breadcrumb-item active text-white">Carrito</li>
             </ol>
         </div>
         <!-- Single Page Header End -->
@@ -48,7 +48,7 @@ require_once 'includes/db.php';
                         <div class="border rounded p-3">
                             <h4>Resumen de Compra</h4>
                             <p id="total-carrito">Total: $0.00</p>
-                            <a href="checkout.php" class="btn btn-success w-100 mt-2">Ir a Checkout</a>
+                            <a href="checkout.php" class="btn btn-success w-100 mt-2">Proceder al pago</a>
                         </div>
                     </div>
                 </div>
