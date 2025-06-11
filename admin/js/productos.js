@@ -1,34 +1,67 @@
 // js/productos.js con rutas corregidas para admin
+// Inicialización directa
+export function inicializarProductos() {
+  cargarProductos();
+  cargarCategorias();
 
+  const form = document.getElementById("formProducto");
+  if (form) {
+    form.addEventListener("submit", guardarProducto);
+  }
+
+  const btnModal = document.getElementById("btnAbrirModal");
+  if (btnModal) {
+    btnModal.addEventListener("click", () => {
+      document.getElementById("formProducto").reset();
+      document.getElementById("id_producto").value = "";
+      document.getElementById("cantidad_minima_mayorista").value = "1";
+      const modal = new bootstrap.Modal(document.getElementById("modalProducto"));
+      modal.show();
+    });
+  }
+
+  // Delegación usando jQuery sigue funcionando
+  $(document).on("click", ".btn-editar", function () {
+    const id = this.getAttribute("data-id");
+    editarProducto(id);
+  });
+
+  $(document).on("click", ".btn-eliminar", function () {
+    const id = this.getAttribute("data-id");
+    eliminarProducto(id);
+  });
+}
 var tablaProductos = window.tablaProductos || null;
 
 function cargarProductos() {
   fetch("acciones/controladorProducto.php?accion=listar")
     .then(res => res.json())
     .then(data => {
-      if (tablaProductos) {
-        tablaProductos.clear().rows.add(data).draw();
-      } else {
-        tablaProductos = $("#tablaProductos").DataTable({
-          data,
-          columns: [
-            { data: "nombre_producto" },
-            { data: "nombre_categoria" },
-            {
-              data: "precio_minorista",
-              render: data => `$${parseFloat(data).toFixed(2)}`
-            },
-            { data: "unidad_medida" },
-            {
-              data: "id_producto",
-              render: id => `
-                <button class="btn btn-sm btn-warning btn-editar" data-id="${id}">Editar</button>
-                <button class="btn btn-sm btn-danger btn-eliminar" data-id="${id}">Eliminar</button>
-              `
-            }
-          ]
-        });
+      // ⚠️ Destruir tabla si ya existe
+      if ($.fn.DataTable.isDataTable("#tablaProductos")) {
+        $('#tablaProductos').DataTable().destroy();
       }
+
+      // Inicializar tabla con nuevos datos
+      tablaProductos = $("#tablaProductos").DataTable({
+        data,
+        columns: [
+          { data: "nombre_producto" },
+          { data: "nombre_categoria" },
+          {
+            data: "precio_minorista",
+            render: data => `$${parseFloat(data).toFixed(2)}`
+          },
+          { data: "unidad_medida" },
+          {
+            data: "id_producto",
+            render: id => `
+              <button class="btn btn-sm btn-warning btn-editar" data-id="${id}">Editar</button>
+              <button class="btn btn-sm btn-danger btn-eliminar" data-id="${id}">Eliminar</button>
+            `
+          }
+        ]
+      });
     })
     .catch(error => {
       console.error('Error al cargar productos:', error);
@@ -123,27 +156,4 @@ function eliminarProducto(id) {
   }
 }
 
-// Inicialización directa
-cargarProductos();
-cargarCategorias();
 
-document.getElementById("formProducto").addEventListener("submit", guardarProducto);
-document.getElementById("btnAbrirModal").addEventListener("click", () => {
-  document.getElementById("formProducto").reset();
-  document.getElementById("id_producto").value = "";
-  // Restablecer valor por defecto
-  document.getElementById("cantidad_minima_mayorista").value = "1";
-  const modal = new bootstrap.Modal(document.getElementById("modalProducto"));
-  modal.show();
-});
-
-// Delegación de eventos para editar y eliminar
-$(document).on("click", ".btn-editar", function () {
-  const id = this.getAttribute("data-id");
-  editarProducto(id);
-});
-
-$(document).on("click", ".btn-eliminar", function () {
-  const id = this.getAttribute("data-id");
-  eliminarProducto(id);
-});

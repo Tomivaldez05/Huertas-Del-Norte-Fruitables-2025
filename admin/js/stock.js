@@ -1,14 +1,29 @@
-document.getElementById("btnProductos").addEventListener("click", () => {
-  fetch("modulos/productos.php")
-    .then(res => res.text())
-    .then(html => {
-      const contenedor = document.getElementById("contenedor-modulo");
-      contenedor.innerHTML = html;
+export function inicializarStock() {
+  const esperarBtn = () => {
+    const btn = document.getElementById("btnProductos");
+    if (btn) {
+      if (!btn.dataset.listenerAttached) {
+        btn.addEventListener("click", () => {
+          fetch("modulos/stock.php") // ← Este botón abre productos, no stock
+            .then(res => res.text())
+            .then(html => {
+              const contenedor = document.getElementById("contenedor-modulo");
+              contenedor.innerHTML = html;
 
-      // Cargar el script solo después de cargar el módulo
-      const script = document.createElement("script");
-      script.src = "js/productos.js";
-      script.type = "module"; // opcional si usás funciones modernas
-      document.body.appendChild(script);
-    });
-});
+              import("./js/productos.js").then(modulo => {
+                if (typeof modulo.inicializarProductos === "function") {
+                  modulo.inicializarProductos();
+                }
+              });
+            });
+        });
+        // Marcar como "listener ya agregado"
+        btn.dataset.listenerAttached = "true";
+      }
+    } else {
+      setTimeout(esperarBtn, 100);
+    }
+  };
+
+  esperarBtn();
+}
