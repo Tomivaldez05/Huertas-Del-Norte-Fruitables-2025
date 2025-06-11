@@ -33,13 +33,13 @@ function renderizarProductos(productos) {
     }
 
     contenedor.innerHTML = "";
-
+    console.log(productos);
     productos.forEach(p => {
         const card = `
             <div class="col-md-4 mb-4">
                 <div class="product-item border border-secondary rounded position-relative overflow-hidden bg-light">
                     <div class="product-img position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="assets/img/${p.imagen}" alt="${p.nombre_producto}">
+                        <img class="img-fluid w-100" src="assets/img/productos/${p.imagen}" alt="${p.nombre_producto}">
                     </div>
                     <div class="text-center p-4">
                         <h6 class="fw-bold">${p.nombre_producto}</h6>
