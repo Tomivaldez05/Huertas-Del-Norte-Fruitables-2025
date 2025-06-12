@@ -127,6 +127,43 @@ switch ($accion) {
             echo json_encode(['error' => $e->getMessage()]);
         }
         break;
+    case 'guardarCategoria':
+        $id = $_POST['id_categoria'] ?? null;
+        $nombre = $_POST['nombre_categoria'] ?? '';
+
+        try {
+            if ($id) {
+                $sql = "UPDATE categorias SET nombre_categoria = ? WHERE id_categoria = ?";
+                $stmt = $conn->prepare($sql);
+                $ok = $stmt->execute([$nombre, $id]); // 👈 parámetro corregido
+            } else {
+                $sql = "INSERT INTO categorias(nombre_categoria) VALUES (?)";
+                $stmt = $conn->prepare($sql);
+                $ok = $stmt->execute([$nombre]);
+            }
+
+            echo json_encode(["ok" => $ok]);
+        } catch (PDOException $e) {
+            echo json_encode(["ok" => false, "mensaje" => $e->getMessage()]);
+        }
+        break;
+
+    case 'eliminarCategoria':
+        try {
+            $id = $_GET['id'] ?? null;
+
+            if (!$id) {
+                echo json_encode(['ok' => false, 'mensaje' => 'ID no proporcionado']);
+                break;
+            }
+
+            $stmt = $conn->prepare("DELETE FROM categorias WHERE id_categoria = ?");
+            $ok = $stmt->execute([$id]);
+            echo json_encode(["ok" => $ok]);
+        } catch (PDOException $e) {
+            echo json_encode(["ok" => false, "mensaje" => $e->getMessage()]);
+        }
+        break;
 
     default:
         http_response_code(400);

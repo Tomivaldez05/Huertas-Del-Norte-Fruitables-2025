@@ -1,8 +1,8 @@
 <div class="card">
   <div class="card-header">Listado de Productos</div>
   <div class="card-body">
-    <button class="btn btn-primary mb-3" id="btnAbrirModal" data-bs-toggle="modal" data-bs-target="#modalProducto">+ Agregar</button>
-
+    <button class="btn btn-primary mb-3" id="btnAbrirModal" data-bs-toggle="modal" data-bs-target="#modalProducto">+ Agregar Producto</button>
+    <button class="btn btn-primary mb-3" id="btnCategorias" >+ Gestionar Cateogorías</button>
     <table class="table table-striped" id="tablaProductos">
       <thead>
         <tr>
@@ -15,6 +15,45 @@
       </thead>
       <tbody></tbody>
     </table>
+  </div>
+</div>
+
+
+<!-- Modal de Categorías -->
+<div class="modal fade" id="modalCategorias" tabindex="-1" aria-labelledby="tituloCategorias" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <form id="formCategoria">
+        <div class="modal-header">
+          <h5 class="modal-title" id="tituloCategorias">Categorías</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+
+          <input type="hidden" id="id_categoria" name="id_categoria">
+
+          <div class="mb-3">
+            <label for="nombre_categoria" class="form-label">Nombre de categoría</label>
+            <input type="text" class="form-control" id="nombre_categoria" name="nombre_categoria" required>
+          </div>
+
+          <table class="table table-striped" id="tablaCategorias">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Guardar</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
 

@@ -110,7 +110,7 @@ require_once 'includes/db.php';
                                                 <img src="assets/img/featur-1.jpg" class="img-fluid rounded" alt="">
                                             </div>
                                             <div>
-                                                <h6 class="mb-2">Big Banana</h6>
+                                                <h6 class="mb-2">Melocoton</h6>
                                                 <div class="d-flex mb-2">
                                                     <i class="fa fa-star text-secondary"></i>
                                                     <i class="fa fa-star text-secondary"></i>
@@ -167,12 +167,12 @@ require_once 'includes/db.php';
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
-                                        <div class="position-relative">
+                                        <!--<div class="position-relative">
                                             <img src="assets/img/banner-fruits.jpg" class="img-fluid w-100 rounded" alt="">
                                             <div class="position-absolute" style="top: 50%; right: 10px; transform: translateY(-50%);">
                                                 <h3 class="text-secondary fw-bold">Frutas <br> Frescas</h3>
                                             </div>
-                                        </div>
+                                        </div>-->
                                     </div>
                                 </div>
                             </div>

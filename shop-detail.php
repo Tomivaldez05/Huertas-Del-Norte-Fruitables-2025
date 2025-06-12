@@ -270,7 +270,7 @@ include_once 'includes/header.php';
                                         <img src="assets/img/featur-1.jpg" class="img-fluid rounded" alt="Image">
                                     </div>
                                     <div>
-                                        <h6 class="mb-2">Platano grande</h6>
+                                        <h6 class="mb-2">Melocoton</h6>
                                         <div class="d-flex mb-2">
                                             <i class="fa fa-star text-secondary"></i>
                                             <i class="fa fa-star text-secondary"></i>
@@ -289,7 +289,7 @@ include_once 'includes/header.php';
                                         <img src="assets/img/featur-2.jpg" class="img-fluid rounded" alt="">
                                     </div>
                                     <div>
-                                        <h6 class="mb-2">Platano grande</h6>
+                                        <h6 class="mb-2">Frutilla</h6>
                                         <div class="d-flex mb-2">
                                             <i class="fa fa-star text-secondary"></i>
                                             <i class="fa fa-star text-secondary"></i>
@@ -308,7 +308,7 @@ include_once 'includes/header.php';
                                         <img src="assets/img/featur-3.jpg" class="img-fluid rounded" alt="">
                                     </div>
                                     <div>
-                                        <h6 class="mb-2">Platano grande</h6>
+                                        <h6 class="mb-2">Brocoli</h6>
                                         <div class="d-flex mb-2">
                                             <i class="fa fa-star text-secondary"></i>
                                             <i class="fa fa-star text-secondary"></i>
@@ -327,7 +327,7 @@ include_once 'includes/header.php';
                                         <img src="assets/img/vegetable-item-4.jpg" class="img-fluid rounded" alt="">
                                     </div>
                                     <div>
-                                        <h6 class="mb-2">Platano grande</h6>
+                                        <h6 class="mb-2">Pimiento Morron</h6>
                                         <div class="d-flex mb-2">
                                             <i class="fa fa-star text-secondary"></i>
                                             <i class="fa fa-star text-secondary"></i>
@@ -346,7 +346,7 @@ include_once 'includes/header.php';
                                         <img src="assets/img/vegetable-item-5.jpg" class="img-fluid rounded" alt="">
                                     </div>
                                     <div>
-                                        <h6 class="mb-2">Platano grande</h6>
+                                        <h6 class="mb-2">Papa</h6>
                                         <div class="d-flex mb-2">
                                             <i class="fa fa-star text-secondary"></i>
                                             <i class="fa fa-star text-secondary"></i>
@@ -365,7 +365,7 @@ include_once 'includes/header.php';
                                         <img src="assets/img/vegetable-item-6.jpg" class="img-fluid rounded" alt="">
                                     </div>
                                     <div>
-                                        <h6 class="mb-2">Platano grande</h6>
+                                        <h6 class="mb-2">Lechuga</h6>
                                         <div class="d-flex mb-2">
                                             <i class="fa fa-star text-secondary"></i>
                                             <i class="fa fa-star text-secondary"></i>
@@ -403,7 +403,7 @@ include_once 'includes/header.php';
                             </div>
                             <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetales</div>
                             <div class="p-4 pb-0 rounded-bottom">
-                                <h4>Parsely</h4>
+                                <h4>Lechuga</h4>
                                 <p></p>
                                 <div class="d-flex justify-content-between flex-lg-wrap">
                                     <p class="text-dark fs-5 fw-bold">$4.99 / kg</p>
@@ -417,7 +417,7 @@ include_once 'includes/header.php';
                             </div>
                             <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetales</div>
                             <div class="p-4 pb-0 rounded-bottom">
-                                <h4>Parsely</h4>
+                                <h4>Tomate</h4>
                                 <p></p>
                                 <div class="d-flex justify-content-between flex-lg-wrap">
                                     <p class="text-dark fs-5 fw-bold">$4.99 / kg</p>
@@ -429,7 +429,7 @@ include_once 'includes/header.php';
                             <div class="vesitable-img">
                                 <img src="assets/img/vegetable-item-3.png" class="img-fluid w-100 rounded-top bg-light" alt="">
                             </div>
-                            <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetales</div>
+                            <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Frutas</div>
                             <div class="p-4 pb-0 rounded-bottom">
                                 <h4>Banana</h4>
                                 <p></p>

@@ -2,7 +2,7 @@
 session_start();
 
 // Conexión a la base de datos
-$conexion = new mysqli("localhost", "root", "1234", "huertas_del_norte");
+$conexion = new mysqli("localhost", "root", "", "huertas_del_norte");
 
 if ($conexion->connect_error) {
     die("Error de conexión: " . $conexion->connect_error);

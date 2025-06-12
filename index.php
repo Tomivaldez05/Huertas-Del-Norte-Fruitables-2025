@@ -438,7 +438,7 @@ include_once 'includes/header.php';
 
 
         <!-- Featurs Start -->
-        <div class="container-fluid service py-5">
+        <!--<div class="container-fluid service py-5">
             <div class="container py-5">
                 <div class="row g-4 justify-content-center">
                     <div class="col-md-6 col-lg-4">
@@ -482,7 +482,7 @@ include_once 'includes/header.php';
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
         <!-- Featurs End -->
 
 
@@ -610,7 +610,7 @@ include_once 'includes/header.php';
 
 
         <!-- Banner Section Start-->
-        <div class="container-fluid banner bg-secondary my-5">
+        <!--<div class="container-fluid banner bg-secondary my-5">
             <div class="container py-5">
                 <div class="row g-4 align-items-center">
                     <div class="col-lg-6">
@@ -635,7 +635,7 @@ include_once 'includes/header.php';
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
         <!-- Banner Section End -->
 
 
@@ -847,7 +847,7 @@ include_once 'includes/header.php';
 
 
         <!-- Fact Start -->
-        <div class="container-fluid py-5">
+        <!--<div class="container-fluid py-5">
             <div class="container">
                 <div class="bg-light p-5 rounded">
                     <div class="row g-4 justify-content-center">
@@ -882,12 +882,12 @@ include_once 'includes/header.php';
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
         <!-- Fact Start -->
 
 
         <!-- Tastimonial Start -->
-        <div class="container-fluid testimonial py-5">
+        <!--<div class="container-fluid testimonial py-5">
             <div class="container py-5">
                 <div class="testimonial-header text-center">
                     <h4 class="text-primary">Our Testimonial</h4>
@@ -971,7 +971,7 @@ include_once 'includes/header.php';
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
         <!-- Tastimonial End -->
 
 

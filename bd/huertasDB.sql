@@ -122,7 +122,7 @@ CREATE TABLE `categorias` (
   `activo` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`id_categoria`),
   UNIQUE KEY `nombre_categoria` (`nombre_categoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -131,7 +131,7 @@ CREATE TABLE `categorias` (
 
 LOCK TABLES `categorias` WRITE;
 /*!40000 ALTER TABLE `categorias` DISABLE KEYS */;
-INSERT INTO `categorias` VALUES (1,'Verduras','Vegetales de hoja o raíz frescos.',1),(2,'Hortalizas','Frutas comestibles de plantas cultivadas.',1),(3,'Tubérculos','Órganos de almacenamiento de nutrientes.',1);
+INSERT INTO `categorias` VALUES (1,'Verduras','Vegetales de hoja o raíz frescos.',1),(2,'Hortalizas','Frutas comestibles de plantas cultivadas.',1),(3,'Tubérculos','Órganos de almacenamiento de nutrientes.',1),(4,'frutas',NULL,1),(10,'frutas tropicales 3',NULL,1),(11,'nuevo',NULL,1),(17,'frutas 2',NULL,1),(18,'prueba',NULL,1);
 /*!40000 ALTER TABLE `categorias` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -188,7 +188,7 @@ CREATE TABLE `detalle_pedidos` (
   CONSTRAINT `detalle_pedidos_ibfk_1` FOREIGN KEY (`id_pedido`) REFERENCES `pedidos` (`id_pedido`) ON DELETE CASCADE,
   CONSTRAINT `detalle_pedidos_ibfk_2` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id_producto`),
   CONSTRAINT `detalle_pedidos_ibfk_3` FOREIGN KEY (`id_oferta`) REFERENCES `ofertas` (`id_oferta`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -197,6 +197,7 @@ CREATE TABLE `detalle_pedidos` (
 
 LOCK TABLES `detalle_pedidos` WRITE;
 /*!40000 ALTER TABLE `detalle_pedidos` DISABLE KEYS */;
+INSERT INTO `detalle_pedidos` VALUES (1,1,6,1,400.00,400.00,0,NULL),(2,1,7,1,220.00,220.00,0,NULL),(3,2,8,1,180.00,180.00,0,NULL),(4,3,8,1,180.00,180.00,0,NULL),(5,4,7,1,220.00,220.00,0,NULL),(6,4,8,1,180.00,180.00,0,NULL),(7,5,7,1,220.00,220.00,0,NULL),(8,5,8,1,180.00,180.00,0,NULL),(9,6,7,1,220.00,220.00,0,NULL),(10,6,8,1,180.00,180.00,0,NULL),(11,7,7,1,220.00,220.00,0,NULL),(12,7,8,1,180.00,180.00,0,NULL);
 /*!40000 ALTER TABLE `detalle_pedidos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -267,12 +268,13 @@ DROP TABLE IF EXISTS `modulos`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `modulos` (
   `id_modulo` int NOT NULL AUTO_INCREMENT,
-  `nombre_modulo` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nombre` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `descripcion` text COLLATE utf8mb4_unicode_ci,
   `activo` tinyint(1) DEFAULT '1',
+  `fecha_creacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_modulo`),
-  UNIQUE KEY `nombre_modulo` (`nombre_modulo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  UNIQUE KEY `nombre_modulo` (`nombre`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -281,6 +283,7 @@ CREATE TABLE `modulos` (
 
 LOCK TABLES `modulos` WRITE;
 /*!40000 ALTER TABLE `modulos` DISABLE KEYS */;
+INSERT INTO `modulos` VALUES (1,'productos','Gestión de productos y categorías',1,'2025-06-12 02:26:57');
 /*!40000 ALTER TABLE `modulos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -357,7 +360,7 @@ DROP TABLE IF EXISTS `pedidos`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `pedidos` (
   `id_pedido` int NOT NULL AUTO_INCREMENT,
-  `id_usuario` int NOT NULL,
+  `id_usuario` int DEFAULT NULL,
   `numero_pedido` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tipo_venta` enum('minorista','mayorista') COLLATE utf8mb4_unicode_ci NOT NULL,
   `estado` enum('pendiente','en_preparacion','en_camino','entregado','cancelado') COLLATE utf8mb4_unicode_ci DEFAULT 'pendiente',
@@ -373,7 +376,7 @@ CREATE TABLE `pedidos` (
   UNIQUE KEY `numero_pedido` (`numero_pedido`),
   KEY `id_usuario` (`id_usuario`),
   CONSTRAINT `pedidos_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -382,6 +385,7 @@ CREATE TABLE `pedidos` (
 
 LOCK TABLES `pedidos` WRITE;
 /*!40000 ALTER TABLE `pedidos` DISABLE KEYS */;
+INSERT INTO `pedidos` VALUES (1,NULL,'P1749046370','minorista','pendiente',620.00,0.00,620.00,'','2025-06-04 14:12:50',NULL,NULL,NULL),(2,NULL,'P1749047289','minorista','pendiente',180.00,0.00,180.00,'','2025-06-04 14:28:09',NULL,NULL,NULL),(3,NULL,'P1749053073','minorista','pendiente',180.00,0.00,180.00,'','2025-06-04 16:04:33',NULL,NULL,NULL),(4,NULL,'P1749143003','minorista','pendiente',400.00,0.00,400.00,'','2025-06-05 17:03:23',NULL,NULL,NULL),(5,NULL,'P1749143090','minorista','pendiente',400.00,0.00,400.00,'','2025-06-05 17:04:50',NULL,NULL,NULL),(6,NULL,'P1749143176','minorista','pendiente',400.00,0.00,400.00,'','2025-06-05 17:06:16',NULL,NULL,NULL),(7,NULL,'P1749146857','minorista','pendiente',400.00,0.00,400.00,'','2025-06-05 18:07:37',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `pedidos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -396,8 +400,11 @@ CREATE TABLE `permisos` (
   `id_permiso` int NOT NULL AUTO_INCREMENT,
   `nombre_permiso` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `descripcion` text COLLATE utf8mb4_unicode_ci,
+  `fecha_creacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `codigo` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `icono` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id_permiso`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -406,6 +413,7 @@ CREATE TABLE `permisos` (
 
 LOCK TABLES `permisos` WRITE;
 /*!40000 ALTER TABLE `permisos` DISABLE KEYS */;
+INSERT INTO `permisos` VALUES (1,'ver','Permite visualizar información del módulo','2025-06-12 02:34:13',NULL,NULL),(2,'crear','Permite crear nuevos registros','2025-06-12 02:34:13',NULL,NULL),(3,'editar','Permite modificar registros existentes','2025-06-12 02:34:13',NULL,NULL),(4,'eliminar','Permite eliminar registros','2025-06-12 02:34:13',NULL,NULL),(5,'administrar','Control total sobre el módulo','2025-06-12 02:34:13',NULL,NULL);
 /*!40000 ALTER TABLE `permisos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -431,7 +439,7 @@ CREATE TABLE `productos` (
   PRIMARY KEY (`id_producto`),
   KEY `id_categoria` (`id_categoria`),
   CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id_categoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -440,7 +448,7 @@ CREATE TABLE `productos` (
 
 LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` VALUES (1,'Zanahoria Orgánica','Zanahoria fresca cultivada sin pesticidas.','vegetable-item-1.jpg',1,200.00,180.00,10,'kg',1,'2025-05-22 22:44:14'),(2,'Tomate Cherry','Ideal para ensaladas, sabor intenso y natural.','vegetable-item-2.jpg',2,300.00,270.00,8,'kg',1,'2025-05-22 22:44:14'),(3,'Lechuga Mantecosa','Lechuga tierna, directa de la huerta.','vegetable-item-3.png',1,180.00,150.00,12,'unidad',1,'2025-05-22 22:44:14'),(4,'Papa Andina','Papa colorada ideal para hornear.','vegetable-item-4.jpg',3,350.00,300.00,15,'kg',1,'2025-05-22 22:44:14'),(5,'Pimiento Rojo','Pimiento jugoso y de gran tamaño.','vegetable-item-5.jpg',2,280.00,240.00,10,'kg',1,'2025-05-22 22:44:14'),(6,'Brócoli','Alto en fibra y antioxidantes.','vegetable-item-6.jpg',1,400.00,370.00,5,'unidad',1,'2025-05-22 22:44:14'),(7,'Calabaza','Calabaza dulce ideal para sopas y guisos.','vegetable-item-4.jpg',3,220.00,200.00,8,'kg',1,'2025-05-23 02:43:06'),(8,'Espinaca','Hojas frescas ricas en hierro y fibra.','vegetable-item-5.jpg',1,180.00,160.00,10,'paquete',1,'2025-05-23 02:43:06'),(9,'Remolacha','Remolachas tiernas con alto contenido de antioxidantes.','vegetable-item-6.jpg',2,250.00,220.00,6,'kg',1,'2025-05-23 02:43:06');
+INSERT INTO `productos` VALUES (1,'Zanahoria Orgánica','Zanahoria fresca cultivada sin pesticidas.','6848b634c424c_zanahoria.jfif',1,200.00,180.00,1,'kg',1,'2025-05-22 22:44:14'),(2,'Tomate','Ideal para ensaladas, sabor intenso y natural.','6848b65995be1_vegetable-item-1.jpg',2,300.00,270.00,1,'kg',1,'2025-05-22 22:44:14'),(3,'Lechuga Mantecosa','Lechuga tierna, directa de la huerta.','vegetable-item-3.png',1,180.00,150.00,12,'unidad',0,'2025-05-22 22:44:14'),(4,'Papa Andina','Papa colorada ideal para hornear.','6848b6861a0ce_vegetable-item-5.jpg',3,350.00,300.00,1,'kg',1,'2025-05-22 22:44:14'),(5,'Pimiento Rojo','Pimiento jugoso y de gran tamaño.','6848b6980e431_vegetable-item-4.jpg',2,280.00,240.00,1,'kg',1,'2025-05-22 22:44:14'),(6,'Pasa de uva','Alto en fibra y antioxidantes.','vegetable-item-6.jpg',1,400.00,370.00,5,'unidad',0,'2025-05-22 22:44:14'),(7,'Calabaza','Calabaza dulce ideal para sopas y guisos.','6848b3b80fe4f_calabaza.jfif',3,220.00,200.00,1,'kg',1,'2025-05-23 02:43:06'),(8,'Espinaca','Hojas frescas ricas en hierro y fibra.','6848b47053435_espinaca.jfif',1,180.00,160.00,1,'paquete',1,'2025-05-23 02:43:06'),(9,'Remolacha','Remolachas tiernas con alto contenido de antioxidantes.','6848b57d94a79_remolacha.jfif',2,250.00,220.00,1,'kg',1,'2025-05-23 02:43:06');
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -475,65 +483,6 @@ INSERT INTO `proveedores` VALUES (1,'Proveedor de prueba','propio',NULL,NULL,NUL
 UNLOCK TABLES;
 
 --
--- Table structure for table `rol_modulo_permisos`
---
-
-DROP TABLE IF EXISTS `rol_modulo_permisos`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `rol_modulo_permisos` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `id_rol` int NOT NULL,
-  `id_modulo` int NOT NULL,
-  `id_permiso` int NOT NULL,
-  `activo` tinyint(1) DEFAULT '1',
-  PRIMARY KEY (`id`),
-  KEY `id_rol` (`id_rol`),
-  KEY `id_modulo` (`id_modulo`),
-  KEY `id_permiso` (`id_permiso`),
-  CONSTRAINT `rol_modulo_permisos_ibfk_1` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id_rol`) ON DELETE CASCADE,
-  CONSTRAINT `rol_modulo_permisos_ibfk_2` FOREIGN KEY (`id_modulo`) REFERENCES `modulos` (`id_modulo`) ON DELETE CASCADE,
-  CONSTRAINT `rol_modulo_permisos_ibfk_3` FOREIGN KEY (`id_permiso`) REFERENCES `permisos` (`id_permiso`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `rol_modulo_permisos`
---
-
-LOCK TABLES `rol_modulo_permisos` WRITE;
-/*!40000 ALTER TABLE `rol_modulo_permisos` DISABLE KEYS */;
-/*!40000 ALTER TABLE `rol_modulo_permisos` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `roles`
---
-
-DROP TABLE IF EXISTS `roles`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `roles` (
-  `id_rol` int NOT NULL AUTO_INCREMENT,
-  `nombre_rol` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `descripcion` text COLLATE utf8mb4_unicode_ci,
-  `activo` tinyint(1) DEFAULT '1',
-  `fecha_creacion` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id_rol`),
-  UNIQUE KEY `nombre_rol` (`nombre_rol`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `roles`
---
-
-LOCK TABLES `roles` WRITE;
-/*!40000 ALTER TABLE `roles` DISABLE KEYS */;
-/*!40000 ALTER TABLE `roles` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `stock`
 --
 
@@ -554,7 +503,7 @@ CREATE TABLE `stock` (
   KEY `id_proveedor` (`id_proveedor`),
   CONSTRAINT `stock_ibfk_1` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id_producto`),
   CONSTRAINT `stock_ibfk_2` FOREIGN KEY (`id_proveedor`) REFERENCES `proveedores` (`id_proveedor`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -568,34 +517,36 @@ INSERT INTO `stock` VALUES (10,1,1,10,0,'2025-05-27','2025-05-27 14:08:02',NULL)
 UNLOCK TABLES;
 
 --
--- Table structure for table `usuario_roles`
+-- Table structure for table `usuario_modulo_permisos`
 --
 
-DROP TABLE IF EXISTS `usuario_roles`;
+DROP TABLE IF EXISTS `usuario_modulo_permisos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `usuario_roles` (
+CREATE TABLE `usuario_modulo_permisos` (
   `id` int NOT NULL AUTO_INCREMENT,
   `id_usuario` int NOT NULL,
-  `id_rol` int NOT NULL,
-  `fecha_asignacion` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `fecha_fin` timestamp NULL DEFAULT NULL,
+  `id_modulo` int NOT NULL,
+  `id_permiso` int NOT NULL,
   `activo` tinyint(1) DEFAULT '1',
+  `fecha_asignacion` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
-  KEY `id_usuario` (`id_usuario`),
-  KEY `id_rol` (`id_rol`),
-  CONSTRAINT `usuario_roles_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE,
-  CONSTRAINT `usuario_roles_ibfk_2` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id_rol`) ON DELETE CASCADE
+  UNIQUE KEY `unique_user_module_permission` (`id_usuario`,`id_modulo`,`id_permiso`),
+  KEY `id_modulo` (`id_modulo`),
+  KEY `id_permiso` (`id_permiso`),
+  CONSTRAINT `usuario_modulo_permisos_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE,
+  CONSTRAINT `usuario_modulo_permisos_ibfk_2` FOREIGN KEY (`id_modulo`) REFERENCES `modulos` (`id_modulo`) ON DELETE CASCADE,
+  CONSTRAINT `usuario_modulo_permisos_ibfk_3` FOREIGN KEY (`id_permiso`) REFERENCES `permisos` (`id_permiso`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `usuario_roles`
+-- Dumping data for table `usuario_modulo_permisos`
 --
 
-LOCK TABLES `usuario_roles` WRITE;
-/*!40000 ALTER TABLE `usuario_roles` DISABLE KEYS */;
-/*!40000 ALTER TABLE `usuario_roles` ENABLE KEYS */;
+LOCK TABLES `usuario_modulo_permisos` WRITE;
+/*!40000 ALTER TABLE `usuario_modulo_permisos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `usuario_modulo_permisos` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -619,6 +570,9 @@ CREATE TABLE `usuarios` (
   `activo` tinyint(1) DEFAULT '1',
   `fecha_registro` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `fecha_ultima_sesion` timestamp NULL DEFAULT NULL,
+  `tipo_usuarios` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cargo` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `fecha_actualizacion` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_usuario`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -630,7 +584,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'Admin','Huertas','admin@huertas.com','$2y$10$hKKxMTKOYlrFHXUMKOWfN.UugS8w97teKaSNXPit0h4AUCiPzRsIi',NULL,NULL,'empleado',NULL,NULL,1,'2025-05-22 19:25:00',NULL);
+INSERT INTO `usuarios` VALUES (1,'Admin','Huertas','admin@huertas.com','$2y$10$hKKxMTKOYlrFHXUMKOWfN.UugS8w97teKaSNXPit0h4AUCiPzRsIi',NULL,NULL,'empleado',NULL,NULL,1,'2025-05-22 19:25:00',NULL,NULL,NULL,'2025-06-12 02:42:55');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -643,4 +597,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-31 12:34:17
+-- Dump completed on 2025-06-11 23:47:19

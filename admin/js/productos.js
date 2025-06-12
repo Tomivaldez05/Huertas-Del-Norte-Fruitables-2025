@@ -3,6 +3,17 @@
 export function inicializarProductos() {
   cargarProductos();
   cargarCategorias();
+  document.querySelector("#tablaCategorias").addEventListener("click", e => {
+    if (e.target.classList.contains("btn-editar-cat")) {
+      document.getElementById("id_categoria").value = e.target.dataset.id;
+      document.getElementById("nombre_categoria").value = e.target.dataset.nombre;
+      document.querySelector("#formCategoria button[type='submit']").textContent = "Guardar cambios";
+
+    }
+
+    if (e.target.classList.contains("btn-eliminar-cat")) {
+      eliminarCategoria(e.target.dataset.id);
+  }});
 
   const form = document.getElementById("formProducto");
   if (form) {
@@ -30,6 +41,41 @@ export function inicializarProductos() {
     const id = this.getAttribute("data-id");
     eliminarProducto(id);
   });
+  document.getElementById("btnCategorias").addEventListener("click", () => {
+    // reset form para crear nuevo
+    const form = document.getElementById("formCategoria");
+    form.reset();
+    document.getElementById("id_categoria").value = "";
+    document.querySelector("#formCategoria button[type='submit']").textContent = "Guardar";
+
+    // abrir modal
+    const modal = new bootstrap.Modal(document.getElementById("modalCategorias"));
+    modal.show();
+
+    cargarCategoriasEnTabla();
+  });
+
+document.getElementById("formCategoria").addEventListener("submit", guardarCategoria);
+
+document.querySelector("#tablaCategorias").addEventListener("click", e => {
+  if (e.target.classList.contains("btn-editar-cat")) {
+    document.getElementById("id_categoria").value = e.target.dataset.id;
+    document.getElementById("nombre_categoria").value = e.target.dataset.nombre;
+
+    // Cambiar texto del botón
+    document.querySelector("#formCategoria button[type='submit']").textContent = "Guardar cambios";
+
+    // Abrir modal (sin resetear el form)
+    const modal = new bootstrap.Modal(document.getElementById("modalCategorias"));
+    modal.show();
+  }
+
+  if (e.target.classList.contains("btn-eliminar-cat")) {
+    eliminarCategoria(e.target.dataset.id);
+  }
+});
+
+
 }
 var tablaProductos = window.tablaProductos || null;
 
@@ -155,5 +201,84 @@ function eliminarProducto(id) {
       });
   }
 }
+
+function cargarCategoriasEnTabla() {
+  fetch("acciones/controladorProducto.php?accion=categorias")
+    .then(res => res.json())
+    .then(data => {
+      const cuerpo = document.querySelector("#tablaCategorias tbody");
+      cuerpo.innerHTML = "";
+      data.forEach(cat => {
+        const fila = document.createElement("tr");
+        fila.innerHTML = `
+          <td>${cat.nombre_categoria}</td>
+          <td>
+            <button class="btn btn-sm btn-warning btn-editar-cat" data-id="${cat.id_categoria}" data-nombre="${cat.nombre_categoria}">Editar</button>
+            <button class="btn btn-sm btn-danger btn-eliminar-cat" data-id="${cat.id_categoria}">Eliminar</button>
+          </td>
+        `;
+        cuerpo.appendChild(fila);
+      });
+    });
+}
+
+function guardarCategoria(e) {
+  e.preventDefault();
+
+  const form = document.getElementById("formCategoria");
+  const datos = new FormData(form);
+  console.log("Campos enviados:");
+  for (const [key, val] of datos.entries()) {
+    console.log(key, val);
+  }
+
+  // 🧪 Log para ver los valores antes de enviar
+  console.log("📤 Enviando categoría:", Object.fromEntries(datos.entries()));
+
+  fetch("acciones/controladorProducto.php?accion=guardarCategoria", {
+    method: "POST",
+    body: datos
+  })
+    .then(async res => {
+      const text = await res.text();
+      try {
+        return JSON.parse(text);
+      } catch (e) {
+        console.error("🔴 No es JSON válido:", text);
+        throw new Error("La respuesta del servidor no es JSON.");
+      }
+    })
+    .then(data => {
+      if (data.ok) {
+        console.log("✅ Categoría guardada correctamente");
+
+        cargarCategoriasEnTabla();
+        cargarCategorias(); // actualiza el <select> de productos
+
+      } else {
+        alert("Error al guardar categoría");
+        console.warn("⚠️ Respuesta del servidor:", data);
+      }
+    })
+    .catch(err => {
+      console.error("❌ Error en guardarCategoria:", err);
+    });
+}
+
+function eliminarCategoria(id) {
+  if (confirm("¿Eliminar esta categoría?")) {
+    fetch(`acciones/controladorProducto.php?accion=eliminarCategoria&id=${id}`)
+      .then(res => res.json())
+      .then(data => {
+        if (data.ok) {
+          cargarCategoriasEnTabla();
+          cargarCategorias();
+        } else {
+          alert("No se pudo eliminar la categoría.");
+        }
+      });
+  }
+}
+
 
 
