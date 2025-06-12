@@ -2,7 +2,7 @@
 session_start();
 
 // Conexión a la base de datos
-$conexion = new mysqli("localhost", "root", "", "huertas_del_norte");
+$conexion = new mysqli("localhost", "root", "45533264", "huertas_del_norte");
 
 if ($conexion->connect_error) {
     die("Error de conexión: " . $conexion->connect_error);
@@ -32,6 +32,7 @@ if ($result->num_rows === 1) {
         $_SESSION['id_usuario'] = $usuario['id_usuario'];
         $_SESSION['nombre'] = $usuario['nombre'];
         $_SESSION['email'] = $usuario['email'];
+        $_SESSION['nombre_usuario'] = $usuario['nombre']; // este se usa en el header
 
         // Registrar fecha última sesión
         $conexion->query("UPDATE usuarios SET fecha_ultima_sesion = NOW() WHERE id_usuario = {$usuario['id_usuario']}");
@@ -39,6 +40,7 @@ if ($result->num_rows === 1) {
         // Redirigir a la tienda (index.php)
         header("Location: ../index.php");
         exit();
+        
     } else {
         $_SESSION['error_login'] = "❌ Contraseña incorrecta.";
         header("Location: ../login.php");
