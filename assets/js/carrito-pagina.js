@@ -24,37 +24,39 @@ document.addEventListener("DOMContentLoaded", () => {
             </thead>
             <tbody>`;
 
-for (const [id, item] of Object.entries(carrito)) {
-    const aplicaDescuento = item.cantidad >= 10; // 🔧 CAMBIO
-    const precioFinal = aplicaDescuento ? item.precio * 0.9 : item.precio;
-    const subtotal = precioFinal * item.cantidad;
-    total += subtotal;
+    for (const [id, item] of Object.entries(carrito)) {
+        const aplicaDescuento = item.cantidad >= 10;
+        const precioFinal = aplicaDescuento ? item.precio * 0.9 : item.precio;
+        const subtotal = precioFinal * item.cantidad;
+        total += subtotal;
 
-    html += `
-        <tr>
-            <td><img src="${item.imagen}" alt="${item.nombre}" style="width: 60px; height: 60px; object-fit: cover;"></td>
-            <td>${item.nombre}</td>
-            <td>
-                ${aplicaDescuento 
-                    ? `<s>$${item.precio.toFixed(2)}</s><br><strong>$${precioFinal.toFixed(2)}</strong> <span class="badge bg-success">10% OFF</span>` 
-                    : `$${item.precio.toFixed(2)}`
-                }
-            </td>
-            <td>
-                <div class="d-flex align-items-center gap-2">
-                    <span>${item.cantidad}</span>
-                    <button class="btn btn-sm btn-outline-secondary btn-restar" data-id="${id}">−</button>
-                    <button class="btn btn-sm btn-outline-secondary btn-sumar" data-id="${id}">+</button>
-                </div>
-            </td>                
-            <td>$${subtotal.toFixed(2)}</td>
-            <td><button class="btn btn-sm btn-danger btn-eliminar" data-id="${id}">Eliminar</button></td>
-        </tr>`;
-}
-// ← ESTA llave es la correcta
+        // CORRECCIÓN: Asegurar que la ruta de imagen incluya productos/
+        let rutaImagen = item.imagen;
+        if (!rutaImagen.includes('productos/')) {
+            rutaImagen = rutaImagen.replace('assets/img/', 'assets/img/productos/');
+        }
 
-
-    
+        html += `
+            <tr>
+                <td><img src="${rutaImagen}" alt="${item.nombre}" style="width: 60px; height: 60px; object-fit: cover;"></td>
+                <td>${item.nombre}</td>
+                <td>
+                    ${aplicaDescuento 
+                        ? `<s>$${item.precio.toFixed(2)}</s><br><strong>$${precioFinal.toFixed(2)}</strong> <span class="badge bg-success">10% OFF</span>` 
+                        : `$${item.precio.toFixed(2)}`
+                    }
+                </td>
+                <td>
+                    <div class="d-flex align-items-center gap-2">
+                        <span>${item.cantidad}</span>
+                        <button class="btn btn-sm btn-outline-secondary btn-restar" data-id="${id}">−</button>
+                        <button class="btn btn-sm btn-outline-secondary btn-sumar" data-id="${id}">+</button>
+                    </div>
+                </td>                
+                <td>$${subtotal.toFixed(2)}</td>
+                <td><button class="btn btn-sm btn-danger btn-eliminar" data-id="${id}">Eliminar</button></td>
+            </tr>`;
+    }
 
     html += `</tbody></table>`;
     tabla.innerHTML = html;
@@ -65,34 +67,33 @@ for (const [id, item] of Object.entries(carrito)) {
             const id = btn.dataset.id;
             delete carrito[id];
             localStorage.setItem("carrito", JSON.stringify(carrito));
-            location.reload(); // recargar para ver el cambio
+            location.reload();
         });
     });
 
     // Sumar cantidad
-document.querySelectorAll(".btn-sumar").forEach(btn => {
-    btn.addEventListener("click", () => {
-        const id = btn.dataset.id;
-        const carrito = JSON.parse(localStorage.getItem("carrito")) || {};
-        carrito[id].cantidad += 1;
-        localStorage.setItem("carrito", JSON.stringify(carrito));
-        location.reload();
+    document.querySelectorAll(".btn-sumar").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const id = btn.dataset.id;
+            const carrito = JSON.parse(localStorage.getItem("carrito")) || {};
+            carrito[id].cantidad += 1;
+            localStorage.setItem("carrito", JSON.stringify(carrito));
+            location.reload();
+        });
     });
-});
 
-// Restar cantidad
-document.querySelectorAll(".btn-restar").forEach(btn => {
-    btn.addEventListener("click", () => {
-        const id = btn.dataset.id;
-        const carrito = JSON.parse(localStorage.getItem("carrito")) || {};
-        if (carrito[id].cantidad > 1) {
-            carrito[id].cantidad -= 1;
-        } else {
-            delete carrito[id]; // eliminar si llega a 0
-        }
-        localStorage.setItem("carrito", JSON.stringify(carrito));
-        location.reload();
+    // Restar cantidad
+    document.querySelectorAll(".btn-restar").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const id = btn.dataset.id;
+            const carrito = JSON.parse(localStorage.getItem("carrito")) || {};
+            if (carrito[id].cantidad > 1) {
+                carrito[id].cantidad -= 1;
+            } else {
+                delete carrito[id];
+            }
+            localStorage.setItem("carrito", JSON.stringify(carrito));
+            location.reload();
+        });
     });
-});
-
 });

@@ -26,9 +26,16 @@ function mostrarResumenCarrito() {
     for (const [id, item] of Object.entries(carrito)) {
         const subtotal = item.precio * item.cantidad;
         total += subtotal;
+        
+        // CORRECCIÓN: Asegurar que la ruta de imagen incluya productos/
+        let rutaImagen = item.imagen;
+        if (!rutaImagen.includes('productos/')) {
+            rutaImagen = rutaImagen.replace('assets/img/', 'assets/img/productos/');
+        }
+        
         html += `
             <div class="list-group-item d-flex justify-content-between align-items-start">
-                <img src="${item.imagen}" alt="${item.nombre}" style="width: 40px; height: 40px; object-fit: cover; margin-right: 10px;">
+                <img src="${rutaImagen}" alt="${item.nombre}" style="width: 40px; height: 40px; object-fit: cover; margin-right: 10px;">
                 <div class="flex-grow-1 ms-2">
                     <strong>${item.nombre}</strong><br>
                     <small>${item.cantidad} x $${item.precio.toFixed(2)}</small>

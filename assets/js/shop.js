@@ -12,9 +12,10 @@ const listaCategorias = document.getElementById("lista-categorias");
 
 let offset = 0;
 const limite = 6;
+let productosActuales = []; // Array para mantener todos los productos cargados
 
 // 🧱 Función reutilizable para mostrar productos
-function renderizarProductos(productos) {
+function renderizarProductos(productos, limpiarContenedor = true) {
     const contenedor = document.getElementById("contenedor-productos");
 
     if (!Array.isArray(productos)) {
@@ -27,24 +28,38 @@ function renderizarProductos(productos) {
         return;
     }
 
-    if (productos.length === 0) {
+    if (productos.length === 0 && limpiarContenedor) {
         contenedor.innerHTML = "<p class='text-center'>No se encontraron productos.</p>";
         return;
     }
 
+    // Si limpiarContenedor es false, agregamos a los productos existentes
+    if (limpiarContenedor) {
+        contenedor.innerHTML = "";
+        productosActuales = [...productos];
+    } else {
+        productosActuales = [...productosActuales, ...productos];
+    }
+
+    // Renderizar todos los productos actuales
     contenedor.innerHTML = "";
-    console.log(productos);
-    productos.forEach(p => {
+    console.log("Productos a renderizar:", productosActuales);
+    
+    productosActuales.forEach(p => {
         const card = `
             <div class="col-md-4 mb-4">
                 <div class="product-item border border-secondary rounded position-relative overflow-hidden bg-light">
                     <div class="product-img position-relative overflow-hidden">
                         <img class="img-fluid w-100" src="assets/img/productos/${p.imagen}" alt="${p.nombre_producto}">
+                        <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">
+                            ${p.nombre_categoria}
+                        </div>
                     </div>
                     <div class="text-center p-4">
                         <h6 class="fw-bold">${p.nombre_producto}</h6>
+                        <p class="text-muted small">${p.descripcion || ''}</p>
                         <div class="d-flex justify-content-center mb-2">
-                            <h5 class="text-primary">$${p.precio_minorista}</h5>
+                            <h5 class="text-primary">$${p.precio_minorista} / ${p.unidad_medida}</h5>
                         </div>
                         <p class="small ${p.stock <= 3 ? 'text-danger fw-bold' : 'text-muted'} mb-1">
                             Stock: ${p.stock}
@@ -54,7 +69,7 @@ function renderizarProductos(productos) {
                                    data-id="${p.id_producto}" 
                                    data-nombre="${p.nombre_producto}" 
                                    data-precio="${p.precio_minorista}" 
-                                   data-imagen="assets/img/${p.imagen}" 
+                                   data-imagen="assets/img/productos/${p.imagen}" 
                                    data-stock="${p.stock}">
                                    <i class="fa fa-shopping-cart me-2 text-primary"></i> Añadir al carrito
                                </a>`
@@ -67,7 +82,6 @@ function renderizarProductos(productos) {
         contenedor.innerHTML += card;
     });
 }
-
 
 // 🔁 Obtener precio máximo para el slider
 function obtenerPrecioMaximo() {
@@ -97,12 +111,19 @@ function aplicarFiltros() {
 
     fetch(`acciones/controladorProducto.php?accion=filtrar&${params.toString()}`)
         .then(res => res.json())
-        .then(productos => renderizarProductos(productos))
+        .then(productos => {
+            renderizarProductos(productos, true); // Limpiar contenedor al filtrar
+            // Resetear offset y ocultar botón cargar más cuando se filtra
+            offset = 0;
+            if (btnCargarMas) {
+                btnCargarMas.style.display = 'none';
+            }
+        })
         .catch(err => console.error("❌ Error al aplicar filtros:", err));
 }
 
 // ▶️ Cargar productos iniciales
-function cargarProductos() {
+function cargarProductos(esCargarMas = false) {
     fetch(`acciones/controladorProducto.php?accion=cargar&offset=${offset}`)
         .then(res => res.json())
         .then(data => {
@@ -113,8 +134,16 @@ function cargarProductos() {
                 }
                 return;
             }
-            renderizarProductos(data);
+            
+            // Si es "cargar más", no limpiar el contenedor
+            renderizarProductos(data, !esCargarMas);
             offset += limite;
+            
+            // Si se cargaron menos productos que el límite, no hay más
+            if (data.length < limite && btnCargarMas) {
+                btnCargarMas.textContent = "No hay más productos";
+                btnCargarMas.disabled = true;
+            }
         })
         .catch(err => {
             if (btnCargarMas) {
@@ -153,7 +182,20 @@ if (listaCategorias) {
                     e.preventDefault();
                     listaCategorias.querySelectorAll("a").forEach(el => el.classList.remove("categoria-activa"));
                     link.classList.add("categoria-activa");
-                    aplicarFiltros();
+                    
+                    // Si selecciona "Todas", mostrar botón cargar más y resetear
+                    if (link.dataset.id === "0") {
+                        offset = 0;
+                        productosActuales = [];
+                        if (btnCargarMas) {
+                            btnCargarMas.style.display = 'block';
+                            btnCargarMas.disabled = false;
+                            btnCargarMas.textContent = '↓ Cargar más';
+                        }
+                        cargarProductos();
+                    } else {
+                        aplicarFiltros();
+                    }
                 });
             });
         })
@@ -161,14 +203,13 @@ if (listaCategorias) {
 }
 
 // ▶️ Escuchas de eventos
-
 document.addEventListener("DOMContentLoaded", () => {
     obtenerPrecioMaximo();
     cargarProductos();
 
     if (btnCargarMas) {
         btnCargarMas.addEventListener("click", () => {
-            cargarProductos();
+            cargarProductos(true); // Pasar true para indicar que es "cargar más"
         });
     }
 
@@ -182,8 +223,8 @@ document.addEventListener("DOMContentLoaded", () => {
             aplicarFiltros();
         });
     }
-
 });
+
 document.addEventListener("click", function (e) {
     if (e.target.closest(".btn-agregar-carrito")) {
         e.preventDefault();
@@ -192,7 +233,6 @@ document.addEventListener("click", function (e) {
         const nombre = btn.dataset.nombre;
         const precio = parseFloat(btn.dataset.precio);
         const imagen = btn.dataset.imagen;
-
 
         let carrito = JSON.parse(localStorage.getItem("carrito")) || {};
 
@@ -212,4 +252,3 @@ document.addEventListener("click", function (e) {
         alert(`✅ ${nombre} añadido al carrito`);
     }
 });
-
