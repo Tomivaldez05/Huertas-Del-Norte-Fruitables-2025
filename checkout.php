@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['usuario_id'])) {
+if (!isset($_SESSION['id_usuario'])) {
     // Guarda la página actual para volver luego
     $_SESSION['redirigir_a'] = $_SERVER['REQUEST_URI'];
     header("Location: login.php");

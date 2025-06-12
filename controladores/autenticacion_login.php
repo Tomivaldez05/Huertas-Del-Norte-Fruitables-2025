@@ -37,10 +37,17 @@ if ($result->num_rows === 1) {
         // Registrar fecha última sesión
         $conexion->query("UPDATE usuarios SET fecha_ultima_sesion = NOW() WHERE id_usuario = {$usuario['id_usuario']}");
 
-        // Redirigir a la tienda (index.php)
-        header("Location: ../index.php");
-        exit();
-        
+        // Redirigir a la página original si existe
+        if (isset($_SESSION['redirigir_a'])) {
+            $redireccion = $_SESSION['redirigir_a'];
+            unset($_SESSION['redirigir_a']); // Limpia la variable
+            header("Location: $redireccion");
+            exit();
+        } else {
+            header("Location: ../index.php");
+            exit();
+        }
+
     } else {
         $_SESSION['error_login'] = "❌ Contraseña incorrecta.";
         header("Location: ../login.php");
