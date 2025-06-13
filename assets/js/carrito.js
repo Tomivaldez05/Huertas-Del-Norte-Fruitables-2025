@@ -1,10 +1,10 @@
-// Actualiza el contador del carrito
+// Actualiza el contador del carrito - CORREGIDO: Contar productos únicos
 function actualizarContador() {
     const carrito = JSON.parse(localStorage.getItem("carrito")) || {};
-    const totalItems = Object.values(carrito).reduce((acc, item) => acc + item.cantidad, 0);
+    const totalProductos = Object.keys(carrito).length; // Contar productos únicos, no cantidades
     const contador = document.getElementById("contador-carrito");
     if (contador) {
-        contador.textContent = totalItems;
+        contador.textContent = totalProductos;
     }
 }
 

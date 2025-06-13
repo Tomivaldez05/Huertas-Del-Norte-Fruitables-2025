@@ -1,11 +1,12 @@
 <?php
 $host = "localhost";
+$port = 3307;
 $db = "huertas_del_norte";
 $user = "root";
-$pass = "45533264";
+$pass = "";
 
 try {
-    $conn = new PDO("mysql:host=$host;dbname=$db;charset=utf8", $user, $pass);
+    $conn = new PDO("mysql:host=$host;port=$port;dbname=$db;charset=utf8", $user, $pass);
     // Configura PDO para que lance excepciones si hay errores
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {

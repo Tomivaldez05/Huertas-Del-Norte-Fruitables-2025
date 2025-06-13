@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'conexion.php';
+require_once 'includes/db.php';
 require 'correo.php';
 
 $mensaje = '';
@@ -9,6 +9,7 @@ $paso = $_POST['paso'] ?? 'solicitar';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($paso === 'solicitar') {
         $email = $_POST['email'];
+        echo($email);
         $stmt = $conn->prepare("SELECT * FROM usuarios WHERE email = ?");
         $stmt->execute([$email]);
 

@@ -2,7 +2,7 @@
 $host = 'localhost';
 $db = 'huertas_del_norte'; 
 $user = 'root';             
-$pass = '45533264';                
+$pass = '37468492';                
 $charset = 'utf8mb4';
 
 try {

@@ -1,6 +1,6 @@
 <?php
 // Habilitar reporte de errores para debugging
-ini_set('display_errors', 1); // No mostrar errores en pantalla
+ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 // Establecer header JSON desde el inicio
@@ -98,15 +98,9 @@ switch ($accion) {
         }
         break;
 
-
     // Cargar productos paginados por offset
     case 'cargar':
         try {
-            ini_set('display_errors', 1);
-            error_reporting(E_ALL);
-
-            require_once '../includes/db.php'; // asegurate de incluir tu conexión
-
             $offset = isset($_GET['offset']) ? intval($_GET['offset']) : 0;
             $limite = 6;
 
@@ -160,6 +154,52 @@ switch ($accion) {
             error_log("Error en categorias: " . $e->getMessage());
             http_response_code(500);
             echo json_encode(['error' => 'Error al cargar categorías: ' . $e->getMessage()]);
+        }
+        break;
+
+    // NUEVO: Obtener precios mayoristas para productos específicos
+    case 'precios-mayoristas':
+        try {
+            $productos = $_POST['productos'] ?? '';
+            
+            if (empty($productos)) {
+                echo json_encode(['error' => 'No se enviaron productos']);
+                break;
+            }
+
+            // Convertir string de IDs a array
+            $ids = explode(',', $productos);
+            $ids = array_map('intval', $ids);
+            $placeholders = str_repeat('?,', count($ids) - 1) . '?';
+
+            $stmt = $conn->prepare("
+                SELECT 
+                    id_producto,
+                    precio_minorista,
+                    precio_mayorista,
+                    cantidad_minima_mayorista
+                FROM productos 
+                WHERE id_producto IN ($placeholders) AND activo = 1
+            ");
+
+            $stmt->execute($ids);
+            $precios = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            // Convertir a formato clave-valor para fácil acceso
+            $resultado = [];
+            foreach ($precios as $precio) {
+                $resultado[$precio['id_producto']] = [
+                    'precio_minorista' => floatval($precio['precio_minorista']),
+                    'precio_mayorista' => floatval($precio['precio_mayorista']),
+                    'cantidad_minima_mayorista' => intval($precio['cantidad_minima_mayorista'])
+                ];
+            }
+
+            echo json_encode($resultado);
+        } catch (PDOException $e) {
+            error_log("Error en precios-mayoristas: " . $e->getMessage());
+            http_response_code(500);
+            echo json_encode(['error' => 'Error al obtener precios mayoristas: ' . $e->getMessage()]);
         }
         break;
 

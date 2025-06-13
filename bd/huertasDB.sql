@@ -439,7 +439,7 @@ CREATE TABLE `productos` (
   PRIMARY KEY (`id_producto`),
   KEY `id_categoria` (`id_categoria`),
   CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id_categoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -448,7 +448,7 @@ CREATE TABLE `productos` (
 
 LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` VALUES (1,'Zanahoria Orgánica','Zanahoria fresca cultivada sin pesticidas.','6848b634c424c_zanahoria.jfif',1,200.00,180.00,1,'kg',1,'2025-05-22 22:44:14'),(2,'Tomate','Ideal para ensaladas, sabor intenso y natural.','6848b65995be1_vegetable-item-1.jpg',2,300.00,270.00,1,'kg',1,'2025-05-22 22:44:14'),(3,'Lechuga Mantecosa','Lechuga tierna, directa de la huerta.','vegetable-item-3.png',1,180.00,150.00,12,'unidad',0,'2025-05-22 22:44:14'),(4,'Papa Andina','Papa colorada ideal para hornear.','6848b6861a0ce_vegetable-item-5.jpg',3,350.00,300.00,1,'kg',1,'2025-05-22 22:44:14'),(5,'Pimiento Rojo','Pimiento jugoso y de gran tamaño.','6848b6980e431_vegetable-item-4.jpg',2,280.00,240.00,1,'kg',1,'2025-05-22 22:44:14'),(6,'Pasa de uva','Alto en fibra y antioxidantes.','vegetable-item-6.jpg',1,400.00,370.00,5,'unidad',0,'2025-05-22 22:44:14'),(7,'Calabaza','Calabaza dulce ideal para sopas y guisos.','6848b3b80fe4f_calabaza.jfif',3,220.00,200.00,1,'kg',1,'2025-05-23 02:43:06'),(8,'Espinaca','Hojas frescas ricas en hierro y fibra.','6848b47053435_espinaca.jfif',1,180.00,160.00,1,'paquete',1,'2025-05-23 02:43:06'),(9,'Remolacha','Remolachas tiernas con alto contenido de antioxidantes.','6848b57d94a79_remolacha.jfif',2,250.00,220.00,1,'kg',1,'2025-05-23 02:43:06');
+INSERT INTO `productos` VALUES (1,'Zanahoria Orgánica','Zanahoria fresca cultivada sin pesticidas.','6848b634c424c_zanahoria.jfif',1,200.00,180.00,1,'kg',1,'2025-05-22 22:44:14'),(2,'Tomate','Ideal para ensaladas, sabor intenso y natural.','6848b65995be1_vegetable-item-1.jpg',2,300.00,270.00,1,'kg',1,'2025-05-22 22:44:14'),(3,'Lechuga Mantecosa','Lechuga tierna, directa de la huerta.','vegetable-item-3.png',1,180.00,150.00,12,'unidad',0,'2025-05-22 22:44:14'),(4,'Papa Andina','Papa colorada ideal para hornear.','6848b6861a0ce_vegetable-item-5.jpg',3,350.00,300.00,1,'kg',1,'2025-05-22 22:44:14'),(5,'Pimiento Rojo','Pimiento jugoso y de gran tamaño.','6848b6980e431_vegetable-item-4.jpg',2,280.00,240.00,1,'kg',1,'2025-05-22 22:44:14'),(6,'Pasa de uva','Alto en fibra y antioxidantes.','vegetable-item-6.jpg',1,400.00,370.00,5,'unidad',0,'2025-05-22 22:44:14'),(7,'Calabaza','Calabaza dulce ideal para sopas y guisos.','6848b3b80fe4f_calabaza.jfif',3,220.00,200.00,3,'kg',1,'2025-05-23 02:43:06'),(8,'Espinaca','Hojas frescas ricas en hierro y fibra.','6848b47053435_espinaca.jfif',1,180.00,160.00,5,'paquete',1,'2025-05-23 02:43:06'),(9,'Remolacha','Remolachas tiernas con alto contenido de antioxidantes.','6848b57d94a79_remolacha.jfif',2,250.00,220.00,1,'kg',1,'2025-05-23 02:43:06'),(12,'ultimo','qqq','684a41c205ba8_hero-img-2.jpg',10,100.00,80.00,4,'kg',1,'2025-06-12 02:56:02');
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -483,6 +483,31 @@ INSERT INTO `proveedores` VALUES (1,'Proveedor de prueba','propio',NULL,NULL,NUL
 UNLOCK TABLES;
 
 --
+-- Table structure for table `recuperacion_contrasena`
+--
+
+DROP TABLE IF EXISTS `recuperacion_contrasena`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `recuperacion_contrasena` (
+  `id_recuperacion` int NOT NULL,
+  `email` varchar(150) COLLATE utf8mb4_general_ci NOT NULL,
+  `codigo` varchar(10) COLLATE utf8mb4_general_ci NOT NULL,
+  `fecha_solicitud_codigo` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `estado_uso_codigo` tinyint(1) DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `recuperacion_contrasena`
+--
+
+LOCK TABLES `recuperacion_contrasena` WRITE;
+/*!40000 ALTER TABLE `recuperacion_contrasena` DISABLE KEYS */;
+/*!40000 ALTER TABLE `recuperacion_contrasena` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `stock`
 --
 
@@ -503,7 +528,7 @@ CREATE TABLE `stock` (
   KEY `id_proveedor` (`id_proveedor`),
   CONSTRAINT `stock_ibfk_1` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id_producto`),
   CONSTRAINT `stock_ibfk_2` FOREIGN KEY (`id_proveedor`) REFERENCES `proveedores` (`id_proveedor`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -512,7 +537,7 @@ CREATE TABLE `stock` (
 
 LOCK TABLES `stock` WRITE;
 /*!40000 ALTER TABLE `stock` DISABLE KEYS */;
-INSERT INTO `stock` VALUES (10,1,1,10,0,'2025-05-27','2025-05-27 14:08:02',NULL),(11,2,1,8,0,'2025-05-27','2025-05-27 14:08:02',NULL),(12,3,1,12,0,'2025-05-27','2025-05-27 14:08:02',NULL),(13,4,1,15,0,'2025-05-27','2025-05-27 14:08:02',NULL),(14,5,1,10,0,'2025-05-27','2025-05-27 14:08:02',NULL),(15,6,1,5,0,'2025-05-27','2025-05-27 14:08:02',NULL),(16,7,1,8,0,'2025-05-27','2025-05-27 14:08:02',NULL),(17,8,1,10,0,'2025-05-27','2025-05-27 14:08:02',NULL),(18,9,1,6,0,'2025-05-27','2025-05-27 14:08:02',NULL);
+INSERT INTO `stock` VALUES (10,1,1,10,0,'2025-05-27','2025-05-27 14:08:02',NULL),(11,2,1,8,0,'2025-05-27','2025-05-27 14:08:02',NULL),(12,3,1,12,0,'2025-05-27','2025-05-27 14:08:02',NULL),(13,4,1,15,0,'2025-05-27','2025-05-27 14:08:02',NULL),(14,5,1,10,0,'2025-05-27','2025-05-27 14:08:02',NULL),(15,6,1,5,0,'2025-05-27','2025-05-27 14:08:02',NULL),(16,7,1,8,0,'2025-05-27','2025-05-27 14:08:02',NULL),(17,8,1,10,0,'2025-05-27','2025-05-27 14:08:02',NULL),(18,9,1,6,0,'2025-05-27','2025-05-27 14:08:02',NULL),(21,12,1,0,0,'2025-06-11','2025-06-12 02:56:02','Stock inicial automático');
 /*!40000 ALTER TABLE `stock` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -597,4 +622,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-06-11 23:47:19
+-- Dump completed on 2025-06-13 10:07:14
