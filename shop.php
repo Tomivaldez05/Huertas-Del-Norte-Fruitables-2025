@@ -99,7 +99,7 @@ require_once 'includes/db.php';
                                             </div>
                                             <div class="mb-2">
                                                 <input type="radio" class="me-2" id="Categories-5" name="Categories-1" value="Beverages">
-                                                <label for="Categories-5"> Expired</label>
+                                                <label for="Categories-5"> Expirado</label>
                                             </div>
                                         </div>
                                     </div>

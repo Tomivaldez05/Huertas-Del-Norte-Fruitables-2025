@@ -1,6 +1,5 @@
 <?php include 'includes/header.php'; ?>
-<!DOCTYPE html>
-<html>
+
 
         <!-- Modal Search Start -->
         <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -208,7 +207,7 @@
                                                 </div>
                                                 <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Frutas</div>
                                                 <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                    <h4>Oranges</h4>
+                                                    <h4>Naranjas</h4>
                                                     <p>(Descripción)</p>
                                                     <div class="d-flex justify-content-between flex-lg-wrap">
                                                         <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
@@ -224,7 +223,7 @@
                                                 </div>
                                                 <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Frutas</div>
                                                 <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                    <h4>frambuesa</h4>
+                                                    <h4>Frambuesa</h4>
                                                     <p>(Descripción)</p>
                                                     <div class="d-flex justify-content-between flex-lg-wrap">
                                                         <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
@@ -496,7 +495,7 @@
                         </div>
                         <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Verduras</div>
                         <div class="p-4 rounded-bottom">
-                            <h4>Parsely</h4>
+                            <h4>Lechuga</h4>
                             <p>(Descripción)</p>
                             <div class="d-flex justify-content-between flex-lg-wrap">
                                 <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
@@ -508,9 +507,9 @@
                         <div class="vesitable-img">
                             <img src="assets/img/vegetable-item-1.jpg" class="img-fluid w-100 rounded-top" alt="">
                         </div>
-                        <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
+                        <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Verduras</div>
                         <div class="p-4 rounded-bottom">
-                            <h4>Parsely</h4>
+                            <h4>Tomate</h4>
                             <p>(Descripción)</p>
                             <div class="d-flex justify-content-between flex-lg-wrap">
                                 <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
@@ -522,7 +521,7 @@
                         <div class="vesitable-img">
                             <img src="assets/img/vegetable-item-3.png" class="img-fluid w-100 rounded-top bg-light" alt="">
                         </div>
-                        <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
+                        <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Frutas</div>
                         <div class="p-4 rounded-bottom">
                             <h4>Banana</h4>
                             <p>(Descripción)</p>
@@ -536,9 +535,9 @@
                         <div class="vesitable-img">
                             <img src="assets/img/vegetable-item-4.jpg" class="img-fluid w-100 rounded-top" alt="">
                         </div>
-                        <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
+                        <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Verduras</div>
                         <div class="p-4 rounded-bottom">
-                            <h4>Bell Papper</h4>
+                            <h4>Morron</h4>
                             <p>(Descripción)</p>
                             <div class="d-flex justify-content-between flex-lg-wrap">
                                 <p class="text-dark fs-5 fw-bold mb-0">$7.99 / kg</p>
@@ -550,9 +549,9 @@
                         <div class="vesitable-img">
                             <img src="assets/img/vegetable-item-5.jpg" class="img-fluid w-100 rounded-top" alt="">
                         </div>
-                        <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
+                        <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Verduras</div>
                         <div class="p-4 rounded-bottom">
-                            <h4>Potatoes</h4>
+                            <h4>Papa</h4>
                             <p>(Descripción)</p>
                             <div class="d-flex justify-content-between flex-lg-wrap">
                                 <p class="text-dark fs-5 fw-bold mb-0">$7.99 / kg</p>
@@ -564,7 +563,7 @@
                         <div class="vesitable-img">
                             <img src="assets/img/vegetable-item-6.jpg" class="img-fluid w-100 rounded-top" alt="">
                         </div>
-                        <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
+                        <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Verduras</div>
                         <div class="p-4 rounded-bottom">
                             <h4>Parsely</h4>
                             <p>(Descripción)</p>
@@ -578,7 +577,7 @@
                         <div class="vesitable-img">
                             <img src="assets/img/vegetable-item-5.jpg" class="img-fluid w-100 rounded-top" alt="">
                         </div>
-                        <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
+                        <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Verduras</div>
                         <div class="p-4 rounded-bottom">
                             <h4>Potatoes</h4>
                             <p>(Descripción)</p>
@@ -592,7 +591,7 @@
                         <div class="vesitable-img">
                             <img src="assets/img/vegetable-item-6.jpg" class="img-fluid w-100 rounded-top" alt="">
                         </div>
-                        <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
+                        <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Verduras</div>
                         <div class="p-4 rounded-bottom">
                             <h4>Parsely</h4>
                             <p>(Descripción)</p>
@@ -639,7 +638,7 @@
 
 
         <!-- Bestsaler Product Start -->
-        <div class="container-fluid py-5">
+        <!--<div class="container-fluid py-5">
             <div class="container py-5">
                 <div class="text-center mx-auto mb-5" style="max-width: 700px;">
                     <h1 class="display-4">Productos más vendidos</h1>
@@ -841,7 +840,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
         <!-- Bestsaler Product End -->
 
 

@@ -48,7 +48,7 @@ include_once 'includes/header.php';
                             </div>
                             <div class="col-lg-6">
                                 <h4 class="fw-bold mb-3">Brocoli</h4>
-                                <p class="mb-3">Categoria: Vegetales</p>
+                                <p class="mb-3">Categoria: Verduras</p>
                                 <h5 class="fw-bold mb-3">3,35 $</h5>
                                 <div class="d-flex mb-4">
                                     <i class="fa fa-star text-secondary"></i>
@@ -401,7 +401,7 @@ include_once 'includes/header.php';
                             <div class="vesitable-img">
                                 <img src="assets/img/vegetable-item-6.jpg" class="img-fluid w-100 rounded-top" alt="">
                             </div>
-                            <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetales</div>
+                            <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Verduras</div>
                             <div class="p-4 pb-0 rounded-bottom">
                                 <h4>Lechuga</h4>
                                 <p></p>
@@ -415,7 +415,7 @@ include_once 'includes/header.php';
                             <div class="vesitable-img">
                                 <img src="assets/img/vegetable-item-1.jpg" class="img-fluid w-100 rounded-top" alt="">
                             </div>
-                            <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetales</div>
+                            <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Verduras</div>
                             <div class="p-4 pb-0 rounded-bottom">
                                 <h4>Tomate</h4>
                                 <p></p>
@@ -443,7 +443,7 @@ include_once 'includes/header.php';
                             <div class="vesitable-img">
                                 <img src="assets/img/vegetable-item-4.jpg" class="img-fluid w-100 rounded-top" alt="">
                             </div>
-                            <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetales</div>
+                            <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Verduras</div>
                             <div class="p-4 pb-0 rounded-bottom">
                                 <h4>Pimiento Morrón</h4>
                                 <p></p>
@@ -457,7 +457,7 @@ include_once 'includes/header.php';
                             <div class="vesitable-img">
                                 <img src="assets/img/vegetable-item-5.jpg" class="img-fluid w-100 rounded-top" alt="">
                             </div>
-                            <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetales</div>
+                            <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Verduras</div>
                             <div class="p-4 pb-0 rounded-bottom">
                                 <h4>Papas</h4>
                                 <p></p>
@@ -471,7 +471,7 @@ include_once 'includes/header.php';
                             <div class="vesitable-img">
                                 <img src="assets/img/vegetable-item-6.jpg" class="img-fluid w-100 rounded-top" alt="">
                             </div>
-                            <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetales</div>
+                            <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Verduras</div>
                             <div class="p-4 pb-0 rounded-bottom">
                                 <h4>Parsely</h4>
                                 <p></p>
@@ -485,7 +485,7 @@ include_once 'includes/header.php';
                             <div class="vesitable-img">
                                 <img src="assets/img/vegetable-item-5.jpg" class="img-fluid w-100 rounded-top" alt="">
                             </div>
-                            <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetales</div>
+                            <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Verduras</div>
                             <div class="p-4 pb-0 rounded-bottom">
                                 <h4>Papas</h4>
                                 <p></p>
@@ -499,7 +499,7 @@ include_once 'includes/header.php';
                             <div class="vesitable-img">
                                 <img src="assets/img/vegetable-item-6.jpg" class="img-fluid w-100 rounded-top" alt="">
                             </div>
-                            <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetales</div>
+                            <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Verduras</div>
                             <div class="p-4 pb-0 rounded-bottom">
                                 <h4>Parsely</h4>
                                 <p></p>
