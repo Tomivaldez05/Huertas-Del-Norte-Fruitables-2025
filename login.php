@@ -45,6 +45,10 @@ session_start();
                     <button type="submit" class="form-control btn btn-primary submit px-3">Iniciar Sesión</button>
                   </div>
                 </form>
+                
+                <p class="w-100 text-center">
+                <a href="recuperacion_contrasena.php">¿Olvidaste tu contraseña?</a>
+                </p>
 
                 <p class="w-100 text-center">&mdash; ¿No tienes una cuenta? &mdash;</p>
                 <div class="form-group">
