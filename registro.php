@@ -50,6 +50,8 @@ session_start();
 
               <div class="form-group">
               <input type="password" id="password" name="password" class="form-control" placeholder="Contraseña" required>
+              <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+
             </div>
 
             <!-- Validación en vivo -->

@@ -18,15 +18,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->execute([$email, $codigo]);
 
             if (enviarCodigoPorCorreo($email, $codigo)) {
-                $mensaje = "Código enviado correctamente a tu correo.";
+                $mensaje = "Hemos enviado un código de verificación a tu correo.";
                 $paso = 'verificar';
             } else {
-                $mensaje = "No se pudo enviar el correo.";
+                $mensaje = "No se pudo enviar el correo. Verificá la configuración.";
             }
         } else {
             $mensaje = "El correo no está registrado.";
         }
-
     } elseif ($paso === 'verificar') {
         $email = $_POST['email'];
         $codigo = $_POST['codigo'];
@@ -40,7 +39,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $mensaje = "Código inválido o ya utilizado.";
             $paso = 'verificar';
         }
-
     } elseif ($paso === 'cambiar') {
         $email = $_POST['email'];
         $codigo = $_POST['codigo'];
@@ -61,45 +59,108 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <title>Recuperar contraseña</title>
-  <link rel="stylesheet" href="estilos.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
   <style>
-    .text-success { color: green; }
-    .text-danger { color: red; }
+    body, input, label, p, button {
+      font-family: 'Abel', sans-serif;
+      font-size: 20px;
+    }
+
+    h2 {
+      font-size: 40px;       /* Tamaño más grande */
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #111;           /* Podés ajustar el color si querés */
+    }
+
+    body.img.js-fullheight {
+      height: 100vh;
+    }
     .form-box {
-      width: 500px;
+      width: 550px;
+      min-height: 350px;
       margin: 80px auto;
       background: rgba(255, 255, 255, 0.95);
       padding: 35px 40px;
       border-radius: 12px;
       box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
+    }
+    .form-box label {
+      font-weight: 600;
+      margin-bottom: 10px;
+      display: block;
     }
     input[type="email"],
     input[type="text"],
     input[type="password"],
     input[type="submit"] {
       width: 100%;
-      padding: 15px;
-      margin: 10px 0;
+      padding: 18px;
+      margin-top: 15px;
+      margin-bottom: 20px;
       font-size: 18px;
+      border: 1px solid #bbb;
       border-radius: 6px;
+      text-align: center;
     }
     input[type="submit"] {
       background-color: #4CAF50;
       color: white;
-      font-weight: bold;
       cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
     }
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+    .password-input {
+      padding: 12px 40px 12px 12px; /* espacio interno */
+      font-size: 18px;
+      width: 100%; /* ocupa todo el contenedor */
+      height: auto; /* elimina altura fija */
+      box-sizing: border-box;
+    }
+
+    .field-icon {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      cursor: pointer;
+      z-index: 2;
+      color: #888;
+    }
+    .btn-volver {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 12px 22px;
+      background-color: #6c63ff;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 17px;
+      transition: background-color 0.3s ease;
+    }
+    .btn-volver:hover {
+      background-color: #5848d1;
+    }
+    .text-success { color: green; }
+    .text-danger { color: red; }
   </style>
 </head>
-<body style="background-image: url('assets/img/fondo-login.png'); background-size: cover;">
+<body class="img js-fullheight" style="background-image: url('assets/img/fondo-login.png'); background-size: cover; background-position: center;">
   <div class="form-box">
     <h2>Recuperar contraseña</h2>
     <p style="color:blue;"><?= $mensaje ?></p>
@@ -127,7 +188,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <input type="hidden" name="email" value="<?= htmlspecialchars($_POST['email'] ?? '') ?>" />
         <input type="hidden" name="codigo" value="<?= htmlspecialchars($_POST['codigo'] ?? '') ?>" />
         <label>Nueva contraseña:</label>
-        <input type="password" id="nueva_contrasena" name="nueva_contrasena" required />
+        <div class="form-group" style="position: relative;">
+          <input type="password" id="nueva_contrasena" name="nueva_contrasena" class="form-control password-input" required />
+          <span toggle="#nueva_contrasena" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+        </div>
 
         <div id="password-requisitos" class="text-black small mb-3" style="text-align:left;">
           <p id="largo"><i class="fa fa-times-circle text-danger"></i> Mínimo 8 caracteres</p>
@@ -144,15 +208,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <p style="color:green;">✅ Tu contraseña fue cambiada exitosamente.</p>
     <?php endif; ?>
 
-    <p><a href="login.php">Volver al login</a></p>
+    <a href="login.php" class="btn-volver">Volver al login</a>
   </div>
 
-<?php if ($paso === 'cambiar'): ?>
 <script>
-document.addEventListener("DOMContentLoaded", function () {
   const pass = document.getElementById("nueva_contrasena");
-  if (!pass) return;
-
   const reglas = {
     largo: document.getElementById("largo"),
     mayuscula: document.getElementById("mayuscula"),
@@ -184,8 +244,16 @@ document.addEventListener("DOMContentLoaded", function () {
       ? '<i class="fa fa-check-circle text-success"></i> Al menos un carácter especial'
       : '<i class="fa fa-times-circle text-danger"></i> Al menos un carácter especial';
   });
-});
+
+  document.querySelectorAll('.toggle-password').forEach(function (eye) {
+    eye.addEventListener('click', function () {
+      const input = document.querySelector(this.getAttribute('toggle'));
+      const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+      input.setAttribute('type', type);
+      this.classList.toggle('fa-eye');
+      this.classList.toggle('fa-eye-slash');
+    });
+  });
 </script>
-<?php endif; ?>
 </body>
 </html>
