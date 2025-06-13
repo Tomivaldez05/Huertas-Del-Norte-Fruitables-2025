@@ -19,7 +19,8 @@
       <?php include '../includes/sidebar.php'; ?>
       <div class="main-panel">
         <div class="content-wrapper" id="contenedor-modulo">
-          <h3 class="text-center">Bienvenido al Panel</h3>
+          <!-- El dashboard se cargará aquí automáticamente -->
+          <h4 class='text-center'>Cargando Dashboard...</h4>
         </div>
         <?php include '../includes/footerAdmin.php'; ?>
       </div>
@@ -35,41 +36,127 @@
 <script type="module">
   const contenedor = document.getElementById('contenedor-modulo');
 
+  // Función para cargar un módulo
+  async function cargarModulo(modulo) {
+    contenedor.innerHTML = `<h4 class='text-center'>Cargando: <strong>${modulo}</strong></h4>`;
+    
+    // Destruir DataTable anterior si existe
+    if (window.tablaProductos) {
+      if ($.fn.DataTable.isDataTable('#tablaProductos')) {
+        $('#tablaProductos').DataTable().destroy();
+      }
+      window.tablaProductos = null;
+    }
+
+    try {
+      const res = await fetch(`modulos/${modulo}.php`);
+      const html = await res.text();
+      contenedor.innerHTML = html;
+
+      const moduloScript = await import(`./js/${modulo}.js?t=${Date.now()}`);
+
+      // Capitaliza la primera letra del nombre del módulo para construir el nombre de la función
+      const funcionInit = `inicializar${modulo.charAt(0).toUpperCase() + modulo.slice(1)}`;
+      if (typeof moduloScript[funcionInit] === 'function') {
+        moduloScript[funcionInit]();
+        console.log(`✅ Módulo ${modulo} cargado e inicializado correctamente`);
+      } else {
+        console.warn(`⚠️ La función ${funcionInit} no está definida en js/${modulo}.js`);
+      }
+
+    } catch (err) {
+      contenedor.innerHTML = `<div class='alert alert-danger text-center'>⚠️ Error al cargar el módulo <strong>${modulo}</strong></div>`;
+      console.error('Error al cargar módulo:', err);
+    }
+  }
+
+  // Cargar dashboard automáticamente al iniciar
+  document.addEventListener('DOMContentLoaded', function() {
+    console.log('🚀 Cargando dashboard por defecto...');
+    cargarModulo('dashboard');
+    
+    // Marcar el enlace del dashboard como activo si existe en el sidebar
+    const dashboardLink = document.querySelector('[data-modulo="dashboard"]');
+    if (dashboardLink) {
+      // Remover clase activa de otros enlaces
+      document.querySelectorAll('[data-modulo]').forEach(link => {
+        link.classList.remove('active');
+        link.parentElement.classList.remove('active');
+      });
+      
+      // Agregar clase activa al dashboard
+      dashboardLink.classList.add('active');
+      dashboardLink.parentElement.classList.add('active');
+    }
+  });
+
+  // Event listeners para los enlaces del sidebar
   document.querySelectorAll('[data-modulo]').forEach(link => {
     link.addEventListener('click', async e => {
       e.preventDefault();
       const modulo = e.currentTarget.getAttribute('data-modulo');
 
-      contenedor.innerHTML = `<h4 class='text-center'>Cargando: <strong>${modulo}</strong></h4>`;
-      // Destruir DataTable anterior
-      if (window.tablaProductos) {
-        if ($.fn.DataTable.isDataTable('#tablaProductos')) {
-          $('#tablaProductos').DataTable().destroy();
-        }
-        window.tablaProductos = null;
-      }
+      // Actualizar clases activas
+      document.querySelectorAll('[data-modulo]').forEach(l => {
+        l.classList.remove('active');
+        l.parentElement.classList.remove('active');
+      });
+      
+      e.currentTarget.classList.add('active');
+      e.currentTarget.parentElement.classList.add('active');
 
-      try {
-        const res = await fetch(`modulos/${modulo}.php`);
-        const html = await res.text();
-        contenedor.innerHTML = html;
-
-        const moduloScript = await import(`./js/${modulo}.js?t=${Date.now()}`);
-
-        // Capitaliza la primera letra del nombre del módulo para construir el nombre de la función
-        const funcionInit = `inicializar${modulo.charAt(0).toUpperCase() + modulo.slice(1)}`;
-        if (typeof moduloScript[funcionInit] === 'function') {
-          moduloScript[funcionInit]();
-        } else {
-          console.warn(`⚠️ La función ${funcionInit} no está definida en js/${modulo}.js`);
-        }
-
-      } catch (err) {
-        contenedor.innerHTML = `<div class='alert alert-danger text-center'>⚠️ Error al cargar el módulo <strong>${modulo}</strong></div>`;
-        console.error(err);
-      }
+      // Cargar el módulo
+      await cargarModulo(modulo);
     });
   });
+
+  // Función global para recargar el módulo actual (útil para refrescar)
+  window.recargarModuloActual = function() {
+    const enlaceActivo = document.querySelector('[data-modulo].active');
+    if (enlaceActivo) {
+      const modulo = enlaceActivo.getAttribute('data-modulo');
+      cargarModulo(modulo);
+    } else {
+      // Si no hay enlace activo, recargar dashboard
+      cargarModulo('dashboard');
+    }
+  };
 </script>
+
+<style>
+/* Estilos para elementos activos en el sidebar */
+.nav-item.active > .nav-link,
+.nav-link.active {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: #fff !important;
+  border-radius: 4px;
+}
+
+.nav-item.active > .nav-link:before,
+.nav-link.active:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background-color: #fff;
+  border-radius: 0 3px 3px 0;
+}
+
+/* Animación suave para el contenido */
+#contenedor-modulo {
+  transition: opacity 0.3s ease-in-out;
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
 </body>
 </html>

@@ -1,6 +1,6 @@
  <!-- Footer Start -->
  <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5">
-            <div class="container py-5">
+            <!--<div class="container py-5">
                 <div class="pb-4 mb-4" style="border-bottom: 1px solid rgba(226, 175, 24, 0.5) ;">
                     <div class="row g-4">
                         <div class="col-lg-3">
@@ -24,8 +24,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row g-5">
+                </div>-->
+                <!--<div class="row g-5">
                     <div class="col-lg-3 col-md-6">
                         <div class="footer-item">
                             <h4 class="text-light mb-3">¡Porque a la gente le gusta esto!</h4>
@@ -66,7 +66,7 @@
                             <img src="assets/img/payment.png" class="img-fluid" alt="">
                         </div>
                     </div>
-                </div>
+                </div>-->
             </div>
         </div>
         <!-- Footer End -->
@@ -76,13 +76,13 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        <span class="text-light"><a href="#"><i class="fas fa-copyright text-light me-2"></i>El nombre de su sitio</a>, Todos los derechos reservados.</span>
+                        <span class="text-light fs-5"><a href="#"><i class="fas fa-copyright text-light me-2"></i>Huertas del Norte - Frutihorticola</a>, Todos los derechos reservados. 2025</span>
                     </div>
                     <div class="col-md-6 my-auto text-center text-md-end text-white">
                         <!--/*** This template is free as long as you keep the below author’s credit link/attribution link/backlink. ***/-->
                         <!--/*** If you'd like to use the template without the below author’s credit link/attribution link/backlink, ***/-->
                         <!--/*** you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". ***/-->
-                        Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a> Distributed By <a class="border-bottom" href="https://themewagon.com">ThemeWagon</a>
+                        <!--Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a> Distributed By <a class="border-bottom" href="https://themewagon.com">ThemeWagon</a>-->
                     </div>
                 </div>
             </div>
@@ -92,7 +92,7 @@
 
 
         <!-- Back to Top -->
-        <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>   
+        <!--<a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>-->   
 
         
     <!-- JavaScript Libraries -->

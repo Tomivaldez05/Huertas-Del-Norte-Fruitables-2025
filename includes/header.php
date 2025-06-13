@@ -36,11 +36,11 @@ if (session_status() === PHP_SESSION_NONE) {
                 <small class="me-3"><i class="fas fa-map-marker-alt me-2 text-secondary"></i> <a href="#" class="text-white">Argentina</a></small>
                 <small class="me-3"><i class="fas fa-envelope me-2 text-secondary"></i><a href="#" class="text-white">Email@Example.com</a></small>
             </div>
-            <div class="top-link pe-2">
+            <!--<div class="top-link pe-2">
                 <a href="#" class="text-white"><small class="text-white mx-2">Política de Privacidad</small>/</a>
                 <a href="#" class="text-white"><small class="text-white mx-2">Condiciones de Uso</small>/</a>
                 <a href="#" class="text-white"><small class="text-white ms-2">Ventas y Devoluciones</small></a>
-            </div>
+            </div>-->
         </div>
     </div>
     <div class="container px-0">
@@ -54,15 +54,15 @@ if (session_status() === PHP_SESSION_NONE) {
                     <a href="index.php" class="nav-item nav-link active">Inicio</a>
                     <a href="shop.php" class="nav-item nav-link">Tienda</a>
                     <a href="shop-detail.php" class="nav-item nav-link">Detalle Tienda</a>
-                    <div class="nav-item dropdown">
+                    <!--<div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                         <div class="dropdown-menu m-0 bg-secondary rounded-0">
                             <a href="carrito.php" class="dropdown-item">Carrito</a>
                             <a href="chackout.php" class="dropdown-item">Verificar</a>
                             <a href="testimonial.php" class="dropdown-item">Testimonial</a>
                         </div>
-                    </div>
-                    <a href="contact.php" class="nav-item nav-link">Contacto</a>
+                    </div>-->
+                    <!--<a href="contact.php" class="nav-item nav-link">Contacto</a>-->
                 </div>
                 <div class="d-flex m-3 me-0">
                     <button class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fas fa-search text-primary"></i></button>

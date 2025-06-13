@@ -12,6 +12,8 @@ session_start();
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="assets/css/css/style.css">
 </head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 <body class="img js-fullheight" style="background-image: url(assets/img/fondo-login.png);">
   <section class="ftco-section">
     <div class="container">
@@ -48,10 +50,41 @@ session_start();
                 <input type="email" name="email" class="form-control" placeholder="Correo electrónico" required>
               </div>
 
+<<<<<<< HEAD
+              <div style="position: relative;">
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Contraseña"
+                required
+                style="
+                  background-color: rgba(255, 255, 255, 0.05);
+                  border: none;
+                  border-radius: 25px;
+                  padding: 12px 40px 12px 20px;
+                  color: white;
+                  width: 100%;
+                  font-size: 16px;
+                "
+              >
+              <i class="fas fa-eye"
+                id="togglePassword"
+                style="
+                  position: absolute;
+                  top: 50%;
+                  right: 16px;
+                  transform: translateY(-50%);
+                  color: white;
+                  cursor: pointer;
+                "
+              ></i>
+=======
               <div class="form-group">
               <input type="password" id="password" name="password" class="form-control" placeholder="Contraseña" required>
               <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
 
+>>>>>>> c964f536cfeff45fcb3cc7edade1bbc89e07011f
             </div>
 
             <!-- Validación en vivo -->
@@ -112,6 +145,19 @@ document.getElementById('especial').innerHTML = /[!@#$%^&*]/.test(value)
   : '<i class="fa fa-times-circle text-danger"></i> Al menos un caracter especial (!@#$%^&*)';
 });
 </script>
+
+<script>
+  const togglePassword = document.getElementById("togglePassword");
+  const password = document.getElementById("password");
+
+  togglePassword.addEventListener("click", function () {
+    const type = password.type === "password" ? "text" : "password";
+    password.type = type;
+    this.classList.toggle("fa-eye");
+    this.classList.toggle("fa-eye-slash");
+  });
+</script>
+
 
 </body>
 </html>
