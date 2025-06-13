@@ -1,8 +1,8 @@
 <!-- includes/nav.php -->
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
   <div class="navbar-brand-wrapper d-flex justify-content-center">
-    <a class="navbar-brand brand-logo" href="#"><img src="../assets/img/bg.jpg" alt="logo" /></a>
-    <a class="navbar-brand brand-logo-mini" href="#"><img src="../assets/img/avatar.jpg" alt="logo" /></a>
+    <a class="navbar-brand brand-logo" href="#"></a>
+    <a class="navbar-brand brand-logo-mini" href="#"></a>
   </div>
   <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
     <ul class="navbar-nav navbar-nav-right">
