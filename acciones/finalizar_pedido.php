@@ -51,7 +51,7 @@ try {
 
     foreach ($carrito as $id => $item) {
         $cantidad = $item['cantidad'];
-        $precio = $item['precio'];
+        $precio = isset($item['precio_final']) ? $item['precio_final'] : $item['precio'];
         $subtotalItem = $cantidad * $precio;
 
         $stmt->execute([$idPedido, $id, $cantidad, $precio, $subtotalItem]);

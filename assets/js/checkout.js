@@ -35,8 +35,6 @@ document.addEventListener("DOMContentLoaded", async function () {
   // Obtener precios mayoristas
   const productosIds = Object.keys(carrito).map(id => parseInt(id));
   preciosMayoristas = await obtenerPreciosMayoristas(productosIds);
-  console.log("Precios mayoristas recibidos:", preciosMayoristas);
-  console.log("IDs de productos solicitados:", productosIds);
 
   for (const [id, item] of Object.entries(carrito)) {
     const datosMayorista = preciosMayoristas[parseInt(id)];
@@ -67,7 +65,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     `;
     resumen.innerHTML += fila;
 
-    // Guardar el precio final en el carrito (opcional pero útil)
+    // Guardar el precio final en el carrito
     item.precio_final = precioFinal;
   }
 
@@ -140,6 +138,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   });
 });
 
+// Enviar pedido final
 document.getElementById('form-checkout').addEventListener('submit', async function (e) {
   e.preventDefault();
 
@@ -155,7 +154,7 @@ document.getElementById('form-checkout').addEventListener('submit', async functi
 
   // Agregar precios finales antes de enviar
   for (const [id, item] of Object.entries(carrito)) {
-    const datosMayorista = preciosMayoristas[id];
+    const datosMayorista = preciosMayoristas[parseInt(id)];
     const precioFinal = (datosMayorista && item.cantidad >= datosMayorista.cantidad_minima_mayorista)
       ? datosMayorista.precio_mayorista
       : item.precio;
@@ -185,14 +184,14 @@ document.getElementById('form-checkout').addEventListener('submit', async functi
   }
 });
 
+// Generar preferencia de Mercado Pago
 document.getElementById("mercadoPago").addEventListener("change", async function (e) {
   if (!e.target.checked) return;
 
   const carrito = JSON.parse(localStorage.getItem("carrito")) || {};
 
-  // Asegurar que usamos los precios finales actualizados
   for (const [id, item] of Object.entries(carrito)) {
-    const datosMayorista = preciosMayoristas[id];
+    const datosMayorista = preciosMayoristas[parseInt(id)];
     const precioFinal = (datosMayorista && item.cantidad >= datosMayorista.cantidad_minima_mayorista)
       ? datosMayorista.precio_mayorista
       : item.precio;

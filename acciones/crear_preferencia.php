@@ -17,25 +17,30 @@ $total = 0;
 $items = [];
 
 foreach ($carrito as $item) {
-    $subtotal = $item['precio'] * $item['cantidad'];
+    // Usar precio_final si está definido (mayorista), sino usar precio normal
+    $precio = isset($item['precio_final']) ? (float)$item['precio_final'] : (float)$item['precio'];
+    $subtotal = $precio * $item['cantidad'];
     $total += $subtotal;
 
     $items[] = [
         'title' => $item['nombre'],
         'quantity' => (int)$item['cantidad'],
-        'unit_price' => (float)$item['precio'],
+        'unit_price' => $precio,
         'currency_id' => 'ARS'
     ];
 }
+
 
 $preference = [
     'items' => $items,
     'back_urls' => [
         'success' => 'http://localhost/Huertas-Del-Norte-Fruitables-2025/gracias.php',
-        'failure' => 'http://localhost/Huertas-Del-Norte-Fruitables-2025/error.php'
+        'failure' => 'http://localhost/Huertas-Del-Norte-Fruitables-2025/error.php',
+        'pending' => 'http://localhost/Huertas-Del-Norte-Fruitables-2025/gracias.php'
     ],
-    
+    'auto_return' => 'approved'
 ];
+
 
 // Crear preferencia usando cURL
 $ch = curl_init();

@@ -50,7 +50,6 @@ session_start();
                 <input type="email" name="email" class="form-control" placeholder="Correo electrónico" required>
               </div>
 
-<<<<<<< HEAD
               <div style="position: relative;">
               <input
                 type="password"
@@ -79,12 +78,6 @@ session_start();
                   cursor: pointer;
                 "
               ></i>
-=======
-              <div class="form-group">
-              <input type="password" id="password" name="password" class="form-control" placeholder="Contraseña" required>
-              <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-
->>>>>>> c964f536cfeff45fcb3cc7edade1bbc89e07011f
             </div>
 
             <!-- Validación en vivo -->
@@ -157,6 +150,7 @@ document.getElementById('especial').innerHTML = /[!@#$%^&*]/.test(value)
     this.classList.toggle("fa-eye-slash");
   });
 </script>
+
 
 
 </body>
