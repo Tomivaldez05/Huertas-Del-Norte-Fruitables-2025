@@ -253,6 +253,38 @@ session_start();
       opacity: 1 !important;
       visibility: visible !important;
     }
+
+    /* Estilos para mensaje de éxito dinámico */
+    .mensaje-exito {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #d4edda;
+      border: 1px solid #c3e6cb;
+      color: #155724;
+      padding: 15px 20px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      z-index: 9999;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      opacity: 0;
+      transform: translateX(-50%) translateY(-100%);
+      transition: all 0.3s ease;
+    }
+
+    .mensaje-exito.mostrar {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .mensaje-exito .cerrar {
+      margin-left: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      color: #155724;
+    }
   </style>
 </head>
 
@@ -267,23 +299,24 @@ session_start();
       </div>
     <?php endif; ?>
 
-    <?php if (isset($_SESSION['mensaje_registro'])): ?>
-      <div class="alert-custom alert-success">
-        <?= $_SESSION['mensaje_registro']; unset($_SESSION['mensaje_registro']); ?>
-      </div>
-    <?php endif; ?>
+    <?php 
+    // Limpiar mensaje de éxito sin mostrarlo ya que usamos JavaScript
+    if (isset($_SESSION['mensaje_registro'])) {
+      unset($_SESSION['mensaje_registro']);
+    }
+    ?>
 
-    <form action="controladores/procesar_registro.php" method="POST" class="signin-form">
+    <form id="registroForm" action="controladores/procesar_registro.php" method="POST" class="signin-form">
       <div class="form-group-custom">
-        <input type="text" name="nombre" class="input-custom" placeholder="Nombre" required>
+        <input type="text" name="nombre" id="nombre" class="input-custom" placeholder="Nombre" required>
       </div>
       
       <div class="form-group-custom">
-        <input type="text" name="apellido" class="input-custom" placeholder="Apellido" required>
+        <input type="text" name="apellido" id="apellido" class="input-custom" placeholder="Apellido" required>
       </div>
       
       <div class="form-group-custom">
-        <input type="email" name="email" class="input-custom" placeholder="Correo electrónico" required>
+        <input type="email" name="email" id="email" class="input-custom" placeholder="Correo electrónico" required>
       </div>
 
       <div class="form-group-custom">
@@ -358,6 +391,78 @@ session_start();
       this.classList.toggle("fa-eye");
       this.classList.toggle("fa-eye-slash");
     });
+
+    // Interceptar el envío del formulario para mostrar mensaje de éxito
+    document.getElementById('registroForm').addEventListener('submit', function(e) {
+      // Verificar que todos los campos requeridos estén llenos
+      const nombre = document.getElementById('nombre').value;
+      const apellido = document.getElementById('apellido').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      
+      // Verificar que la contraseña cumpla todos los requisitos
+      const cumpleRequisitos = password.length >= 8 && 
+                              /[A-Z]/.test(password) && 
+                              /[a-z]/.test(password) && 
+                              /[0-9]/.test(password) && 
+                              /[!@#$%^&*]/.test(password);
+      
+      if (nombre && apellido && email && password && cumpleRequisitos) {
+        // Prevenir el envío normal del formulario
+        e.preventDefault();
+        
+        // Mostrar mensaje de éxito
+        mostrarMensajeExito(nombre, apellido);
+        
+        // Enviar el formulario después de mostrar el mensaje
+        setTimeout(() => {
+          this.submit();
+        }, 2000); // Esperar 2 segundos antes de enviar
+      }
+    });
+
+    // Función para mostrar mensaje de éxito dinámico
+    function mostrarMensajeExito(nombre, apellido) {
+      // Crear el mensaje dinámico
+      const mensaje = document.createElement('div');
+      mensaje.className = 'mensaje-exito';
+      mensaje.innerHTML = `
+        <i class="fa fa-check-circle"></i> 
+        ¡Bienvenido/a ${nombre}! Podes iniciar sesión
+        <span class="cerrar" onclick="cerrarMensaje(this)">&times;</span>
+      `;
+      
+      // Agregar al body
+      document.body.appendChild(mensaje);
+      
+      // Mostrar con animación
+      setTimeout(() => {
+        mensaje.classList.add('mostrar');
+      }, 100);
+      
+      // Auto-cerrar después de 5 segundos
+      setTimeout(() => {
+        if (mensaje.parentNode) {
+          mensaje.classList.remove('mostrar');
+          setTimeout(() => {
+            if (mensaje.parentNode) {
+              mensaje.parentNode.removeChild(mensaje);
+            }
+          }, 300);
+        }
+      }, 5000);
+    }
+
+    // Función para cerrar mensaje manualmente
+    function cerrarMensaje(elemento) {
+      const mensaje = elemento.parentNode;
+      mensaje.classList.remove('mostrar');
+      setTimeout(() => {
+        if (mensaje.parentNode) {
+          mensaje.parentNode.removeChild(mensaje);
+        }
+      }, 300);
+    }
 
     // Asegurar visibilidad inmediata de todos los elementos
     document.addEventListener('DOMContentLoaded', function() {
