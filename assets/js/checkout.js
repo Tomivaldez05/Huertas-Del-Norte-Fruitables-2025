@@ -1,7 +1,9 @@
 console.log("🧪 JS activo");
 
 // Esperar a que el script de MercadoPago esté cargado
-document.addEventListener('DOMContentLoaded', async function() {
+// y toda la lógica esté dentro del DOMContentLoaded
+
+document.addEventListener('DOMContentLoaded', function() {
     // Verificar si MercadoPago está disponible
     if (typeof MercadoPago === 'undefined') {
         console.error('El SDK de MercadoPago no está cargado');
@@ -34,70 +36,73 @@ document.addEventListener('DOMContentLoaded', async function() {
         }
     }
 
-    const carrito = JSON.parse(localStorage.getItem("carrito")) || {};
-    const tbody = document.querySelector("#tabla-carrito-checkout");
-    if (!tbody) return;
+    // Cargar el carrito y la tabla de resumen
+    (async function cargarCarrito() {
+        const carrito = JSON.parse(localStorage.getItem("carrito")) || {};
+        const tbody = document.querySelector("#tabla-carrito-checkout");
+        if (!tbody) return;
 
-    tbody.innerHTML = "";
+        tbody.innerHTML = "";
 
-    const productosIds = Object.keys(carrito);
-    preciosMayoristas = await obtenerPreciosMayoristas(productosIds);
+        const productosIds = Object.keys(carrito);
+        preciosMayoristas = await obtenerPreciosMayoristas(productosIds);
 
-    let subtotal = 0;
+        let subtotal = 0;
 
-    for (const [id, item] of Object.entries(carrito)) {
-        const datosMayorista = preciosMayoristas[id];
-        const precioFinal = datosMayorista && item.cantidad >= datosMayorista.cantidad_minima_mayorista
-            ? datosMayorista.precio_mayorista
-            : item.precio;
+        for (const [id, item] of Object.entries(carrito)) {
+            const datosMayorista = preciosMayoristas[id];
+            const precioFinal = datosMayorista && item.cantidad >= datosMayorista.cantidad_minima_mayorista
+                ? datosMayorista.precio_mayorista
+                : item.precio;
 
-        const totalItem = precioFinal * item.cantidad;
-        subtotal += totalItem;
+            const totalItem = precioFinal * item.cantidad;
+            subtotal += totalItem;
 
-        item.precio_final = precioFinal;
+            item.precio_final = precioFinal;
 
-        const fila = `
+            const fila = `
+                <tr>
+                    <td><img src="${item.imagen}" class="rounded-circle" style="width: 60px; height: 60px;"></td>
+                    <td>${item.nombre}</td>
+                    <td>$${precioFinal.toFixed(2)}</td>
+                    <td>${item.cantidad}</td>
+                    <td>$${totalItem.toFixed(2)}</td>
+                </tr>
+            `;
+            tbody.innerHTML += fila;
+        }
+
+        if (tbody.innerHTML.trim() === "") {
+            tbody.innerHTML = `<tr><td colspan="5" class="text-center text-danger">No se pudo cargar el carrito.</td></tr>`;
+            return;
+        }
+
+        tbody.innerHTML += `
+            <tr><td colspan="4" class="text-end fw-bold">Subtotal:</td><td>$${subtotal.toFixed(2)}</td></tr>
             <tr>
-                <td><img src="${item.imagen}" class="rounded-circle" style="width: 60px; height: 60px;"></td>
-                <td>${item.nombre}</td>
-                <td>$${precioFinal.toFixed(2)}</td>
-                <td>${item.cantidad}</td>
-                <td>$${totalItem.toFixed(2)}</td>
+                <td colspan="4" class="text-end fw-bold">Envío:</td>
+                <td>
+                    <div class="form-check">
+                        <input type="radio" name="shipping" class="form-check-input" value="0" checked> Gratis
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" name="shipping" class="form-check-input" value="15"> Tarifa $15
+                    </div>
+                </td>
             </tr>
+            <tr><td colspan="4" class="text-end fw-bold">TOTAL:</td><td id="total-final">$${subtotal.toFixed(2)}</td></tr>
         `;
-        tbody.innerHTML += fila;
-    }
 
-    if (tbody.innerHTML.trim() === "") {
-        tbody.innerHTML = `<tr><td colspan="5" class="text-center text-danger">No se pudo cargar el carrito.</td></tr>`;
-        return;
-    }
-
-    tbody.innerHTML += `
-        <tr><td colspan="4" class="text-end fw-bold">Subtotal:</td><td>$${subtotal.toFixed(2)}</td></tr>
-        <tr>
-            <td colspan="4" class="text-end fw-bold">Envío:</td>
-            <td>
-                <div class="form-check">
-                    <input type="radio" name="shipping" class="form-check-input" value="0" checked> Gratis
-                </div>
-                <div class="form-check">
-                    <input type="radio" name="shipping" class="form-check-input" value="15"> Tarifa $15
-                </div>
-            </td>
-        </tr>
-        <tr><td colspan="4" class="text-end fw-bold">TOTAL:</td><td id="total-final">$${subtotal.toFixed(2)}</td></tr>
-    `;
-
-    document.querySelectorAll("input[name='shipping']").forEach(input => {
-        input.addEventListener("change", () => {
-            const envio = parseFloat(document.querySelector("input[name='shipping']:checked").value);
-            document.getElementById("total-final").textContent = `$${(subtotal + envio).toFixed(2)}`;
+        document.querySelectorAll("input[name='shipping']").forEach(input => {
+            input.addEventListener("change", () => {
+                const envio = parseFloat(document.querySelector("input[name='shipping']:checked").value);
+                document.getElementById("total-final").textContent = `$${(subtotal + envio).toFixed(2)}`;
+            });
         });
-    });
+    })();
 
     // Enviar formulario
-    document.getElementById("form-checkout").addEventListener("submit", async function(e) {
+    document.getElementById("form-checkout").addEventListener("submit", async function (e) {
         e.preventDefault();
 
         const form = new FormData(this);
@@ -111,6 +116,29 @@ document.addEventListener('DOMContentLoaded', async function() {
                 : item.precio;
         }
 
+        // Verifica el método de pago seleccionado
+        const metodoPago = datos.metodo_pago;
+
+        if (metodoPago === "mercadopago") {
+            // Lógica para Mercado Pago
+            const res = await fetch("acciones/crear_preferencia.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ carrito })
+            });
+
+            const data = await res.json();
+
+            if (data.id) {
+                window.location.href = data.init_point;
+            } else {
+                alert("Error con Mercado Pago");
+                console.error(data);
+            }
+            return; // No seguir con el flujo normal
+        }
+
+        // Si es contra reembolso, finalizar pedido normalmente
         const res = await fetch("acciones/finalizar_pedido.php", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -128,32 +156,8 @@ document.addEventListener('DOMContentLoaded', async function() {
         }
     });
 
-    document.getElementById("mercadoPago").addEventListener("change", async function(e) {
-        if (!e.target.checked) return;
-
-        const carrito = JSON.parse(localStorage.getItem("carrito")) || {};
-        for (const [id, item] of Object.entries(carrito)) {
-            const datosMayorista = preciosMayoristas[id];
-            item.precio_final = datosMayorista && item.cantidad >= datosMayorista.cantidad_minima_mayorista
-                ? datosMayorista.precio_mayorista
-                : item.precio;
-        }
-
-        const res = await fetch("acciones/crear_preferencia.php", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ carrito })
-        });
-
-        const data = await res.json();
-
-        if (data.id) {
-            window.location.href = data.init_point;
-        } else {
-            alert("Error con Mercado Pago");
-            console.error(data);
-        }
-    });
+    // Elimina cualquier event listener sobre el radio de Mercado Pago
+    // (No se necesita ningún código aquí)
 });
 
 function crearFilaProductoOCR(producto, index) {
