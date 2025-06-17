@@ -223,7 +223,7 @@ session_start();
   <body>
     
     <div class="login-container">
-      <h2>Login</h2>
+      <h2>Iniciar Sesión</h2>
       <h3>¿Tienes una cuenta?</h3>
 
       <!-- Mostrar errores -->

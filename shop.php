@@ -83,23 +83,23 @@ require_once 'includes/db.php';
                                             <h4>Adicional</h4>
                                             <div class="mb-2">
                                                 <input type="radio" class="me-2" id="Categories-1" name="Categories-1" value="Beverages">
-                                                <label for="Categories-1"> Organico</label>
+                                                <label for="Categories-1" style="font-size: 18px;"> Organico</label>
                                             </div>
                                             <div class="mb-2">
                                                 <input type="radio" class="me-2" id="Categories-2" name="Categories-1" value="Beverages">
-                                                <label for="Categories-2"> Fresco</label>
+                                                <label for="Categories-2" style="font-size: 18px;"> Fresco</label>
                                             </div>
                                             <div class="mb-2">
                                                 <input type="radio" class="me-2" id="Categories-3" name="Categories-1" value="Beverages">
-                                                <label for="Categories-3"> Sales</label>
+                                                <label for="Categories-3" style="font-size: 18px;"> Sales</label>
                                             </div>
                                             <div class="mb-2">
                                                 <input type="radio" class="me-2" id="Categories-4" name="Categories-1" value="Beverages">
-                                                <label for="Categories-4"> Descuento</label>
+                                                <label for="Categories-4" style="font-size: 18px;"> Descuento</label>
                                             </div>
                                             <div class="mb-2">
                                                 <input type="radio" class="me-2" id="Categories-5" name="Categories-1" value="Beverages">
-                                                <label for="Categories-5"> Expirado</label>
+                                                <label for="Categories-5" style="font-size: 18px;"> Expirado</label>
                                             </div>
                                         </div>
                                     </div>
@@ -110,7 +110,7 @@ require_once 'includes/db.php';
                                                 <img src="assets/img/featur-1.jpg" class="img-fluid rounded" alt="">
                                             </div>
                                             <div>
-                                                <h6 class="mb-2">Melocoton</h6>
+                                                <h6 class="mb-2" style="font-size: 18px;">Melocoton</h6>
                                                 <div class="d-flex mb-2">
                                                     <i class="fa fa-star text-secondary"></i>
                                                     <i class="fa fa-star text-secondary"></i>
@@ -129,7 +129,7 @@ require_once 'includes/db.php';
                                                 <img src="assets/img/featur-2.jpg" class="img-fluid rounded" alt="">
                                             </div>
                                             <div>
-                                                <h6 class="mb-2">Frutilla</h6>
+                                                <h6 class="mb-2" style="font-size: 18px;">Frutilla</h6>
                                                 <div class="d-flex mb-2">
                                                     <i class="fa fa-star text-secondary"></i>
                                                     <i class="fa fa-star text-secondary"></i>
@@ -148,7 +148,7 @@ require_once 'includes/db.php';
                                                 <img src="assets/img/featur-3.jpg" class="img-fluid rounded" alt="">
                                             </div>
                                             <div>
-                                                <h6 class="mb-2">Brocoli</h6>
+                                                <h6 class="mb-2" style="font-size: 18px;">Brocoli</h6>
                                                 <div class="d-flex mb-2">
                                                     <i class="fa fa-star text-secondary"></i>
                                                     <i class="fa fa-star text-secondary"></i>

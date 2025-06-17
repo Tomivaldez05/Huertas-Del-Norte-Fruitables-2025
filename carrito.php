@@ -45,10 +45,10 @@ require_once 'includes/db.php';
                     </div>
                     <!-- Resumen -->
                     <div class="col-md-4">
-                        <div class="border rounded p-3">
+                        <div class="border rounded p-3" style="font-size: 18px;">
                             <h4>Resumen de Compra</h4>
-                            <p id="total-carrito">Total: $0.00</p>
-                            <a href="checkout.php" class="btn btn-success w-100 mt-2">Proceder al pago</a>
+                            <p id="total-carrito" >Total: $0.00</p>
+                            <a href="checkout.php" class="btn btn-success w-100 mt-2 text-light fs-5">Proceder al pago</a>
                         </div>
                     </div>
                 </div>

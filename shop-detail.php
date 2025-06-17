@@ -48,7 +48,7 @@ include_once 'includes/header.php';
                             </div>
                             <div class="col-lg-6">
                                 <h4 class="fw-bold mb-3">Brocoli</h4>
-                                <p class="mb-3">Categoria: Verduras</p>
+                                <p class="mb-3" style="font-size: 18px;">Categoria: Verduras</p>
                                 <h5 class="fw-bold mb-3">3,35 $</h5>
                                 <div class="d-flex mb-4">
                                     <i class="fa fa-star text-secondary"></i>
@@ -57,8 +57,8 @@ include_once 'includes/header.php';
                                     <i class="fa fa-star text-secondary"></i>
                                     <i class="fa fa-star"></i>
                                 </div>
-                                <p class="mb-4">Es una planta de la familia de las brasicáceas, antes llamadas crucíferas.</p>
-                                <p class="mb-4">Esta planta posee abundantes cabezas florales carnosas de color verde, dispuestas en forma de árbol, 
+                                <p class="mb-4" style="font-size: 18px;">Es una planta de la familia de las brasicáceas, antes llamadas crucíferas.</p>
+                                <p class="mb-4" style="font-size: 18px;">Esta planta posee abundantes cabezas florales carnosas de color verde, dispuestas en forma de árbol, 
                                     sobre ramas que nacen de un grueso tallo comestible. La gran masa de cabezuelas está rodeada de hojas.</p>
                                 <div class="input-group quantity mb-5" style="width: 100px;">
                                     <div class="input-group-btn">
@@ -87,7 +87,7 @@ include_once 'includes/header.php';
                                     </div>
                                 </nav>
                                 <div class="tab-content mb-5">
-                                    <div class="tab-pane active" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
+                                    <div class="tab-pane active" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab" style="font-size: 18px;">
                                         <p></p>
                                         <p>Variedad de la col común, cuyas hojas, de color verde oscuro, son más recortadas que las de esta y no se apiñan.</p>
                                         <div class="px-2">
@@ -270,7 +270,7 @@ include_once 'includes/header.php';
                                         <img src="assets/img/featur-1.jpg" class="img-fluid rounded" alt="Image">
                                     </div>
                                     <div>
-                                        <h6 class="mb-2">Melocoton</h6>
+                                        <h6 class="mb-2" style="font-size: 18px;">Melocoton</h6>
                                         <div class="d-flex mb-2">
                                             <i class="fa fa-star text-secondary"></i>
                                             <i class="fa fa-star text-secondary"></i>
@@ -289,7 +289,7 @@ include_once 'includes/header.php';
                                         <img src="assets/img/featur-2.jpg" class="img-fluid rounded" alt="">
                                     </div>
                                     <div>
-                                        <h6 class="mb-2">Frutilla</h6>
+                                        <h6 class="mb-2" style="font-size: 18px;">Frutilla</h6>
                                         <div class="d-flex mb-2">
                                             <i class="fa fa-star text-secondary"></i>
                                             <i class="fa fa-star text-secondary"></i>
@@ -308,7 +308,7 @@ include_once 'includes/header.php';
                                         <img src="assets/img/featur-3.jpg" class="img-fluid rounded" alt="">
                                     </div>
                                     <div>
-                                        <h6 class="mb-2">Brocoli</h6>
+                                        <h6 class="mb-2" style="font-size: 18px;">Brocoli</h6>
                                         <div class="d-flex mb-2">
                                             <i class="fa fa-star text-secondary"></i>
                                             <i class="fa fa-star text-secondary"></i>
@@ -327,7 +327,7 @@ include_once 'includes/header.php';
                                         <img src="assets/img/vegetable-item-4.jpg" class="img-fluid rounded" alt="">
                                     </div>
                                     <div>
-                                        <h6 class="mb-2">Pimiento Morron</h6>
+                                        <h6 class="mb-2" style="font-size: 18px;">Pimiento Morron</h6>
                                         <div class="d-flex mb-2">
                                             <i class="fa fa-star text-secondary"></i>
                                             <i class="fa fa-star text-secondary"></i>
@@ -346,7 +346,7 @@ include_once 'includes/header.php';
                                         <img src="assets/img/vegetable-item-5.jpg" class="img-fluid rounded" alt="">
                                     </div>
                                     <div>
-                                        <h6 class="mb-2">Papa</h6>
+                                        <h6 class="mb-2" style="font-size: 18px;">Papa</h6>
                                         <div class="d-flex mb-2">
                                             <i class="fa fa-star text-secondary"></i>
                                             <i class="fa fa-star text-secondary"></i>
@@ -365,7 +365,7 @@ include_once 'includes/header.php';
                                         <img src="assets/img/vegetable-item-6.jpg" class="img-fluid rounded" alt="">
                                     </div>
                                     <div>
-                                        <h6 class="mb-2">Lechuga</h6>
+                                        <h6 class="mb-2" style="font-size: 18px;">Lechuga</h6>
                                         <div class="d-flex mb-2">
                                             <i class="fa fa-star text-secondary"></i>
                                             <i class="fa fa-star text-secondary"></i>

@@ -43,7 +43,7 @@ include_once 'includes/header.php';
 
 
         <!-- Checkout Page Start -->
-        <div class="container-fluid py-5">
+        <div class="container-fluid py-5" style="font-size: 20px;">
             <div class="container py-5">
                 <h1 class="mb-4">Detalles de facturacíon</h1>
                 <form action="#" id="form-checkout">
@@ -64,7 +64,7 @@ include_once 'includes/header.php';
                                 </div>
                             </div>
                             <div class="form-item">
-                                <label class="form-label my-3">Nombre de la empresa<sup>*</sup></label>
+                                <label class="form-label my-3">Nombre de la empresa<sup></sup></label>
                                 <input type="text" class="form-control">
                             </div>
                             <div class="form-item">
