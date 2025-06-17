@@ -1,216 +1,188 @@
-const mp = new MercadoPago("APP_USR-c7bc1d8d-239a-4ceb-bb8e-8da8d8ccb2c5", {
-  locale: "es-AR"
-});
+console.log("🧪 JS activo");
 
-let preciosMayoristas = {};
-
-async function obtenerPreciosMayoristas(productosIds) {
-  try {
-    const formData = new FormData();
-    formData.append('productos', productosIds.join(','));
-
-    const response = await fetch('acciones/controladorProducto.php?accion=precios-mayoristas', {
-      method: 'POST',
-      body: formData
-    });
-
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error('Error al obtener precios mayoristas:', error);
-    return {};
-  }
-}
-
-document.addEventListener("DOMContentLoaded", async function () {
-  const carrito = JSON.parse(localStorage.getItem("carrito")) || {};
-  const resumen = document.querySelector("#resumen-checkout tbody");
-
-  if (!resumen) return;
-
-  resumen.innerHTML = ""; // Limpiamos el contenido
-
-  let subtotal = 0;
-
-  // Obtener precios mayoristas
-  const productosIds = Object.keys(carrito).map(id => parseInt(id));
-  preciosMayoristas = await obtenerPreciosMayoristas(productosIds);
-
-  for (const [id, item] of Object.entries(carrito)) {
-    const datosMayorista = preciosMayoristas[parseInt(id)];
-    const precioFinal = (datosMayorista && item.cantidad >= datosMayorista.cantidad_minima_mayorista)
-      ? datosMayorista.precio_mayorista
-      : item.precio;
-
-    const totalItem = precioFinal * item.cantidad;
-    subtotal += totalItem;
-
-    const fila = `
-      <tr>
-        <th scope="row">
-          <div class="d-flex align-items-center mt-2">
-            <img src="${item.imagen}" class="img-fluid rounded-circle" style="width: 90px; height: 90px;" alt="">
-          </div>
-        </th>
-        <td class="py-5">${item.nombre}</td>
-        <td class="py-5">
-          ${precioFinal < item.precio
-            ? `<s>$${item.precio.toFixed(2)}</s><br><strong>$${precioFinal.toFixed(2)}</strong> <span class="badge bg-success">Mayorista</span>`
-            : `$${item.precio.toFixed(2)}`
-          }
-        </td>
-        <td class="py-5">${item.cantidad}</td>
-        <td class="py-5">$${totalItem.toFixed(2)}</td>
-      </tr>
-    `;
-    resumen.innerHTML += fila;
-
-    // Guardar el precio final en el carrito
-    item.precio_final = precioFinal;
-  }
-
-  // Fila Subtotal
-  resumen.innerHTML += `
-    <tr>
-      <th scope="row"></th>
-      <td class="py-5"></td>
-      <td class="py-5"></td>
-      <td class="py-5">
-        <p class="mb-0 text-dark py-3">Subtotal</p>
-      </td>
-      <td class="py-5">
-        <div class="py-3 border-bottom border-top">
-          <p class="mb-0 text-dark">$${subtotal.toFixed(2)}</p>
-        </div>
-      </td>
-    </tr>
-  `;
-
-  // Fila Envío
-  resumen.innerHTML += `
-    <tr>
-      <th scope="row"></th>
-      <td class="py-5">
-        <p class="mb-0 text-dark py-4">Envío</p>
-      </td>
-      <td colspan="3" class="py-5">
-        <div class="form-check text-start">
-          <input type="checkbox" class="form-check-input bg-primary border-0" id="Shipping-1" name="shipping" value="0" checked>
-          <label class="form-check-label" for="Shipping-1">Envío gratis</label>
-        </div>
-        <div class="form-check text-start">
-          <input type="checkbox" class="form-check-input bg-primary border-0" id="Shipping-2" name="shipping" value="15">
-          <label class="form-check-label" for="Shipping-2">Tarifa: $15.00</label>
-        </div>
-      </td>
-    </tr>
-  `;
-
-  // Fila Total (preliminar)
-  resumen.innerHTML += `
-    <tr>
-      <th scope="row"></th>
-      <td class="py-5">
-        <p class="mb-0 text-dark text-uppercase py-3">TOTAL</p>
-      </td>
-      <td class="py-5"></td>
-      <td class="py-5"></td>
-      <td class="py-5">
-        <div class="py-3 border-bottom border-top">
-          <p id="total-final" class="mb-0 text-dark">$${subtotal.toFixed(2)}</p>
-        </div>
-      </td>
-    </tr>
-  `;
-
-  // Actualizar total si cambia el método de envío
-  const inputsEnvio = document.querySelectorAll("input[name='shipping']");
-  inputsEnvio.forEach(input => {
-    input.addEventListener("change", () => {
-      inputsEnvio.forEach(i => i.checked = false);
-      input.checked = true;
-
-      const costoEnvio = parseFloat(input.value);
-      const totalFinal = subtotal + costoEnvio;
-
-      document.getElementById("total-final").textContent = `$${totalFinal.toFixed(2)}`;
-    });
-  });
-});
-
-// Enviar pedido final
-document.getElementById('form-checkout').addEventListener('submit', async function (e) {
-  e.preventDefault();
-
-  const form = new FormData(this);
-  const datos = Object.fromEntries(form.entries());
-
-  const carrito = JSON.parse(localStorage.getItem("carrito")) || {};
-
-  if (Object.keys(carrito).length === 0) {
-    alert("Tu carrito está vacío.");
-    return;
-  }
-
-  // Agregar precios finales antes de enviar
-  for (const [id, item] of Object.entries(carrito)) {
-    const datosMayorista = preciosMayoristas[parseInt(id)];
-    const precioFinal = (datosMayorista && item.cantidad >= datosMayorista.cantidad_minima_mayorista)
-      ? datosMayorista.precio_mayorista
-      : item.precio;
-
-    item.precio_final = precioFinal;
-  }
-
-  const respuesta = await fetch('acciones/finalizar_pedido.php', {
-    method: 'POST',
-    body: JSON.stringify({
-      cliente: datos,
-      carrito: carrito
-    }),
-    headers: {
-      'Content-Type': 'application/json'
+// Esperar a que el script de MercadoPago esté cargado
+document.addEventListener('DOMContentLoaded', async function() {
+    // Verificar si MercadoPago está disponible
+    if (typeof MercadoPago === 'undefined') {
+        console.error('El SDK de MercadoPago no está cargado');
+        return;
     }
-  });
 
-  const resultado = await respuesta.json();
+    const mp = new MercadoPago("APP_USR-c7bc1d8d-239a-4ceb-bb8e-8da8d8ccb2c5", {
+        locale: "es-AR"
+    });
 
-  if (resultado.ok) {
-    localStorage.removeItem("carrito");
-    window.location.href = "gracias.php?pedido=" + resultado.numero_pedido;
-  } else {
-    alert("Ocurrió un error al finalizar el pedido.");
-    console.error(resultado.error);
-  }
+    let preciosMayoristas = {};
+
+    async function obtenerPreciosMayoristas(productosIds) {
+        try {
+            const formData = new FormData();
+            formData.append("productos", productosIds.join(","));
+
+            const response = await fetch("acciones/controladorProducto.php?accion=precios-mayoristas", {
+                method: "POST",
+                body: formData
+            });
+
+            if (!response.ok) throw new Error("Error al obtener precios mayoristas");
+
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error("Error al obtener precios mayoristas:", error);
+            return {};
+        }
+    }
+
+    const carrito = JSON.parse(localStorage.getItem("carrito")) || {};
+    const tbody = document.querySelector("#tabla-carrito-checkout");
+    if (!tbody) return;
+
+    tbody.innerHTML = "";
+
+    const productosIds = Object.keys(carrito);
+    preciosMayoristas = await obtenerPreciosMayoristas(productosIds);
+
+    let subtotal = 0;
+
+    for (const [id, item] of Object.entries(carrito)) {
+        const datosMayorista = preciosMayoristas[id];
+        const precioFinal = datosMayorista && item.cantidad >= datosMayorista.cantidad_minima_mayorista
+            ? datosMayorista.precio_mayorista
+            : item.precio;
+
+        const totalItem = precioFinal * item.cantidad;
+        subtotal += totalItem;
+
+        item.precio_final = precioFinal;
+
+        const fila = `
+            <tr>
+                <td><img src="${item.imagen}" class="rounded-circle" style="width: 60px; height: 60px;"></td>
+                <td>${item.nombre}</td>
+                <td>$${precioFinal.toFixed(2)}</td>
+                <td>${item.cantidad}</td>
+                <td>$${totalItem.toFixed(2)}</td>
+            </tr>
+        `;
+        tbody.innerHTML += fila;
+    }
+
+    if (tbody.innerHTML.trim() === "") {
+        tbody.innerHTML = `<tr><td colspan="5" class="text-center text-danger">No se pudo cargar el carrito.</td></tr>`;
+        return;
+    }
+
+    tbody.innerHTML += `
+        <tr><td colspan="4" class="text-end fw-bold">Subtotal:</td><td>$${subtotal.toFixed(2)}</td></tr>
+        <tr>
+            <td colspan="4" class="text-end fw-bold">Envío:</td>
+            <td>
+                <div class="form-check">
+                    <input type="radio" name="shipping" class="form-check-input" value="0" checked> Gratis
+                </div>
+                <div class="form-check">
+                    <input type="radio" name="shipping" class="form-check-input" value="15"> Tarifa $15
+                </div>
+            </td>
+        </tr>
+        <tr><td colspan="4" class="text-end fw-bold">TOTAL:</td><td id="total-final">$${subtotal.toFixed(2)}</td></tr>
+    `;
+
+    document.querySelectorAll("input[name='shipping']").forEach(input => {
+        input.addEventListener("change", () => {
+            const envio = parseFloat(document.querySelector("input[name='shipping']:checked").value);
+            document.getElementById("total-final").textContent = `$${(subtotal + envio).toFixed(2)}`;
+        });
+    });
+
+    // Enviar formulario
+    document.getElementById("form-checkout").addEventListener("submit", async function(e) {
+        e.preventDefault();
+
+        const form = new FormData(this);
+        const datos = Object.fromEntries(form.entries());
+        const carrito = JSON.parse(localStorage.getItem("carrito")) || {};
+
+        for (const [id, item] of Object.entries(carrito)) {
+            const datosMayorista = preciosMayoristas[id];
+            item.precio_final = datosMayorista && item.cantidad >= datosMayorista.cantidad_minima_mayorista
+                ? datosMayorista.precio_mayorista
+                : item.precio;
+        }
+
+        const res = await fetch("acciones/finalizar_pedido.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ cliente: datos, carrito })
+        });
+
+        const data = await res.json();
+
+        if (data.ok) {
+            localStorage.removeItem("carrito");
+            window.location.href = "gracias.php?pedido=" + data.numero_pedido;
+        } else {
+            alert("Error al finalizar pedido");
+            console.error(data.error);
+        }
+    });
+
+    document.getElementById("mercadoPago").addEventListener("change", async function(e) {
+        if (!e.target.checked) return;
+
+        const carrito = JSON.parse(localStorage.getItem("carrito")) || {};
+        for (const [id, item] of Object.entries(carrito)) {
+            const datosMayorista = preciosMayoristas[id];
+            item.precio_final = datosMayorista && item.cantidad >= datosMayorista.cantidad_minima_mayorista
+                ? datosMayorista.precio_mayorista
+                : item.precio;
+        }
+
+        const res = await fetch("acciones/crear_preferencia.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ carrito })
+        });
+
+        const data = await res.json();
+
+        if (data.id) {
+            window.location.href = data.init_point;
+        } else {
+            alert("Error con Mercado Pago");
+            console.error(data);
+        }
+    });
 });
 
-// Generar preferencia de Mercado Pago
-document.getElementById("mercadoPago").addEventListener("change", async function (e) {
-  if (!e.target.checked) return;
+function crearFilaProductoOCR(producto, index) {
+    const fila = document.createElement('tr');
+    fila.dataset.index = index;
 
-  const carrito = JSON.parse(localStorage.getItem("carrito")) || {};
+    let claseFila = 'table-success';
+    let mensaje = '';
+    if (!producto.coincidencia && producto.estado === 'nuevo') {
+        claseFila = 'table-warning';
+        mensaje = '<br><small class="text-muted">Producto nuevo. <a href="#" class="editar-producto-nuevo" data-index="' + index + '">Configurar</a></small>';
+    } else if (!producto.coincidencia && producto.estado === 'inactivo') {
+        claseFila = 'table-danger';
+        mensaje = '<br><small class="text-danger">Producto inactivo</small>';
+    } else if (!producto.coincidencia) {
+        claseFila = 'table-warning';
+        mensaje = '<br><small class="text-muted">No se encontró coincidencia exacta</small>';
+    }
 
-  for (const [id, item] of Object.entries(carrito)) {
-    const datosMayorista = preciosMayoristas[parseInt(id)];
-    const precioFinal = (datosMayorista && item.cantidad >= datosMayorista.cantidad_minima_mayorista)
-      ? datosMayorista.precio_mayorista
-      : item.precio;
+    fila.className = claseFila;
 
-    item.precio_final = precioFinal;
-  }
+    fila.innerHTML = `
+        <td>
+            <strong>${producto.nombre_detectado}</strong>
+            ${mensaje}
+        </td>
+        <!-- ... resto igual ... -->
+    `;
 
-  const respuesta = await fetch("acciones/crear_preferencia.php", {
-    method: "POST",
-    body: JSON.stringify({ carrito }),
-    headers: { "Content-Type": "application/json" }
-  });
-
-  const data = await respuesta.json();
-
-  if (data.id) {
-    window.location.href = data.init_point;
-  } else {
-    alert("Error al crear preferencia de pago");
-    console.error(data);
-  }
-});
+    // ... resto igual ...
+    return fila;
+}

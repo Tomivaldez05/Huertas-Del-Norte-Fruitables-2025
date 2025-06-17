@@ -1,0 +1,44 @@
+Formulario recibido: Array
+(
+    [nombre_producto] => Mandarina
+    [descripcion] => Del norte
+    [id_categoria] => 4
+    [precio_minorista] => 5
+    [precio_mayorista] => 5
+    [cantidad_minima_mayorista] => 5
+    [unidad_medida] => kg
+)
+
+Formulario recibido: Array
+(
+    [nombre_producto] => Manzanilla
+    [descripcion] => Manzanilla del norte
+    [id_categoria] => 11
+    [precio_minorista] => 5
+    [precio_mayorista] => 5
+    [cantidad_minima_mayorista] => 5
+    [unidad_medida] => kg
+)
+
+Formulario recibido: Array
+(
+    [nombre_producto] => Aadad
+    [descripcion] => adda
+    [id_categoria] => 4
+    [precio_minorista] => 1
+    [precio_mayorista] => 1
+    [cantidad_minima_mayorista] => 1
+    [unidad_medida] => kg
+)
+
+Formulario recibido: Array
+(
+    [nombre_producto] => addadadad
+    [descripcion] => adadadad
+    [id_categoria] => 4
+    [precio_minorista] => 1
+    [precio_mayorista] => 1
+    [cantidad_minima_mayorista] => 1
+    [unidad_medida] => kg
+)
+

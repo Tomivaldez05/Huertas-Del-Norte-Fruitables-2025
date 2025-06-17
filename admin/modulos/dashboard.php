@@ -28,7 +28,7 @@
               <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                 Total de Productos
               </div>
-              <div class="h5 mb-0 font-weight-bold text-gray-800">127</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800" id="totalProductos">127</div>
             </div>
             <div class="col-auto">
               <i class="mdi mdi-package-variant text-primary" style="font-size: 2rem;"></i>
@@ -46,7 +46,7 @@
               <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                 Stock Bajo
               </div>
-              <div class="h5 mb-0 font-weight-bold text-gray-800">8</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800" id="stockBajo">8</div>
             </div>
             <div class="col-auto">
               <i class="mdi mdi-alert-circle text-warning" style="font-size: 2rem;"></i>
@@ -64,7 +64,7 @@
               <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
                 Sin Stock
               </div>
-              <div class="h5 mb-0 font-weight-bold text-gray-800">3</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800" id="sinStock">3</div>
             </div>
             <div class="col-auto">
               <i class="mdi mdi-close-circle text-danger" style="font-size: 2rem;"></i>
@@ -82,7 +82,7 @@
               <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                 Pedidos Pendientes
               </div>
-              <div class="h5 mb-0 font-weight-bold text-gray-800">5</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800" id="pedidosPendientes">5</div>
             </div>
             <div class="col-auto">
               <i class="mdi mdi-truck text-success" style="font-size: 2rem;"></i>
@@ -103,7 +103,7 @@
           </h6>
         </div>
         <div class="card-body">
-          <div class="alert alert-danger d-flex align-items-center mb-3" role="alert">
+          <div class="alert alert-danger d-flex align-items-center mb-3" role="alert" id="alertasDashboard">
             <i class="mdi mdi-alert-octagon me-2"></i>
             <div>
               <strong>¡Crítico!</strong> 3 productos sin stock: Lechuga Mantecosa, Apio, Brócoli
@@ -179,7 +179,7 @@
         </div>
         <div class="card-body">
           <div class="table-responsive">
-            <table class="table table-sm">
+            <table class="table table-sm" id="tablaCriticos">
               <thead>
                 <tr>
                   <th>Producto</th>
@@ -255,81 +255,8 @@
           </h6>
         </div>
         <div class="card-body">
-          <div class="timeline">
-            <div class="timeline-item mb-3">
-              <div class="d-flex">
-                <div class="flex-shrink-0">
-                  <div class="bg-success rounded-circle d-flex align-items-center justify-content-center" style="width: 32px; height: 32px;">
-                    <i class="mdi mdi-plus text-white"></i>
-                  </div>
-                </div>
-                <div class="flex-grow-1 ms-3">
-                  <div class="small text-muted">Hace 2 horas</div>
-                  <div>Se agregaron 25 kg de Zanahoria Orgánica</div>
-                  <div class="small text-muted">Por: Juan Pérez</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="timeline-item mb-3">
-              <div class="d-flex">
-                <div class="flex-shrink-0">
-                  <div class="bg-warning rounded-circle d-flex align-items-center justify-content-center" style="width: 32px; height: 32px;">
-                    <i class="mdi mdi-truck text-white"></i>
-                  </div>
-                </div>
-                <div class="flex-grow-1 ms-3">
-                  <div class="small text-muted">Hace 4 horas</div>
-                  <div>Pedido generado para Proveedor Local A</div>
-                  <div class="small text-muted">5 productos solicitados</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="timeline-item mb-3">
-              <div class="d-flex">
-                <div class="flex-shrink-0">
-                  <div class="bg-danger rounded-circle d-flex align-items-center justify-content-center" style="width: 32px; height: 32px;">
-                    <i class="mdi mdi-alert text-white"></i>
-                  </div>
-                </div>
-                <div class="flex-grow-1 ms-3">
-                  <div class="small text-muted">Ayer</div>
-                  <div>Alerta: Lechuga Mantecosa sin stock</div>
-                  <div class="small text-muted">Requiere atención inmediata</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="timeline-item mb-3">
-              <div class="d-flex">
-                <div class="flex-shrink-0">
-                  <div class="bg-info rounded-circle d-flex align-items-center justify-content-center" style="width: 32px; height: 32px;">
-                    <i class="mdi mdi-file-document text-white"></i>
-                  </div>
-                </div>
-                <div class="flex-grow-1 ms-3">
-                  <div class="small text-muted">Ayer</div>
-                  <div>Factura procesada automáticamente</div>
-                  <div class="small text-muted">8 productos actualizados</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="timeline-item">
-              <div class="d-flex">
-                <div class="flex-shrink-0">
-                  <div class="bg-secondary rounded-circle d-flex align-items-center justify-content-center" style="width: 32px; height: 32px;">
-                    <i class="mdi mdi-minus text-white"></i>
-                  </div>
-                </div>
-                <div class="flex-grow-1 ms-3">
-                  <div class="small text-muted">Hace 2 días</div>
-                  <div>Ajuste de stock: Papa Andina</div>
-                  <div class="small text-muted">Reducción por venta mayorista</div>
-                </div>
-              </div>
-            </div>
+          <div class="row" id="actividadesRecientesCards">
+            <!-- Aquí se insertarán las cards dinámicamente -->
           </div>
         </div>
       </div>
@@ -347,7 +274,7 @@
         </div>
         <div class="card-body">
           <div class="table-responsive">
-            <table class="table table-sm">
+            <table class="table table-sm" id="tablaActividades">
               <thead>
                 <tr>
                   <th>Producto</th>

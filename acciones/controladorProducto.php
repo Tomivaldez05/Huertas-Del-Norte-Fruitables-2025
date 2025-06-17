@@ -141,15 +141,44 @@ switch ($accion) {
     // Obtener categorías con conteo de productos
     case 'categorias':
         try {
-            $stmt = $conn->query("SELECT c.id_categoria, c.nombre_categoria, COUNT(p.id_producto) AS cantidad
-                                  FROM categorias c
-                                  LEFT JOIN productos p ON c.id_categoria = p.id_categoria AND p.activo = 1
-                                  GROUP BY c.id_categoria, c.nombre_categoria
-                                  ORDER BY c.nombre_categoria");
+            // Primero obtenemos el total de productos activos para "Todas"
+            $stmtTotal = $conn->query("SELECT COUNT(*) as total FROM productos WHERE activo = 1");
+            $totalProductos = $stmtTotal->fetch(PDO::FETCH_ASSOC)['total'];
+            
+            // Luego obtenemos las categorías con sus conteos (solo productos activos)
+            $stmt = $conn->query("
+                SELECT 
+                    c.id_categoria, 
+                    c.nombre_categoria, 
+                    COUNT(CASE WHEN p.activo = 1 THEN p.id_producto END) AS cantidad
+                FROM categorias c
+                LEFT JOIN productos p ON c.id_categoria = p.id_categoria
+                WHERE c.activo = 1
+                GROUP BY c.id_categoria, c.nombre_categoria
+                ORDER BY c.nombre_categoria
+            ");
 
             $categorias = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            // Agregar el total para "Todas" al inicio
+            $resultado = [
+                [
+                    'id_categoria' => 0,
+                    'nombre_categoria' => 'Todas',
+                    'cantidad' => intval($totalProductos)
+                ]
+            ];
+            
+            // Agregar las demás categorías (solo las que tienen productos activos o queremos mostrar)
+            foreach ($categorias as $cat) {
+                $resultado[] = [
+                    'id_categoria' => intval($cat['id_categoria']),
+                    'nombre_categoria' => $cat['nombre_categoria'],
+                    'cantidad' => intval($cat['cantidad'])
+                ];
+            }
 
-            echo json_encode($categorias);
+            echo json_encode($resultado);
         } catch (PDOException $e) {
             error_log("Error en categorias: " . $e->getMessage());
             http_response_code(500);

@@ -1,0 +1,286 @@
+[2025-06-12 20:00:55] Script iniciado
+[2025-06-12 20:00:55] Sesión iniciada
+[2025-06-12 20:00:55] Método de solicitud: POST
+[2025-06-12 20:00:55] Datos POST recibidos: Array
+(
+    [nombre_producto] => addadadad
+    [descripcion] => adadadad
+    [id_categoria] => 4
+    [precio_minorista] => 1
+    [precio_mayorista] => 1
+    [cantidad_minima_mayorista] => 1
+    [unidad_medida] => kg
+)
+
+[2025-06-12 20:00:55] Archivos recibidos: Array
+(
+    [imagen] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+[2025-06-12 20:00:55] Archivo de configuración de BD incluido
+[2025-06-12 20:28:59] === INICIO DEL SCRIPT ===
+[2025-06-12 20:28:59] Script iniciado - guardar_producto.php
+[2025-06-12 20:28:59] Método de solicitud: POST
+[2025-06-12 20:28:59] Datos POST recibidos: Array
+(
+    [nombre_producto] => Papitas
+    [descripcion] => Son mas peques
+    [id_categoria] => 3
+    [precio_minorista] => 5
+    [precio_mayorista] => 5
+    [cantidad_minima_mayorista] => 5
+    [unidad_medida] => kg
+)
+
+[2025-06-12 20:28:59] Archivos recibidos: Array
+(
+    [imagen] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+[2025-06-12 20:28:59] Sesión está activa
+[2025-06-12 20:28:59] Intentando incluir archivo de configuración de BD
+[2025-06-12 20:28:59] Archivo de configuración de BD incluido exitosamente
+[2025-06-12 20:28:59] Objeto PDO existe
+[2025-06-12 20:28:59] Conexión a BD verificada - FUNCIONANDO
+[2025-06-12 20:28:59] Verificando método de solicitud...
+[2025-06-12 20:28:59] Método POST confirmado - procesando formulario
+[2025-06-12 20:28:59] === INICIO DE PROCESAMIENTO DE DATOS ===
+[2025-06-12 20:28:59] Campo nombre_producto presente: Papitas
+[2025-06-12 20:28:59] Campo descripcion presente: Son mas peques
+[2025-06-12 20:28:59] Campo id_categoria presente: 3
+[2025-06-12 20:28:59] Campo precio_minorista presente: 5
+[2025-06-12 20:28:59] Campo precio_mayorista presente: 5
+[2025-06-12 20:28:59] Campo cantidad_minima_mayorista presente: 5
+[2025-06-12 20:28:59] Campo unidad_medida presente: kg
+[2025-06-12 20:28:59] Procesando datos del formulario...
+[2025-06-12 20:28:59] nombre_producto procesado: 'Papitas'
+[2025-06-12 20:28:59] descripcion procesada: 'Son mas peques'
+[2025-06-12 20:28:59] id_categoria procesado: 3
+[2025-06-12 20:28:59] precio_minorista procesado: 5
+[2025-06-12 20:28:59] precio_mayorista procesado: 5
+[2025-06-12 20:28:59] cantidad_minima_mayorista procesado: 5
+[2025-06-12 20:28:59] unidad_medida procesada: 'kg'
+[2025-06-12 20:28:59] === VALIDACIONES ===
+[2025-06-12 20:28:59] Validación nombre_producto: OK
+[2025-06-12 20:28:59] Validación id_categoria: OK
+[2025-06-12 20:28:59] Validación precio_minorista: OK
+[2025-06-12 20:28:59] Validación precio_mayorista: OK
+[2025-06-12 20:28:59] Validación cantidad_minima_mayorista: OK
+[2025-06-12 20:28:59] ERROR: precio_mayorista (5) >= precio_minorista (5)
+[2025-06-12 20:28:59] === EXCEPCIÓN CAPTURADA ===
+[2025-06-12 20:28:59] Error: El precio mayorista debe ser menor al precio minorista.
+[2025-06-12 20:28:59] Archivo: /home/pop/Escritorio/huertas_del_norte/actions/guardar_producto.php
+[2025-06-12 20:28:59] Línea: 133
+[2025-06-12 20:28:59] Stack trace: #0 {main}
+[2025-06-12 20:28:59] Mensaje de error establecido en sesión
+[2025-06-12 20:28:59] === PREPARANDO REDIRECCIÓN ===
+[2025-06-12 20:28:59] Redirigiendo a: ../index.php
+[2025-06-12 20:28:59] Header de redirección enviado
+[2025-06-12 20:30:30] === INICIO DEL SCRIPT ===
+[2025-06-12 20:30:30] Script iniciado - guardar_producto.php
+[2025-06-12 20:30:30] Método de solicitud: POST
+[2025-06-12 20:30:30] Datos POST recibidos: Array
+(
+    [nombre_producto] => Papitas
+    [descripcion] => Mas peqes
+    [id_categoria] => 3
+    [precio_minorista] => 5
+    [precio_mayorista] => 1
+    [cantidad_minima_mayorista] => 200
+    [unidad_medida] => kg
+)
+
+[2025-06-12 20:30:30] Archivos recibidos: Array
+(
+    [imagen] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+[2025-06-12 20:30:30] Sesión está activa
+[2025-06-12 20:30:30] Intentando incluir archivo de configuración de BD
+[2025-06-12 20:30:30] Archivo de configuración de BD incluido exitosamente
+[2025-06-12 20:30:30] Objeto PDO existe
+[2025-06-12 20:30:30] Conexión a BD verificada - FUNCIONANDO
+[2025-06-12 20:30:30] Verificando método de solicitud...
+[2025-06-12 20:30:30] Método POST confirmado - procesando formulario
+[2025-06-12 20:30:30] === INICIO DE PROCESAMIENTO DE DATOS ===
+[2025-06-12 20:30:30] Campo nombre_producto presente: Papitas
+[2025-06-12 20:30:30] Campo descripcion presente: Mas peqes
+[2025-06-12 20:30:30] Campo id_categoria presente: 3
+[2025-06-12 20:30:30] Campo precio_minorista presente: 5
+[2025-06-12 20:30:30] Campo precio_mayorista presente: 1
+[2025-06-12 20:30:30] Campo cantidad_minima_mayorista presente: 200
+[2025-06-12 20:30:30] Campo unidad_medida presente: kg
+[2025-06-12 20:30:30] Procesando datos del formulario...
+[2025-06-12 20:30:30] nombre_producto procesado: 'Papitas'
+[2025-06-12 20:30:30] descripcion procesada: 'Mas peqes'
+[2025-06-12 20:30:30] id_categoria procesado: 3
+[2025-06-12 20:30:30] precio_minorista procesado: 5
+[2025-06-12 20:30:30] precio_mayorista procesado: 1
+[2025-06-12 20:30:30] cantidad_minima_mayorista procesado: 200
+[2025-06-12 20:30:30] unidad_medida procesada: 'kg'
+[2025-06-12 20:30:30] === VALIDACIONES ===
+[2025-06-12 20:30:30] Validación nombre_producto: OK
+[2025-06-12 20:30:30] Validación id_categoria: OK
+[2025-06-12 20:30:30] Validación precio_minorista: OK
+[2025-06-12 20:30:30] Validación precio_mayorista: OK
+[2025-06-12 20:30:30] Validación cantidad_minima_mayorista: OK
+[2025-06-12 20:30:30] Validación relación de precios: OK
+[2025-06-12 20:30:30] === TODAS LAS VALIDACIONES PASARON ===
+[2025-06-12 20:30:30] Procesando imagen...
+[2025-06-12 20:30:30] Campo imagen presente en FILES
+[2025-06-12 20:30:30] Error de imagen: 4
+[2025-06-12 20:30:30] No se subió imagen o hubo error: 4
+[2025-06-12 20:30:30] === PREPARANDO INSERCIÓN EN BD ===
+[2025-06-12 20:30:30] Preparando consulta SQL...
+[2025-06-12 20:30:30] SQL Query: INSERT INTO productos (
+                    nombre_producto, descripcion, imagen, id_categoria, 
+                    precio_minorista, precio_mayorista, cantidad_minima_mayorista, 
+                    unidad_medida, activo
+                ) VALUES (
+                    :nombre_producto, :descripcion, :imagen, :id_categoria,
+                    :precio_minorista, :precio_mayorista, :cantidad_minima_mayorista,
+                    :unidad_medida, 1
+                )
+[2025-06-12 20:30:30] Consulta preparada exitosamente
+[2025-06-12 20:30:30] Parámetros para ejecutar: Array
+(
+    [:nombre_producto] => Papitas
+    [:descripcion] => Mas peqes
+    [:imagen] => 
+    [:id_categoria] => 3
+    [:precio_minorista] => 5
+    [:precio_mayorista] => 1
+    [:cantidad_minima_mayorista] => 200
+    [:unidad_medida] => kg
+)
+
+[2025-06-12 20:30:30] Ejecutando consulta...
+[2025-06-12 20:30:30] Consulta ejecutada exitosamente
+[2025-06-12 20:30:30] ID del producto insertado: 12
+[2025-06-12 20:30:30] === PRODUCTO INSERTADO EXITOSAMENTE ===
+[2025-06-12 20:30:30] Mensaje de éxito establecido en sesión
+[2025-06-12 20:30:30] === PREPARANDO REDIRECCIÓN ===
+[2025-06-12 20:30:30] Redirigiendo a: ../index.php
+[2025-06-12 20:30:30] Header de redirección enviado
+[2025-06-12 20:32:11] === INICIO DEL SCRIPT ===
+[2025-06-12 20:32:11] Script iniciado - guardar_producto.php
+[2025-06-12 20:32:11] Método de solicitud: POST
+[2025-06-12 20:32:11] Datos POST recibidos: Array
+(
+    [nombre_producto] => Mandrago
+    [descripcion] => Mas peqes del sur
+    [id_categoria] => 4
+    [precio_minorista] => 8
+    [precio_mayorista] => 1
+    [cantidad_minima_mayorista] => 100
+    [unidad_medida] => unidad
+)
+
+[2025-06-12 20:32:11] Archivos recibidos: Array
+(
+    [imagen] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+[2025-06-12 20:32:11] Sesión está activa
+[2025-06-12 20:32:11] Intentando incluir archivo de configuración de BD
+[2025-06-12 20:32:11] Archivo de configuración de BD incluido exitosamente
+[2025-06-12 20:32:11] Objeto PDO existe
+[2025-06-12 20:32:11] Conexión a BD verificada - FUNCIONANDO
+[2025-06-12 20:32:11] Verificando método de solicitud...
+[2025-06-12 20:32:11] Método POST confirmado - procesando formulario
+[2025-06-12 20:32:11] === INICIO DE PROCESAMIENTO DE DATOS ===
+[2025-06-12 20:32:11] Campo nombre_producto presente: Mandrago
+[2025-06-12 20:32:11] Campo descripcion presente: Mas peqes del sur
+[2025-06-12 20:32:11] Campo id_categoria presente: 4
+[2025-06-12 20:32:11] Campo precio_minorista presente: 8
+[2025-06-12 20:32:11] Campo precio_mayorista presente: 1
+[2025-06-12 20:32:11] Campo cantidad_minima_mayorista presente: 100
+[2025-06-12 20:32:11] Campo unidad_medida presente: unidad
+[2025-06-12 20:32:11] Procesando datos del formulario...
+[2025-06-12 20:32:11] nombre_producto procesado: 'Mandrago'
+[2025-06-12 20:32:11] descripcion procesada: 'Mas peqes del sur'
+[2025-06-12 20:32:11] id_categoria procesado: 4
+[2025-06-12 20:32:11] precio_minorista procesado: 8
+[2025-06-12 20:32:11] precio_mayorista procesado: 1
+[2025-06-12 20:32:11] cantidad_minima_mayorista procesado: 100
+[2025-06-12 20:32:11] unidad_medida procesada: 'unidad'
+[2025-06-12 20:32:11] === VALIDACIONES ===
+[2025-06-12 20:32:11] Validación nombre_producto: OK
+[2025-06-12 20:32:11] Validación id_categoria: OK
+[2025-06-12 20:32:11] Validación precio_minorista: OK
+[2025-06-12 20:32:11] Validación precio_mayorista: OK
+[2025-06-12 20:32:11] Validación cantidad_minima_mayorista: OK
+[2025-06-12 20:32:11] Validación relación de precios: OK
+[2025-06-12 20:32:11] === TODAS LAS VALIDACIONES PASARON ===
+[2025-06-12 20:32:11] Procesando imagen...
+[2025-06-12 20:32:11] Campo imagen presente en FILES
+[2025-06-12 20:32:11] Error de imagen: 4
+[2025-06-12 20:32:11] No se subió imagen o hubo error: 4
+[2025-06-12 20:32:11] === PREPARANDO INSERCIÓN EN BD ===
+[2025-06-12 20:32:11] Preparando consulta SQL...
+[2025-06-12 20:32:11] SQL Query: INSERT INTO productos (
+                    nombre_producto, descripcion, imagen, id_categoria, 
+                    precio_minorista, precio_mayorista, cantidad_minima_mayorista, 
+                    unidad_medida, activo
+                ) VALUES (
+                    :nombre_producto, :descripcion, :imagen, :id_categoria,
+                    :precio_minorista, :precio_mayorista, :cantidad_minima_mayorista,
+                    :unidad_medida, 1
+                )
+[2025-06-12 20:32:11] Consulta preparada exitosamente
+[2025-06-12 20:32:11] Parámetros para ejecutar: Array
+(
+    [:nombre_producto] => Mandrago
+    [:descripcion] => Mas peqes del sur
+    [:imagen] => 
+    [:id_categoria] => 4
+    [:precio_minorista] => 8
+    [:precio_mayorista] => 1
+    [:cantidad_minima_mayorista] => 100
+    [:unidad_medida] => unidad
+)
+
+[2025-06-12 20:32:11] Ejecutando consulta...
+[2025-06-12 20:32:11] Consulta ejecutada exitosamente
+[2025-06-12 20:32:11] ID del producto insertado: 13
+[2025-06-12 20:32:11] === PRODUCTO INSERTADO EXITOSAMENTE ===
+[2025-06-12 20:32:11] Mensaje de éxito establecido en sesión
+[2025-06-12 20:32:11] === PREPARANDO REDIRECCIÓN ===
+[2025-06-12 20:32:11] Redirigiendo a: ../index.php
+[2025-06-12 20:32:11] Header de redirección enviado

@@ -79,8 +79,8 @@
                         <span class="text-light fs-5"><a href="#"><i class="fas fa-copyright text-light me-2"></i>Huertas del Norte - Frutihorticola</a>, Todos los derechos reservados. 2025</span>
                     </div>
                     <div class="col-md-6 my-auto text-center text-md-end text-white">
-                        <!--/*** This template is free as long as you keep the below author’s credit link/attribution link/backlink. ***/-->
-                        <!--/*** If you'd like to use the template without the below author’s credit link/attribution link/backlink, ***/-->
+                        <!--/*** This template is free as long as you keep the below author's credit link/attribution link/backlink. ***/-->
+                        <!--/*** If you'd like to use the template without the below author's credit link/attribution link/backlink, ***/-->
                         <!--/*** you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". ***/-->
                         <!--Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a> Distributed By <a class="border-bottom" href="https://themewagon.com">ThemeWagon</a>-->
                     </div>
@@ -104,9 +104,11 @@
     <script src="assets/lib/owlcarousel/owl.carousel.min.js"></script>
 
     <!-- Template Javascript -->
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
     <script src="assets/js/main.js"></script>
     <script src="assets/js/shop.js"></script>
     <script src="assets/js/carrito.js"></script>
+    <script src="assets/js/checkout.js"></script>
 
     </body>
 

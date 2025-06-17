@@ -165,6 +165,18 @@ switch ($accion) {
         }
         break;
 
+    case 'historial':
+        $idProducto = $_GET['id_producto'] ?? null;
+        if (!$idProducto) {
+            echo json_encode([]);
+            break;
+        }
+        $stmt = $conn->prepare("SELECT fecha_ultima_actualizacion as fecha, tipo_operacion as operacion, cantidad, observaciones FROM historial_stock WHERE id_producto = ? ORDER BY fecha_ultima_actualizacion DESC");
+        $stmt->execute([$idProducto]);
+        $historial = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        echo json_encode($historial);
+        break;
+
     default:
         http_response_code(400);
         echo json_encode(['error' => 'Acción no válida']);

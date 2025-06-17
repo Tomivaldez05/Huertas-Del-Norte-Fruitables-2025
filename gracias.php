@@ -1,6 +1,15 @@
 <?php
 include_once 'includes/header.php';
 require_once 'includes/db.php';
+// Si no viene número de pedido pero sí viene confirmación de Mercado Pago
+if (!$numeroPedido && ($_GET['collection_status'] ?? '') === 'approved') {
+    echo '<div class="container mt-5">';
+    echo '<h2>¡Gracias por tu pago!</h2>';
+    echo '<p>Tu pago fue aprobado. Procesaremos tu pedido a la brevedad.</p>';
+    echo '</div>';
+    include_once 'includes/footer.php';
+    exit;
+}
 
 $numeroPedido = $_GET['pedido'] ?? null;
 

@@ -29,7 +29,6 @@ include_once 'includes/header.php';
         </div>
         <!-- Modal Search End -->
 
-
         <!-- Single Page Header start -->
         <div class="container-fluid page-header py-5">
             <h1 class="text-center text-white display-6">Checkout</h1>
@@ -41,63 +40,98 @@ include_once 'includes/header.php';
         </div>
         <!-- Single Page Header End -->
 
-
         <!-- Checkout Page Start -->
         <div class="container-fluid py-5" style="font-size: 20px;">
             <div class="container py-5">
-                <h1 class="mb-4">Detalles de facturacíon</h1>
+                <h1 class="mb-4">Detalles de facturación</h1>
                 <form action="#" id="form-checkout">
                     <div class="row g-5">
                         <div class="col-md-12 col-lg-6 col-xl-7">
+                            <!-- Nombres y Apellidos en la misma fila -->
                             <div class="row">
-                                <div class="col-md-12 col-lg-6">
+                                <div class="col-md-6">
                                     <div class="form-item w-100">
                                         <label class="form-label my-3">Nombres<sup>*</sup></label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" name="nombre" id="nombre" class="form-control" required>
                                     </div>
                                 </div>
-                                <div class="col-md-12 col-lg-6">
+                                <div class="col-md-6">
                                     <div class="form-item w-100">
                                         <label class="form-label my-3">Apellido<sup>*</sup></label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" name="apellido" id="apellido" class="form-control" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-item">
                                 <label class="form-label my-3">Nombre de la empresa<sup></sup></label>
                                 <input type="text" class="form-control">
+
+                            
+                            <!-- Email y Teléfono en la misma fila -->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-item w-100">
+                                        <label class="form-label my-3">Email<sup>*</sup></label>
+                                        <input type="email" name="email" id="email" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-item w-100">
+                                        <label class="form-label my-3">Número de teléfono<sup>*</sup></label>
+                                        <input type="tel" name="telefono" id="telefono" class="form-control" required>
+                                    </div>
+                                </div>
+
                             </div>
+                            
+                            <!-- Ciudad y Código Postal en la misma fila -->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-item w-100">
+                                        <label class="form-label my-3">Ciudad<sup>*</sup></label>
+                                        <input type="text" name="ciudad" id="ciudad" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-item w-100">
+                                        <label class="form-label my-3">Código postal<sup>*</sup></label>
+                                        <input type="text" name="codigo_postal" id="codigo_postal" class="form-control" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Campos de ancho completo -->
+                            <div class="form-item">
+                                <label class="form-label my-3">Nombre de la empresa</label>
+                                <input type="text" name="empresa" id="empresa" class="form-control">
+                            </div>
+                            
                             <div class="form-item">
                                 <label class="form-label my-3">Dirección <sup>*</sup></label>
-                                <input type="text" class="form-control" placeholder="Numero de casa, nombre de la calle">
+                                <input type="text" name="direccion" id="direccion" class="form-control" placeholder="Numero de casa, nombre de la calle" required>
                             </div>
-                            <div class="form-item">
-                                <label class="form-label my-3">Ciudad<sup>*</sup></label>
-                                <input type="text" class="form-control">
-                            </div>
+                            
                             <div class="form-item">
                                 <label class="form-label my-3">País<sup>*</sup></label>
-                                <input type="text" class="form-control">
+                                <input type="text" name="pais" id="pais" class="form-control" value="Argentina" required>
                             </div>
-                            <div class="form-item">
-                                <label class="form-label my-3">Código postal<sup>*</sup></label>
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="form-item">
-                                <label class="form-label my-3">Número de teléfono<sup>*</sup></label>
-                                <input type="tel" class="form-control">
-                            </div>
-                            <div class="form-item">
-                                <label class="form-label my-3">Email<sup>*</sup></label>
-                                <input type="email" class="form-control">
-                            </div>
+
                             <hr>
                             <div class="form-check my-3">
-                                <input class="form-check-input" type="checkbox" id="Address-1" name="Address" value="Address">
+                                <input class="form-check-input" type="checkbox" id="Address-1" name="usar_direccion_alternativa">
                                 <label class="form-check-label" for="Address-1">Enviar a una dirección diferente</label>
                             </div>
+                            
+                            <!-- Sección de dirección alternativa (inicialmente oculta) -->
+                            <div id="direccion-alternativa-section" style="display: none;">
+                                <div class="form-item">
+                                    <label class="form-label my-3">Dirección alternativa</label>
+                                    <input type="text" name="direccion_alternativa" id="direccion_alternativa" class="form-control" placeholder="Dirección diferente para el envío">
+                                </div>
+                            </div>
+                            
                             <div class="form-item">
-                                <textarea name="text" class="form-control" spellcheck="false" cols="30" rows="11" placeholder="Informacion adicional sobre el pedido (Opcional)"></textarea>
+                                <textarea name="notas_adicionales" id="notas_adicionales" class="form-control" spellcheck="false" cols="30" rows="11" placeholder="Información adicional sobre el pedido (Opcional)"></textarea>
                             </div>
                         </div>
                         <div class="col-md-12 col-lg-6 col-xl-5">
@@ -112,93 +146,42 @@ include_once 'includes/header.php';
                                             <th scope="col">Total</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="tabla-carrito-checkout">
+                                        <!-- El contenido se cargará dinámicamente -->
                                         <tr>
-                                            <th scope="row">
-                                                <div class="d-flex align-items-center mt-2">
-                                                    <img src="assets/img/vegetable-item-2.jpg" class="img-fluid rounded-circle" style="width: 90px; height: 90px;" alt="">
-                                                </div>
-                                            </th>
-                                            <td class="py-5">Brocoli</td>
-                                            <td class="py-5">$69.00</td>
-                                            <td class="py-5">2</td>
-                                            <td class="py-5">$138.00</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">
-                                            </th>
-                                            <td class="py-5"></td>
-                                            <td class="py-5"></td>
-                                            <td class="py-5">
-                                                <p class="mb-0 text-dark py-3">Subtotal</p>
-                                            </td>
-                                            <td class="py-5">
-                                                <div class="py-3 border-bottom border-top">
-                                                    <p class="mb-0 text-dark">$414.00</p>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">
-                                            </th>
-                                            <td class="py-5">
-                                                <p class="mb-0 text-dark py-4">Envío</p>
-                                            </td>
-                                            <td colspan="3" class="py-5">
-                                                <div class="form-check text-start">
-                                                    <input type="checkbox" class="form-check-input bg-primary border-0" id="Shipping-1" name="Shipping-1" value="Shipping">
-                                                    <label class="form-check-label" for="Shipping-1">Envío gratis</label>
-                                                </div>
-                                                <div class="form-check text-start">
-                                                    <input type="checkbox" class="form-check-input bg-primary border-0" id="Shipping-2" name="Shipping-1" value="Shipping">
-                                                    <label class="form-check-label" for="Shipping-2">Tarifa: $15.00</label>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">
-                                            </th>
-                                            <td class="py-5">
-                                                <p class="mb-0 text-dark text-uppercase py-3">TOTAL</p>
-                                            </td>
-                                            <td class="py-5"></td>
-                                            <td class="py-5"></td>
-                                            <td class="py-5">
-                                                <div class="py-3 border-bottom border-top">
-                                                    <p class="mb-0 text-dark">$135.00</p>
+                                            <td colspan="5" class="text-center py-4">
+                                                <div class="spinner-border text-primary" role="status">
+                                                    <span class="visually-hidden">Cargando...</span>
                                                 </div>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
+                            
+                            <!-- Métodos de pago como RADIO BUTTONS (solo uno seleccionable) -->
+                            <div class="row g-4 text-center align-items-center justify-content-center border-bottom py-3">
+                                <div class="col-12">
+                                    <h5 class="mb-3">Método de pago</h5>
+                                    <div class="form-check text-start my-3">
+                                        <input type="radio" class="form-check-input bg-primary border-0" id="contrareembolso" name="metodo_pago" value="contrareembolso" checked>
+                                        <label class="form-check-label" for="contrareembolso">Pago contra entrega</label>
+                                    </div>
+                                    <p class="text-start text-dark small">Pague en efectivo cuando reciba su pedido en la dirección indicada.</p>
+                                </div>
+                            </div>
                             <div class="row g-4 text-center align-items-center justify-content-center border-bottom py-3">
                                 <div class="col-12">
                                     <div class="form-check text-start my-3">
-                                        <input type="checkbox" class="form-check-input bg-primary border-0" id="Transfer-1" name="Transfer" value="Transfer">
-                                        <label class="form-check-label" for="Transfer-1">Transferencia bancaria directa</label>
+                                        <input type="radio" class="form-check-input bg-primary border-0" id="mercadoPago" name="metodo_pago" value="mercadopago">
+                                        <label class="form-check-label" for="mercadoPago">Pagar con Mercado Pago</label>
                                     </div>
-                                    <p class="text-start text-dark">Realice su pago directamente en nuestra cuenta bancaria. Utilice su número de pedido como referencia de pago. Su pedido no se enviará hasta que los fondos se hayan acreditado en nuestra cuenta.</p>
+                                    <p class="text-start text-dark small">Pague de forma segura con tarjeta de crédito, débito o transferencia.</p>
                                 </div>
                             </div>
-                            <div class="row g-4 text-center align-items-center justify-content-center border-bottom py-3">
-                                <div class="col-12">
-                                    <div class="form-check text-start my-3">
-                                        <input type="checkbox" class="form-check-input bg-primary border-0" id="Delivery-1" name="Delivery" value="Delivery">
-                                        <label class="form-check-label" for="Delivery-1">Contra reembolso</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row g-4 text-center align-items-center justify-content-center border-bottom py-3">
-                            <div class="col-12">
-                                <div class="form-check text-start my-3">
-                                <input type="checkbox" class="form-check-input bg-primary border-0" id="mercadoPago" value="MercadoPago">
-                                <label class="form-check-label" for="mercadoPago">Pagar con Mercado Pago</label>
-                                </div>
-                                <div id="wallet_container" class="mt-3"></div>
-                            </div>
-                            </div>
+                            
                             <div class="row g-4 text-center align-items-center justify-content-center pt-4">
-                                <button type="submit" class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary">Realizar pedido</button>
+                                <button type="submit" class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary">Realizar Pedido</button>
                             </div>
                         </div>
                     </div>
@@ -206,10 +189,5 @@ include_once 'includes/header.php';
             </div>
         </div>
         <!-- Checkout Page End -->
-<script src="https://sdk.mercadopago.com/js/v2"></script> 
-<script src="assets/js/checkout.js"></script>
-<?php
-    include_once 'includes/footer.php';
-?>
-
- 
+<script src="https://sdk.mercadopago.com/js/v2"></script>
+<?php include_once 'includes/footer.php'; ?>git rebase --continue

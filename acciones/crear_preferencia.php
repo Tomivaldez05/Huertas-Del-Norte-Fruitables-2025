@@ -6,6 +6,7 @@ $access_token = 'APP_USR-3732629042479412-060513-4fc00e10158e4a35ebe32c84b60b2ad
 
 $data = json_decode(file_get_contents("php://input"), true);
 $carrito = $data['carrito'] ?? [];
+$cliente = $data['cliente'] ?? [];
 
 if (!$carrito) {
     http_response_code(400);
@@ -30,7 +31,6 @@ foreach ($carrito as $item) {
     ];
 }
 
-
 $preference = [
     'items' => $items,
     'back_urls' => [
@@ -38,7 +38,7 @@ $preference = [
         'failure' => 'http://localhost/Huertas-Del-Norte-Fruitables-2025/error.php',
         'pending' => 'http://localhost/Huertas-Del-Norte-Fruitables-2025/gracias.php'
     ],
-    'auto_return' => 'approved'
+
 ];
 
 
@@ -57,3 +57,4 @@ $result = curl_exec($ch);
 curl_close($ch);
 
 echo $result;
+?>
